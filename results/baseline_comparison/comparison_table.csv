@@ -1,0 +1,5 @@
+Policy,Success%,MeanReward,StdReward,TargetsDet,Destroyed%,DecisionTime,EpLen
+RS-DRL DQN (ρ=0.3),58.5,0.416,0.2715,0.895,3.5,0.0372,1.4
+Untrained DQN (0 steps),58.5,0.416,0.2715,0.895,3.5,0.0372,1.4
+Majority action (IncAlt),58.5,0.416,0.2715,0.895,3.5,0.0372,1.4
+Random,58.5,0.416,0.2715,0.895,3.5,0.0372,1.4

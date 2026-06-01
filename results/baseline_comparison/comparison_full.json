@@ -1,0 +1,52 @@
+{
+  "rs_drl": {
+    "mean_reward": 0.416,
+    "std_reward": 0.2715,
+    "mission_success_rate": 0.585,
+    "mean_targets_detected": 0.895,
+    "std_targets_detected": 0.8683,
+    "team_destruction_rate": 0.035,
+    "mean_decision_time": 0.0372,
+    "mean_episode_length": 1.4,
+    "n_episodes": 200
+  },
+  "untrained": {
+    "mean_reward": 0.416,
+    "std_reward": 0.2715,
+    "mission_success_rate": 0.585,
+    "mean_targets_detected": 0.895,
+    "std_targets_detected": 0.8683,
+    "team_destruction_rate": 0.035,
+    "mean_decision_time": 0.0372,
+    "mean_episode_length": 1.4,
+    "n_episodes": 200
+  },
+  "majority": {
+    "mean_reward": 0.416,
+    "std_reward": 0.2715,
+    "mission_success_rate": 0.585,
+    "mean_targets_detected": 0.895,
+    "std_targets_detected": 0.8683,
+    "team_destruction_rate": 0.035,
+    "mean_decision_time": 0.0372,
+    "mean_episode_length": 1.4,
+    "n_episodes": 200
+  },
+  "random": {
+    "mean_reward": 0.416,
+    "std_reward": 0.2715,
+    "mission_success_rate": 0.585,
+    "mean_targets_detected": 0.895,
+    "std_targets_detected": 0.8683,
+    "team_destruction_rate": 0.035,
+    "mean_decision_time": 0.0372,
+    "mean_episode_length": 1.4,
+    "n_episodes": 200
+  },
+  "oracle_success_rate": 0.5816396466797763,
+  "oracle_targets_detected": 0.8133282944420602,
+  "oracle_destroyed_rate": 0.029375028023494898,
+  "n_eval_episodes": 200,
+  "dataset_episodes": 156119,
+  "seed": 42
+}

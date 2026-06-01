@@ -1,0 +1,1030 @@
+[
+  {
+    "position_x": 0,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      true,
+      false,
+      false,
+      false,
+      true
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 0,
+    "action": "GoTight",
+    "info": {}
+  },
+  {
+    "position_x": 1,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "TIGHT",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      false,
+      true,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 1,
+    "action": "GoLoose",
+    "info": {}
+  },
+  {
+    "position_x": 2,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 2,
+    "action": "Unknown",
+    "info": {}
+  },
+  {
+    "position_x": 3,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      false,
+      false,
+      true
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 3,
+    "action": "Unknown",
+    "info": {}
+  },
+  {
+    "position_x": 4,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      true,
+      true,
+      true
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 4,
+    "action": "Unknown",
+    "info": {}
+  },
+  {
+    "position_x": 5,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      true,
+      false,
+      false,
+      true
+    ],
+    "step": 5,
+    "action": "DecAlt",
+    "info": {}
+  },
+  {
+    "position_x": 6,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 3,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      true,
+      false,
+      false,
+      true
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 6,
+    "action": "IncAlt",
+    "info": {}
+  },
+  {
+    "position_x": 7,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      true,
+      false,
+      true,
+      true,
+      false
+    ],
+    "targets_ahead": [
+      true,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 7,
+    "action": "GoTight",
+    "info": {}
+  },
+  {
+    "position_x": 8,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 3,
+    "formation": "TIGHT",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      true,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      true,
+      false,
+      false,
+      true,
+      true
+    ],
+    "step": 8,
+    "action": "IncAlt",
+    "info": {}
+  },
+  {
+    "position_x": 9,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      true,
+      false,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "step": 9,
+    "action": "GoTight",
+    "info": {}
+  },
+  {
+    "position_x": 10,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 3,
+    "formation": "TIGHT",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      true
+    ],
+    "step": 10,
+    "action": "GoLoose",
+    "info": {}
+  },
+  {
+    "position_x": 11,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 2,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      true,
+      true,
+      false,
+      true,
+      false
+    ],
+    "step": 11,
+    "action": "DecAlt",
+    "info": {}
+  },
+  {
+    "position_x": 12,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 1,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      true,
+      false,
+      true,
+      false,
+      false
+    ],
+    "step": 12,
+    "action": "Unknown",
+    "info": {}
+  },
+  {
+    "position_x": 13,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 1,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      true,
+      false,
+      false,
+      true
+    ],
+    "targets_ahead": [
+      true,
+      true,
+      false,
+      false,
+      false
+    ],
+    "step": 13,
+    "action": "IncAlt",
+    "info": {}
+  },
+  {
+    "position_x": 14,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 2,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      true,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 14,
+    "action": "DecAlt",
+    "info": {}
+  },
+  {
+    "position_x": 15,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 1,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 15,
+    "action": "Unknown",
+    "info": {}
+  },
+  {
+    "position_x": 16,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 1,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 16,
+    "action": "Unknown",
+    "info": {}
+  },
+  {
+    "position_x": 17,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 1,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      true
+    ],
+    "step": 17,
+    "action": "Unknown",
+    "info": {}
+  },
+  {
+    "position_x": 18,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 1,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      false,
+      true,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      true,
+      false
+    ],
+    "step": 18,
+    "action": "IncAlt",
+    "info": {}
+  },
+  {
+    "position_x": 19,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 2,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      true,
+      true,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 19,
+    "action": "IncAlt",
+    "info": {}
+  },
+  {
+    "position_x": 20,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 3,
+    "formation": "TIGHT",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      true,
+      false,
+      true,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      true,
+      false,
+      true,
+      false
+    ],
+    "step": 20,
+    "action": "IncAlt",
+    "info": {}
+  },
+  {
+    "position_x": 21,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      true,
+      true,
+      true,
+      false,
+      true
+    ],
+    "targets_ahead": [
+      true,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 21,
+    "action": "GoTight",
+    "info": {}
+  },
+  {
+    "position_x": 22,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 3,
+    "formation": "TIGHT",
+    "ecm": false,
+    "threats_ahead": [
+      true,
+      false,
+      false,
+      true,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      true,
+      false
+    ],
+    "step": 22,
+    "action": "IncAlt",
+    "info": {}
+  },
+  {
+    "position_x": 23,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "TIGHT",
+    "ecm": false,
+    "threats_ahead": [
+      true,
+      false,
+      true,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      true,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 23,
+    "action": "DecAlt",
+    "info": {}
+  },
+  {
+    "position_x": 24,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 3,
+    "formation": "TIGHT",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      true,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 24,
+    "action": "IncAlt",
+    "info": {}
+  },
+  {
+    "position_x": 25,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 25,
+    "action": "Unknown",
+    "info": {}
+  },
+  {
+    "position_x": 26,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 26,
+    "action": "Unknown",
+    "info": {}
+  },
+  {
+    "position_x": 27,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      true
+    ],
+    "step": 27,
+    "action": "DecAlt",
+    "info": {}
+  },
+  {
+    "position_x": 28,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 3,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      true,
+      false,
+      true,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 28,
+    "action": "IncAlt",
+    "info": {}
+  },
+  {
+    "position_x": 29,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      true,
+      false,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 29,
+    "action": "GoTight",
+    "info": {}
+  },
+  {
+    "position_x": 30,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "TIGHT",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 30,
+    "action": "GoLoose",
+    "info": {}
+  },
+  {
+    "position_x": 31,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      true
+    ],
+    "step": 31,
+    "action": "DecAlt",
+    "info": {}
+  },
+  {
+    "position_x": 32,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 3,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 32,
+    "action": "Unknown",
+    "info": {}
+  },
+  {
+    "position_x": 33,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 3,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      true,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      true,
+      false,
+      false,
+      false
+    ],
+    "step": 33,
+    "action": "IncAlt",
+    "info": {}
+  },
+  {
+    "position_x": 34,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      true,
+      false,
+      false,
+      false
+    ],
+    "step": 34,
+    "action": "DecAlt",
+    "info": {}
+  },
+  {
+    "position_x": 35,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 3,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 35,
+    "action": "Unknown",
+    "info": {}
+  },
+  {
+    "position_x": 36,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 3,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      false,
+      true
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      true,
+      false
+    ],
+    "step": 36,
+    "action": "IncAlt",
+    "info": {}
+  },
+  {
+    "position_x": 37,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      true
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false
+    ],
+    "step": 37,
+    "action": "Unknown",
+    "info": {}
+  },
+  {
+    "position_x": 38,
+    "position_y": 0,
+    "direction_x": 1,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false
+    ],
+    "step": 38,
+    "action": "Unknown",
+    "info": {}
+  },
+  {
+    "position_x": 39,
+    "position_y": 0,
+    "direction_x": -39,
+    "direction_y": 0,
+    "altitude": 4,
+    "formation": "LOOSE",
+    "ecm": false,
+    "threats_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "targets_ahead": [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "step": 39,
+    "action": "Unknown",
+    "info": {}
+  }
+]

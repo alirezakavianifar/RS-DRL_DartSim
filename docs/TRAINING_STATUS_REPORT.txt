@@ -1,0 +1,59 @@
+========================================
+Training Status Report
+========================================
+
+DIAGNOSIS SUMMARY:
+-----------------
+1. Training Processes: RUNNING but IDLE
+   - 4 Python processes running for 1+ hour
+   - CPU usage: 0% (completely idle)
+   - Memory: ~3 MB each (very low, indicates waiting/blocked)
+   - Status: Processes are waiting/blocked
+
+2. DARTSim Container: RUNNING
+   - Container is up and running (2 hours)
+   - Port 5418 is exposed and listening
+   - BUT: DARTSim executable is NOT running inside container
+   - TCP connection succeeds but DARTSim doesn't respond to commands
+
+3. Log Files: INCOMPLETE
+   - All event files are only 88 bytes (just headers)
+   - Last write: 58+ minutes ago
+   - No actual training data has been logged
+
+ROOT CAUSE:
+-----------
+The training processes can connect to DARTSim's TCP port, but DARTSim 
+itself is not running as a server inside the container. The training is 
+blocked waiting for DARTSim to respond to commands.
+
+SOLUTION:
+---------
+DARTSim needs to be started as a TCP server inside the container. 
+Run this command:
+
+   docker exec -it dartsim bash -c "cd /headless/dartsim && ./run.sh"
+
+OR use the script:
+   
+   .\start-dartsim-tcp.ps1
+
+NOTE: DARTSim must stay running for training to work. If you run it 
+in the foreground, keep that terminal open. If you need it in background,
+you'll need to run it differently or use screen/tmux inside container.
+
+AFTER STARTING DARTSim:
+-----------------------
+1. Wait 2-3 seconds for DARTSim to initialize
+2. Check that it's responding: python test_dartsim_tcp.py
+3. Your training processes should automatically resume and start logging
+4. Check logs: Get-ChildItem logs\test_run\rs_drl_rho0.3\DQN_7\*.0 | 
+                Select-Object Length, LastWriteTime
+5. TensorBoard should show metrics within minutes
+
+MONITORING:
+-----------
+- Run: .\check_training_status.ps1 (to see log file growth)
+- Run: .\check_training_process.ps1 (to see process activity)
+- TensorBoard: http://localhost:6006 (already running)
+

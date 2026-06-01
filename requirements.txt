@@ -1,0 +1,20 @@
+# Requirements for RS-DRL implementation on DARTSim
+# Stable Baselines3 and dependencies
+stable-baselines3>=2.0.0
+gymnasium>=0.28.0
+numpy>=1.21.0
+
+# Optional but recommended
+torch>=1.12.0
+tensorboard>=2.10.0
+
+# Utilities
+matplotlib>=3.5.0
+pandas>=1.5.0
+plotly>=5.0.0  # For interactive visualizations
+kaleido>=0.2.1  # For plotly static image export (optional)
+
+# Progress bars
+tqdm>=4.60.0
+rich>=10.0.0
+

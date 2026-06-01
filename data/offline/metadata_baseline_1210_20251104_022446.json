@@ -1,0 +1,9 @@
+{
+  "scenario": "baseline",
+  "num_episodes": 1210,
+  "num_transitions": 47797,
+  "timestamp": "20251104_022446",
+  "episodes_file": "episodes_baseline_1210_20251104_022446.json",
+  "trajectories_file": "trajectories_baseline_1210_20251104_022446.json",
+  "results_file": "results_baseline_1210_20251104_022446.json"
+}

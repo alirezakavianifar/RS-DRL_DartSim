@@ -1,0 +1,76 @@
+========================================
+TensorBoard Training Monitoring Guide
+========================================
+
+PROBLEM: "No dashboards are active"
+-----------------------------------
+Your existing event files are very small (88 bytes), which means they're 
+incomplete or just headers. TensorBoard needs actual training data to display.
+
+SOLUTION: Run Training While TensorBoard is Running
+---------------------------------------------------
+
+Option 1: Monitor Live Training
+--------------------------------
+1. Start TensorBoard (in one terminal):
+   .\start_tensorboard.ps1
+
+2. In another terminal, start training:
+   .\venv\Scripts\Activate.ps1
+   python train_rs_drl.py --method rs_drl --timesteps 5000 --rho 0.3
+
+3. Refresh TensorBoard in your browser (http://localhost:6006)
+   You'll see metrics updating in real-time!
+
+
+Option 2: View Specific Experiment
+-----------------------------------
+Point TensorBoard to a specific experiment directory:
+
+   .\start_tensorboard.ps1 -Experiment baseline    # Baseline DQN
+   .\start_tensorboard.ps1 -Experiment rs_drl       # RS-DRL
+   .\start_tensorboard.ps1 -Experiment test        # Test runs
+   .\start_tensorboard.ps1                         # All experiments
+
+
+Option 3: Start Training + TensorBoard Together
+------------------------------------------------
+Run the combined script:
+
+   .\start_training_monitor.ps1 -Method rs_drl -Timesteps 5000
+
+
+What Metrics You'll See
+----------------------
+- SCALARS tab:
+  * rollout/ep_len_mean - Average episode length
+  * rollout/ep_rew_mean - Average episode reward  
+  * train/loss - Training loss
+  * train/q_value - Q-value estimates
+  * train/exploration_rate - Epsilon (exploration)
+  * eval/mean_ep_reward - Evaluation performance
+  * train/reshaping_rate - RS-DRL reshaping rate (if using RS-DRL)
+
+
+Troubleshooting
+---------------
+- Still no data? Make sure training is actually running and writing logs
+- Check that DARTSim is running (required for training)
+- Verify log directory exists: ls logs\
+- Try a very short training run first: --timesteps 1000
+
+
+Quick Commands
+--------------
+# Start TensorBoard for all experiments
+.\start_tensorboard.ps1
+
+# Start TensorBoard for baseline
+.\start_tensorboard.ps1 -Experiment baseline
+
+# Run short training test (generates logs)
+.\venv\Scripts\python.exe train_rs_drl.py --method baseline --timesteps 1000
+
+# Run training + monitor together
+.\start_training_monitor.ps1 -Method rs_drl -Timesteps 5000
+
