@@ -1,0 +1,9 @@
+{
+  "method": "rs_drl",
+  "seed": 43,
+  "timesteps": 20000,
+  "rho": 0.3,
+  "status": "success",
+  "elapsed_time": 41.57166004180908,
+  "output_dir": "experiments\\hard\\rs_drl\\seed_43"
+}

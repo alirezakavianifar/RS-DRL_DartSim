@@ -89,6 +89,8 @@ class OfflineDARTSimEnv(gym.Env):
         self.transitions: List[Dict] = []
         # Removed transition_lookup — no longer used.
 
+        self.sensor_noise = 0.0
+
         if data_dir is not None:
             self._load_episodes(data_dir, scenario, max_transitions)
 
@@ -234,7 +236,15 @@ class OfflineDARTSimEnv(gym.Env):
         transition = self._current_episode[self._step_idx]
         self._step_idx += 1
 
-        self.current_state = transition["next_state"].copy()
+        next_obs = transition["next_state"].copy()
+        
+        # Apply sensor noise failure injection (zeroing out threat sensors 7-11)
+        if self.sensor_noise > 0.0:
+            for idx in range(7, 12):
+                if random.random() < self.sensor_noise:
+                    next_obs[idx] = 0.0
+
+        self.current_state = next_obs
 
         terminated = transition["done"]
         truncated = False

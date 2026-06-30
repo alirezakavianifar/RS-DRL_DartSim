@@ -1,0 +1,9 @@
+Title: CHESS: A Framework for Evaluation of Self-Adaptive Systems Based on Chaos Engineering
+Authors: Sehrish Malik, Moeen Ali Naqvi, Leon Moonen
+Year: 2023
+DOI: https://doi.org/10.1109/seams59076.2023.00033
+Open Access URL: https://ieeexplore.ieee.org/ielx7/10173933/10173937/10174151.pdf
+DARTSim Usage Classification: Used as Case Study / Benchmark
+
+Abstract / Content Summary:
+There is an increasing need to assess the correct behavior of self-adaptive and self-healing systems due to their adoption in critical and highly dynamic environments. However, there is a lack of systematic evaluation methods for self-adaptive and self-healing systems. We proposed CHESS, a novel approach to address this gap by evaluating self-adaptive and self-healing systems through fault injection based on chaos engineering (CE).The artifact presented in this paper provides an extensive overview of the use of CHESS through two microservice-based case studies: a smart office case study and an existing demo application called Yelb. It comes with a managing system service, a self-monitoring service, as well as five fault injection scenarios covering infrastructure faults and functional faults. Each of these components can be easily extended or replaced to adopt the CHESS approach to a new case study, help explore its promises and limitations, and identify directions for future research.

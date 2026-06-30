@@ -1,0 +1,5 @@
+Title: DARTSim: An Exemplar for Evaluation and Comparison of Self-Adaptation Approaches for Smart Cyber-Physical Systems
+URL: http://www.cs.cmu.edu/~able/publications/moreno-seams19.pdf
+
+Abstract/Description:
+DARTSim is an exemplar designed to enable researchers to evaluate and compare self-adaptation approaches for smart cyber-physical systems (sCPS). It simulates a team of unmanned aerial vehicles (UAVs) executing a reconnaissance mission in a hostile, unknown environment.

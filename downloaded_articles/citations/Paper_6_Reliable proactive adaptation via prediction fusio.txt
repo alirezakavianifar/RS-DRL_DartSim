@@ -1,0 +1,9 @@
+Title: Reliable proactive adaptation via prediction fusion and extended stochastic model predictive control
+Authors: Zhengyin Chen, Jialong Li, Nianyu Li
+Year: 2024
+DOI: https://doi.org/10.1016/j.jss.2024.112166
+Open Access URL: 
+DARTSim Usage Classification: Mentioned / Cited
+
+Abstract / Content Summary:
+

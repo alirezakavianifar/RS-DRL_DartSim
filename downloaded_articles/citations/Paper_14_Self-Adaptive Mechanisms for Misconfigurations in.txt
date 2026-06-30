@@ -1,0 +1,9 @@
+Title: Self-Adaptive Mechanisms for Misconfigurations in Small Uncrewed Aerial Systems
+Authors: Salil Purandare, Urjoshi Sinha, Md Nafee Al Islam
+Year: 2023
+DOI: https://doi.org/10.1109/seams59076.2023.00030
+Open Access URL: https://ieeexplore.ieee.org/ielx7/10173933/10173937/10174190.pdf
+DARTSim Usage Classification: Mentioned / Cited
+
+Abstract / Content Summary:
+Small uncrewed aerial systems, sUAS, provide an invaluable resource for performing a variety of surveillance, search, and delivery tasks in remote or hostile terrains which may not be accessible by other means. Due to the critical role sUAS play in these situations, it is vital that they are well configured in order to ensure a safe and stable flight. However, it is not uncommon for mistakes to occur in configuration and calibration, leading to failures or incomplete missions. To address this problem, we propose a set of self-adaptive mechanisms and implement them into a self-adaptive framework, CICADA, for Controller Instability-preventing Configuration Aware Drone Adaptation. CICADA dynamically detects unstable drone behavior during flight and adapts to mitigate this threat. We have built a prototype of CICADA using a popular open source sUAS simulator and experimented with a large number of different configurations. Experimental results show that CICADA’s adaptations reduce controller instability and enable the sUAS to recover from a significant number of poor configurations. In cases where we cannot complete the intended mission, invoking alternative adaptations may still help by allowing the vehicle to loiter or land safely in place, avoiding potentially catastrophic crashes.

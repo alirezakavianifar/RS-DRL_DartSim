@@ -64,6 +64,7 @@ def evaluate_agent(
         max_transitions=max_transitions,
         seed=seed
     )
+    env.sensor_noise = env_kwargs.get("sensor_noise", 0.0)
     env = Monitor(env, filename=None, allow_early_resets=True)
     
     # Load model
@@ -347,13 +348,16 @@ def main():
     # Comparison mode
     parser.add_argument("--compare", type=str, nargs="+",
                        help="Compare multiple models (format: name1:path1 name2:path2 ...)")
+    parser.add_argument("--sensor-noise", type=float, default=0.0,
+                       help="Threat sensor failure rate / masking probability (default: 0.0)")
     
     args = parser.parse_args()
     
     env_kwargs = {
         "obs_dim": args.obs_dim,
         "max_transitions": args.max_transitions,
-        "seed": 42
+        "seed": 42,
+        "sensor_noise": args.sensor_noise
     }
     
     output_dir = Path(args.output_dir)

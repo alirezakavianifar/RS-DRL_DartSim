@@ -1,0 +1,90 @@
+\documentclass[oneside,openany,phd]{TMU-Thesis}
+
+
+% ==================== structure/preamble.tex ====================
+% مشخصات پایان‌نامه را در فایلهای faTitle و enTitle وارد نمایید.
+% در اینجا برای یکپارچگی، همینجا وارد می‌کنیم
+
+% مشخصات فارسی
+\university{تربیت مدرس}
+\faculty{مهندسی برق و کامپیوتر}
+\department{گروه هوش مصنوعی و رباتیکز}
+\subject{مهندسی کامپیوتر}
+\field{مهندسی نرم‌افزار}
+\credits{---} % در رساله دکتری معمولا به صورت واحدی ذکر نمی‌شود یا فیلد خالی است
+\title{یادگیری تقویتی عمیق با شکل‌دهی تصادفی پاداش برای مدیریت عدم قطعیت در سیستم‌های خودوفقی}
+\firstsupervisor{دکتر ...}
+% \secondsupervisor{استاد راهنمای دوم}
+\firstadvisor{دکتر ...}
+% \secondadvisor{استاد مشاور دوم}
+\name{علیرضا}
+\surname{کاویانی‌فر}
+\studentID{...}
+\thesisdate{بهمن ۱۴۰۴}
+
+% مشخصات انگلیسی
+\latinuniversity{Tarbiat Modares University}
+\latinfaculty{Faculty of Electrical and Computer Engineering}
+\latinsubject{Computer Engineering}
+\latinfield{Software Engineering}
+\latintitle{Randomized Reward-Shaped Deep Reinforcement Learning for Managing Uncertainty in Self-Adaptive Systems}
+\firstlatinsupervisor{Dr. ...}
+\firstlatinadvisor{Dr. ...}
+\latinname{Alireza}
+\latinsurname{Kavianifar}
+\latinthesisdate{February 2026}
+\latinkeywords{Self-Adaptive Systems, Deep Reinforcement Learning, Randomized Reward Shaping, Uncertainty Management, Formal Verification, UPPAAL-SMC}
+
+% فراخوانی بسته‌ها و دستورات استاندارد
+\input{commands}
+
+% تنظیمات اختصاصی برای فهرست مطالب (TOC)
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+\raggedbottom
+
+% تنظیمات نقطه‌چین برای فهرست مطالب
+\usepackage{tocloft}
+\providecommand{\cftchapdotfill}{\cftdotfill{\cftdotsep}}
+\providecommand{\cftsecdotfill}{\cftdotfill{\cftdotsep}}
+\providecommand{\cftsubsecdotfill}{\cftdotfill{\cftdotsep}}
+
+
+% تنظیمات سربرگ برای رفع مشکل نمایش حروف فارسی (جعبه‌های خالی)
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\thepage}
+\fancyhead[R]{\small\leftmark}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+% حذف حالت ایتالیک/کج که باعث به هم ریختگی فونت فارسی در سربرگ می‌شود
+\let\oldheadrule\headrule
+\renewcommand{\headrule}{\oldheadrule}
+\fancyhead[R]{\small\nouppercase{\leftmark}}
+
+
+
+\begin{document}
+\AutoPersianDigits
+\setstretch{1.5}
+
+\appendix
+\chapter{جریان‌های کاری کامل فرآیند}
+\newpage
+\chapter{لیست کامل الگوریتم‌ها}
+\newpage
+\chapter{نتایج تجربی گسترده}
+\newpage
+\chapter{مصنوعات پیاده‌سازی و پکیج بازتولید}
+
+\newpage
+
+
+
+\ifstandalone
+\bibliographystyle{ieeetr-fa}
+\bibliography{References,MyReferences}
+\fi
+\end{document}

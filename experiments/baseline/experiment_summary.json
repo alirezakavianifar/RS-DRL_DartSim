@@ -1,0 +1,29 @@
+[
+  {
+    "method": "rs_drl",
+    "seed": 42,
+    "timesteps": 20000,
+    "rho": 0.3,
+    "status": "success",
+    "elapsed_time": 37.73365783691406,
+    "output_dir": "experiments\\baseline\\rs_drl\\seed_42"
+  },
+  {
+    "method": "rs_drl",
+    "seed": 43,
+    "timesteps": 20000,
+    "rho": 0.3,
+    "status": "success",
+    "elapsed_time": 36.7915735244751,
+    "output_dir": "experiments\\baseline\\rs_drl\\seed_43"
+  },
+  {
+    "method": "rs_drl",
+    "seed": 44,
+    "timesteps": 20000,
+    "rho": 0.3,
+    "status": "success",
+    "elapsed_time": 36.82024431228638,
+    "output_dir": "experiments\\baseline\\rs_drl\\seed_44"
+  }
+]

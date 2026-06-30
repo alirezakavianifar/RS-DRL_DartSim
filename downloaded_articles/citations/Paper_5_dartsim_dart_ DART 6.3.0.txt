@@ -1,0 +1,9 @@
+Title: dartsim/dart: DART 6.3.0
+Authors: Jeong-Seok Lee, Michael X. Grey, Tobias Kunz
+Year: 2018
+DOI: https://doi.org/10.5281/zenodo.1166142
+Open Access URL: https://zenodo.org/record/1166142
+DARTSim Usage Classification: Introduced DARTSim Exemplar
+
+Abstract / Content Summary:
+Collision detection Added a feature of disabling body node pairs to BodyNodeCollisionFilter: #911 Kinematics/Dynamics Added setter and getter for WeldJointConstraint::mRelativeTransform: #910 Parsers Improved SkelParser to read alpha value: #914 Misc Changed not to use lambda function as an workaround for DART python binding: #916

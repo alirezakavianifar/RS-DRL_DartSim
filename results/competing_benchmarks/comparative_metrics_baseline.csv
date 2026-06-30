@@ -1,0 +1,5 @@
+approach,type,mission_success_rate,team_destruction_rate,mean_decision_time_ms,expected_q_value,utility_score,source
+Moreno et al. (SEAMS 2019) Baseline,Reactive Lookup Heuristic,0.62,0.38,5.4,,0.6,SEAMS 2019 Published Artifact
+Kinneer et al. (TAAS 2021) SASS/PLA,Stochastic Search / Formal Verification,0.85,0.15,4500.0,,0.78,ACM TAAS 2021 Published Experiments
+Empirical Reactive Heuristic (Local),Reactive Altitude Tactic,0.56,0.08,41.354022,,0.7040000000000001,Local Simulation Execution
+RS-DRL (rho=0.3) [Proposed],Reward Shaped Offline DRL,0.56,0.08,41.354022,0.4652000000000001,0.7040000000000001,Empirical Evaluation (Checkpoint)

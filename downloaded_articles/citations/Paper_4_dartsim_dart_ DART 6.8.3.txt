@@ -1,0 +1,9 @@
+Title: dartsim/dart: DART 6.8.3
+Authors: Jeong-Seok Lee, Michael X. Grey, Tobias Kunz
+Year: 2019
+DOI: https://doi.org/10.5281/zenodo.3229404
+Open Access URL: https://zenodo.org/record/3229404
+DARTSim Usage Classification: Introduced DARTSim Exemplar
+
+Abstract / Content Summary:
+Changes Parser Fixed VskParker returning incorrect resource retriever: #1300 Build Fixed building with pagmo's optional dependencies: #1301 Compilers Tested Linux GCC 64-bit: 5.4.0, 7.3.0, 8.2.0 GCC 32-bit: 5.4.0 macOS AppleClang: 9.1.0, 10.0.0

@@ -1,0 +1,9 @@
+Title: Wildfire-UAVSim: An Exemplar for Evaluation of Adaptive Cyber-Physical Systems in Partially-Observable Environments
+Authors: Enrique Vílchez, Javier Troya, Javier Cámara
+Year: 2024
+DOI: https://doi.org/10.1145/3643915.3644109
+Open Access URL: https://dl.acm.org/doi/pdf/10.1145/3643915.3644109
+DARTSim Usage Classification: Used as Case Study / Benchmark
+
+Abstract / Content Summary:
+Smart Cyber-Physical Systems (sCPS) operate under dynamic, harsh conditions and limited observability of their operation environment. To facilitate the evaluation of distributed CPS where adaptation is affected by partial observability, this paper contributes the formalization of a wildfire tracking problem in forest areas with unmanned aerial vehicles (UAV), as well as a customizable simulator (Wildfire-UAVSim) that enables the evaluation of diverse adaptation strategies both under full and partial observability conditions.

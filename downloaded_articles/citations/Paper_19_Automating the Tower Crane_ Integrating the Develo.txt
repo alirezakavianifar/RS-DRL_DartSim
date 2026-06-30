@@ -1,0 +1,9 @@
+Title: Automating the Tower Crane: Integrating the Development and Simulation of Path Planning and Trajectory Tracking of Tower Crane in ROS Framework
+Authors: Muhammad Muddassir, Mohamed A. A. Abdelkareem, Tarek Zayed
+Year: 2024
+DOI: https://doi.org/10.22260/isarc2024/0138
+Open Access URL: https://www.iaarc.org/./publications/fulltext/137_ISARC_2024_Paper_269.pdf
+DARTSim Usage Classification: Mentioned / Cited
+
+Abstract / Content Summary:
+In modern construction sites, tower cranes play a crucial role but often rely on multiple human operators.Despite the advancements of the Construction 4.0 era, a comprehensive framework for automated tower crane operations is currently lacking.This study proposes a framework that integrates a real-scaled construction site and tower crane into a physics-based simulation in ROS (robot operating system) framework to enable collision-free motion planning and control.Specifically, we develop time-varying linear quadratic regulators (LQR) for trolley and jib control while employing a proportion-integrated-derivative (PID) method for hoisting control.Additionally, we utilise 5th-order quintic spline trajectories to plan the desired pose of the payload, reducing acceleration discontinuities.The framework's effectiveness is validated through simulations of a real-scaled tower crane and construction site equipped with LiDAR sensors.The results demonstrate that higher-order trajectories effectively minimise oscillations in unactuated systems.Our scalable framework holds promise for real-scale operations in the field of tower crane automation.

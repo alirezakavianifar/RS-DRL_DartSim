@@ -1,0 +1,204 @@
+% در این فایل، دستورها و تنظیمات مورد نیاز، آورده شده است.
+%-------------------------------------------------------------------------------------------------------------------
+
+% در ورژن جدید زی‌پرشین برای تایپ متن‌های ریاضی، این سه بسته، حتماً باید فراخوانی شود
+\usepackage{amsthm,amssymb,amsmath}
+% بسته‌ای برای تنطیم حاشیه‌های بالا، پایین، چپ و راست صفحه
+\usepackage[top=30mm, bottom=25mm, left=25mm, right=35mm]{geometry}
+% بسته‌‌ای برای ظاهر شدن شکل‌ها و تصاویر متن
+\usepackage{graphicx}
+% بسته‌ای برای رسم کادر
+\usepackage{framed} 
+% بسته‌‌ای برای چاپ شدن خودکار تعداد صفحات در صفحه «معرفی پایان‌نامه»
+\usepackage{lastpage}
+% بسته‌ و دستوراتی برای ایجاد لینک‌های رنگی با امکان جهش
+% \usepackage[pagebackref=false,colorlinks,linkcolor=black,citecolor=black]{hyperref}
+% چنانچه قصد پرینت گرفتن نوشته خود را دارید، خط بالا را غیرفعال و  از دستور زیر استفاده کنید چون در صورت استفاده از دستور زیر‌‌، 
+% لینک‌ها به رنگ سیاه ظاهر خواهند شد که برای پرینت گرفتن، مناسب‌تر است
+% \usepackage[pagebackref=false]{hyperref}
+% بسته‌ لازم برای تنظیم سربرگ‌ها
+\usepackage{fancyhdr}
+\setlength{\headheight}{16pt}
+%
+\usepackage{setspace}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{subfigure}
+\usepackage[subfigure]{tocloft}
+\usepackage{multirow}
+
+
+% بسته‌ای برای ظاهر شدن «مراجع» و «نمایه» در فهرست مطالب
+\usepackage[nottoc]{tocbibind}
+% دستورات مربوط به ایجاد نمایه
+\usepackage{makeidx}
+\makeindex
+% تعریف شیم‌های مورد نیاز برای نسخه‌های جدید بسته bidi در برخی محیط‌ها
+% Removal of redundant and potentially broken definitions
+\makeatletter
+% شیم‌های سازگاری برای نسخه‌های جدید لاتک و بسته‌های bidi/xepersian
+\providecommand{\IfClassLoadedT}[2]{\@ifclassloaded{#1}{#2}{}}
+\providecommand{\IfClassLoadedF}[2]{\@ifclassloaded{#1}{}{#2}}
+\providecommand{\IfClassLoadedTF}[3]{\@ifclassloaded{#1}{#2}{#3}}
+\providecommand{\IfPackageLoadedT}[2]{\@ifpackageloaded{#1}{#2}{}}
+\providecommand{\IfPackageLoadedF}[2]{\@ifpackageloaded{#1}{}{#2}}
+\providecommand{\IfPackageLoadedTF}[3]{\@ifpackageloaded{#1}{#2}{#3}}
+\providecommand{\@iffileloaded}[3]{\expandafter\ifx\csname ver@#1\endcsname\relax#3\else#2\fi}
+\providecommand{\IfFileLoadedT}[2]{\@iffileloaded{#1}{#2}{}}
+\providecommand{\IfFileLoadedF}[2]{\@iffileloaded{#1}{}{#2}}
+\providecommand{\IfFileLoadedTF}[3]{\@iffileloaded{#1}{#2}{#3}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% فراخوانی بسته زی‌پرشین و تعریف قلم فارسی و انگلیسی
+\usepackage[pagebackref=false,colorlinks,linkcolor=black,citecolor=black]{hyperref}
+\usepackage{notoccite}
+
+\ExplSyntaxOn
+\cs_if_exist:NTF \g__hyp_linknestlevel_int { } { \int_new:N \g__hyp_linknestlevel_int }
+\cs_if_exist:NTF \l__hyp_annot_GoTo_bool { } { \bool_new:N \l__hyp_annot_GoTo_bool }
+\cs_if_exist:NTF \l__hyp_annot_URI_bool { } { \bool_new:N \l__hyp_annot_URI_bool }
+\cs_if_exist:NTF \l__hyp_href_url_ismap_bool { } { \bool_new:N \l__hyp_href_url_ismap_bool }
+\cs_if_exist:NTF \l__hyp_text_enc_uri_print_tl { } { \tl_new:N \l__hyp_text_enc_uri_print_tl }
+\cs_if_exist:NTF \l__hyp_uri_tmpa_tl { } { \tl_new:N \l__hyp_uri_tmpa_tl }
+
+% Defining missing l3pdf/pdfdict commands if not present
+\cs_if_exist:NTF \pdfdict_put:nno { } { \cs_new:Npn \pdfdict_put:nno #1#2#3 { } }
+\cs_if_exist:NTF \pdfdict_put:nnn { } { \cs_new:Npn \pdfdict_put:nnn #1#2#3 { } }
+\cs_if_exist:NTF \pdfdict_use:n { } { \cs_new:Npn \pdfdict_use:n #1 { } }
+\cs_if_exist:NTF \pdfannot_dict_put:nne { } { \cs_new:Npn \pdfannot_dict_put:nne #1#2#3 { } }
+\cs_if_exist:NTF \pdfannot_link:nen { } { \cs_new:Npn \pdfannot_link:nen #1#2#3 { } }
+\cs_if_exist:NTF \__hyp_check_link_nesting:TF { } { \cs_new:Npn \__hyp_check_link_nesting:TF #1#2 { #1 } }
+\cs_if_exist:NTF \__hyp_text_pdfstring:eoN { } { \cs_new:Npn \__hyp_text_pdfstring:eoN #1#2#3 { } }
+\ExplSyntaxOff
+
+% تعریف دستورات گمشده برای جلوگیری از خطای renewcommand در بسته‌های داخلی
+\makeatletter
+\providecommand{\foottextfont}{}
+\providecommand{\LTRfoottextfont}{}
+\providecommand{\RTLfoottextfont}{}
+\providecommand{\abstractname}{}
+\providecommand{\latinabstract}{}
+\providecommand{\AutoPersianDigits}{}
+\makeatother
+
+\usepackage{xepersian}
+\settextfont[Path=font/,Extension=.ttf,Scale=1,
+    BoldFont=XB NiloofarBd,
+    ItalicFont=XB NiloofarIt,
+    BoldItalicFont=XB NiloofarBdIt
+]{XB Niloofar}
+\setlatintextfont[Scale=0.9]{Times New Roman}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% چنانچه می‌خواهید اعداد در فرمول‌ها، انگلیسی باشد، خط زیر را غیرفعال کنید
+\setdigitfont[Path=font/,Extension=.ttf,Scale=1,
+    BoldFont=XB NiloofarBd,
+    ItalicFont=XB NiloofarIt,
+    BoldItalicFont=XB NiloofarBdIt
+]{XB Niloofar}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% تعریف قلم‌های فارسی و انگلیسی اضافی برای استفاده در بعضی از قسمت‌های متن
+\defpersianfont\titlefont[Path=font/,Extension=.ttf,Scale=1]{XB Titre}
+% \defpersianfont\iranic[Scale=1.1]{XB Zar Oblique}%Italic}%
+% \defpersianfont\nastaliq[Scale=1.2]{IranNastaliq}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+% دستوری برای حذف کلمه «چکیده»
+\renewcommand{\abstractname}{}
+% دستوری برای حذف کلمه «abstract»
+%\renewcommand{\latinabstract}{}
+% دستوری برای تغییر نام کلمه «اثبات» به «برهان»
+\renewcommand\proofname{\textbf{برهان}}
+% دستوری برای تغییر نام کلمه «کتاب‌نامه» به «مراجع»
+\renewcommand{\bibname}{مراجع}
+% دستوری برای تعریف واژه‌نامه انگلیسی به فارسی
+\newcommand\persiangloss[2]{#1\dotfill\lr{#2}\\}
+% دستوری برای تعریف واژه‌نامه فارسی به انگلیسی 
+\newcommand\englishgloss[2]{#2\dotfill\lr{#1}\\}
+% تعریف دستور جدید «\پ» برای خلاصه‌نویسی جهت نوشتن عبارت «پروژه/پایان‌نامه/رساله»
+\newcommand{\پ}{پروژه/پایان‌نامه/رساله }
+
+%\newcommand\BackSlash{\char`\\}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\SepMark{-}
+
+% تعریف و نحوه ظاهر شدن عنوان قضیه‌ها، تعریف‌ها، مثال‌ها و ...
+\theoremstyle{definition}
+\newtheorem{definition}{تعریف}[section]
+\theoremstyle{plain}
+\newtheorem{theorem}[definition]{قضیه}
+\newtheorem{lemma}[definition]{لم}
+\newtheorem{proposition}[definition]{گزاره}
+\newtheorem{corollary}[definition]{نتیجه}
+\newtheorem{remark}[definition]{ملاحظه}
+\theoremstyle{definition}
+\newtheorem{example}[definition]{مثال}
+
+%\renewcommand{\theequation}{\thechapter-\arabic{equation}}
+%\def\bibname{مراجع}
+\numberwithin{algorithm}{chapter}
+\def\listalgorithmname{فهرست الگوریتم‌ها}
+\def\listfigurename{فهرست تصاویر}
+\def\listtablename{فهرست جداول}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% دستورهایی برای سفارشی کردن سربرگ صفحات
+% \newcommand{\SetHeader}{
+% \csname@twosidetrue\endcsname
+% \pagestyle{fancy}
+% \fancyhf{} 
+% \fancyhead[OL,EL]{\thepage}
+% \fancyhead[OR]{\small\rightmark}
+% \fancyhead[ER]{\small\leftmark}
+% \renewcommand{\chaptermark}[1]{%
+% \markboth{\thechapter-\ #1}{}}
+% }
+%%%%%%%%%%%%5
+%\def\MATtextbaseline{1.5}
+%\renewcommand{\baselinestretch}{\MATtextbaseline}
+\doublespacing
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% دستوراتی برای اضافه کردن کلمه «فصل» در فهرست مطالب
+
+\newlength\mylenprt
+\newlength\mylenchp
+\newlength\mylenapp
+
+\renewcommand\cftpartpresnum{\partname~}
+\renewcommand\cftchappresnum{\chaptername~}
+\renewcommand\cftchapaftersnum{:}
+
+\settowidth\mylenprt{\cftpartfont\cftpartpresnum\cftpartaftersnum}
+\settowidth\mylenchp{\cftchapfont\cftchappresnum\cftchapaftersnum}
+\settowidth\mylenapp{\cftchapfont\appendixname~\cftchapaftersnum}
+\addtolength\mylenprt{\cftpartnumwidth}
+\addtolength\mylenchp{\cftchapnumwidth}
+\addtolength\mylenapp{\cftchapnumwidth}
+
+\setlength\cftpartnumwidth{\mylenprt}
+\setlength\cftchapnumwidth{\mylenchp}	
+
+\makeatletter
+{\def\thebibliography#1{\chapter*{\refname\@mkboth
+   {\uppercase{\refname}}{\uppercase{\refname}}}\list
+   {[\arabic{enumi}]}{\settowidth\labelwidth{[#1]}
+   \rightmargin\labelwidth
+   \advance\rightmargin\labelsep
+   \advance\rightmargin\bibindent
+   \itemindent -\bibindent
+   \listparindent \itemindent
+   \parsep \z@
+   \usecounter{enumi}}
+   \def\newblock{}
+   \sloppy
+   \sfcode`\.=1000\relax}}
+\makeatother
+
+% Standalone configuration to support individual chapter compilation
+\ifdefined\ifstandalone
+\else
+  \newif\ifstandalone
+  \standalonetrue
+\fi

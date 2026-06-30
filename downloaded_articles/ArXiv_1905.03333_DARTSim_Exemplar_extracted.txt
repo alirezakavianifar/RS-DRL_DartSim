@@ -1,0 +1,610 @@
+--- PAGE 1 ---
+arXiv:1905.03333v1  [cs.LG]  8 May 2019
+Enhancing Cross-task T ransferability of Adversarial Exam ples with Dispersion
+Reduction
+Y unhan Jia∗
+, Y antao Lu *†, Senem V elipasalar †, Zhenyu Zhong, T ao W ei
+Baidu X-Lab, †Syracuse University
+{jiayunhan, yantaolu, edwardzhong, lenx }@baidu.com, svelipas@syr.edu
+Abstract
+Neural networks are known to be vulnerable to carefully
+crafted adversarial examples, and these malicious samples
+often transfer , i.e., they maintain their effectiveness ev en
+against other models. W ith great efforts delved into the
+transferability of adversarial examples, surprisingly, l ess
+attention has been paid to its impact on real-world deep
+learning deployment.
+In this paper , we investigate the transferability of adver-
+sarial examples across a wide range of real-world computer
+vision tasks, including image classiﬁcation, explicit con tent
+detection, optical character recognition (OCR), and objec t
+detection. It represents the cybercriminal’s situation wh ere
+an ensemble of different detection mechanisms need to be
+evaded all at once.
+W e propose practical attack that overcomes existing at-
+tacks’ limitation of requiring task-speciﬁc loss function s by
+targeting on the “dispersion” of internal feature map. W e
+report evaluation on four different computer vision tasks
+provided by Google Cloud V ision APIs to show how our
+approach outperforms existing attacks by degrading perfor -
+mance of multiple CV tasks by a large margin with only
+modest perturbations ( l∞ ≤16).
+1. Introduction
+Recent research in adversarial learning has brought the
+weaknesses of deep neural networks (DNNs) to the spot-
+lights of security and machine learning studies. Given a
+deep learning model, it is easy to generate adversarial ex-
+amples (AEs), which are close to the original but are mis-
+classiﬁed by the model [
+9, 24]. More importantly, their ef-
+fectiveness sometimes transfer, which may severely hinder
+DNN based applications especially in security critical sce -
+narios [ 16, 10, 25]. While such vulnerabilities are alarming,
+little attention has been paid on the realistic threat model
+of commercial or proprietary vision-based detection sys-
+∗ Equal contribution
+OCR 
+NSFW 
+Liveness Detection 
+Promotional 
+Porn Image 
+Spoofed Facial 
+Pictures 
++ Pass? 
+Cybercriminal 
+Live /gid34
+Face Recognition 
+Match /gid34
+Scenario 1: Explicit Content Filtering 
+Scenario 2: Face Authentication 
+Figure 1. Real-world computer vision systems deployed in sa fety-
+and security-critical scenarios usually employ an ensembl e of de-
+tection mechanisms that are opaque to attackers. Cybercrim inals
+are required to generate adversarial examples that transfe r across
+tasks to maximize their chances of evading the entire detect ion
+systems.
+tems against real-world cybercriminals, which turn out to
+be quite different from those intensively studied by afore-
+mentioned research.
+Deployment. Computer vision (CV) based detection
+mechanisms have been extensively deployed in security-
+critical applications such as content censorship and au-
+thentication with facial biometrics, and readily availabl e
+services are provided by cloud giants through APIs (e.g.,
+Google Cloud V ision [
+3], Amazon Rekognition [ 1]). The
+detection systems have long been targeted by evasive at-
+tacks from cybercriminals, and it has resulted in an arm race
+between new attacks and more advanced defenses.
+Ensemble of different detection mechanisms. T o over-
+come the weakness of deep learning in individual domain,
+real-world CV systems tend to employ an ensemble of dif-
+ferent detection mechanisms to prevent evasions. As shown
+in Fig.
+1, underground businesses embed promotional con-
+1--- PAGE 2 ---
+tents such as URLs into porn images with sexual content
+for illicit online advertising or phishing. A detection sys -
+tem combines Optical Character Recognition (OCR) and
+image-based explicit content detection can thus drop poste d
+images containing either suspicious URLs or sexual content
+to mitigate evasion attacks. Similarly, a face recognition
+model that is known to be fragile [
+22] is usually protected
+by a liveness detector to defeat spoofed digital images when
+deployed for authentications. Such ensemble mechanisms
+are widely adopted in real-world CV deployment.
+T o evade detections with uncertain mechanisms, attack-
+ers turn to generate adversarial examples that transfer acr oss
+CV tasks. Many adversarial techniques on enhancing trans-
+ferability have been proposed [
+26, 25, 16, 10]. However,
+most of them are designed for image classiﬁcation tasks,
+and rely on task-speciﬁc loss function (e.g., cross-entrop y
+loss), which limits their effectiveness when transferred t o
+other CV tasks.
+In this paper, we propose a simple yet effective approach
+to generate adversarial examples that transfer across a bro ad
+class of CV tasks, including classiﬁcation, object detecti on,
+explicit content detection and OCR. Our approach called
+Dispersion Reduction (DR) as shown in Fig.
+2, is inspired
+by the impact of “contrast” on an image’s perceptibility. As
+lowering the contrast of an image would make the objects
+indistinguishable, we presume that reducing the “contrast ”
+of internal feature map would also degrade the recogniz-
+ability of the subjects in the image, and thus could evade
+CV -based detections. W e use dispersion as a measure of
+“contrast” in feature space, which describes how scattered a
+set of data is. W e empirically validate the impact of disper-
+sion on model predictions, and ﬁnd that reducing the disper-
+sion of internal feature map would largely affect the activa -
+tion of subsequent layers. Based on another observation tha t
+lower layers detect simple features [
+15], we hypothesis that
+the low level features extracted by early convolution layer s
+share many similarities across CV models. Thus the distor-
+tions caused by dispersion reduction in feature space, are
+ideally suited to fool any CV models, whether designed for
+classiﬁcation, object detection, OCR, or other vision task s.
+W e evaluate our proposed DR attack on both popu-
+lar open source models and commercially deployed de-
+tection models. The results on four Google Cloud V i-
+sion APIs: classiﬁcation, object detection, SafeSearch,
+and OCR (see §
+4) show that our attack causes larger
+drops on the model performance than state-of-the-art at-
+tacks ( MI-FGSM [
+10] and DIM [ 25]) by a big mar-
+gin of 11% on average across different tasks. W e hope
+that our ﬁnding to raise alarms for real-world CV de-
+ployment in security-critical applications, and our attac ks
+to be used as benchmarks to evaluate the robustness of
+DNN-based detection mechanisms. Code is available at:
+https://github.com/jiayunhan/dispersion reduction.
+conv2.3 
+original adversarial 
+Adversarial 
+generated by 
+reducing 
+dispersion of 
+conv3.3 
+VGG-16 
+model 
+ Activation of 
+subsequent layers 
+are distorted 
+conv3.3 
+conv5.3 
+Transfer to Google Cloud Vision image_label  API 
+Figure 2. DR attack targets on the dispersion of feature map a t spe-
+ciﬁc layer of feature extractors. The adversarial example g enerated
+by minimizing dispersion at conv3.3 of VGG-16 model also dis-
+torts feature space of subsequent layers (e.g., conv5.3), and its
+effectiveness transfers to commercially deployed GCV APIs .
+2. Background & Related W ork
+2.1. T ransferability of Adversarial Examples
+Since the seminal ﬁnding of Szegedy et al . [
+24], the
+transferability of adversarial examples between differen t
+models trained over same or disjoint datasets have been
+discovered. Followed by Goodfellow et al . [
+11], this phe-
+nomenon was attributed to the reason that adversarial per-
+turbations is highly aligned with the weight vector of model .
+More recently, Papernot et al . [
+21] investigated attacks
+against black-box models by training substitute models.
+They also demonstrated attacks against machine learning
+services hosted by Amazon, and Google.
+Our work differs from Papernot et al . [
+21] in two main
+aspects. First, the GCV APIs we attack in this work is not
+the same as the Cloud Prediction API [
+2] (now the Google
+Cloud Machine Learning Service) attacked in Papernot et
+al. [ 21]. Both systems are black-box, but the Prediction
+API is intended to be trained by user’s own data, while the
+GCV APIs are trained on Google’s data and are provided
+”out-of-box”. Second, we study transferability over black -
+box commercial models assuming no feedback on testing
+samples. Our proposed DR attack do not query the sys---- PAGE 3 ---
+tems for constructing substitute model [ 21, 20] nor running
+score or decision based attacks [ 8, 12, 19, 23], and as Liu et
+al. [ 16] demonstrated, it is more difﬁcult to transfer adver-
+sarial examples to commercial models that are trained on
+large dataset, and are potentially ensemble.
+2.2. Adversarial Attacks
+Several methods have been proposed recently to ﬁnd
+AEs and improve transferability. A single-step attack,
+called fast gradient sign method (FGSM) was proposed by
+Goodfellow et al . [
+11]. In a follow up work, Kurakin et
+al. [ 13] proposed a multi-step attack, called iterative fast
+gradient sign method (I-FGSM) that iteratively searches th e
+loss surface. Generally iterative attack achieves higher s uc-
+cess rate than single-step attack in white-box setting, whi le
+performs worse when transfer to other models [ 25].
+Fueled by the NIPS 2017 adversary competition [ 14],
+several adversarial techniques that enhance transferabil ity
+have been introduced, among them we given an overview
+of the most notable ones.
+MI-FGSM. Momentum Iterative Fast Gradient Sign
+Method (MI-FGSM) proposed by Dong et al . [
+10] inte-
+grates momentum term into the attack process to stabilize
+update directions and escape poor local maxima. The up-
+date procedure is as follow:
+x′
+t+1 = x′
+t + α ·sign(gt+1)
+gt+1 = µ ·gt + ▽xJ(x′
+t, y)
+∥▽xJ(x′
+t, y) ∥1
+(1)
+The strength of MI-FGSM can be controlled by the momen-
+tum and the number of iterations.
+DIM. Momentum Diverse Inputs Fast Gradient Sign
+Method (DIM) combines momentum and input diversity
+strategy to enhance transferability [
+25]. DIM applies im-
+age transformation( T (·)) to the inputs with a probability p
+at each iteration of iterative FGSM to alleviate the overﬁt-
+ting phenomenon. The updating procedure is similar to MI-
+FGSM, with the only replacement of Eq.
+1 by:
+x′
+t+1 = Clipǫ
+x{x′
+t + α ·sign(▽xL(T (x′
+t+1; p), ytrue)}
+(2)
+where T (x′
+t, p) is a stochastic transformation function that
+performs input diversion on input with a probability of p.
+The major difference between dispersion reduction (DR)
+with existing attacks is that DR doesn’t require task-speci ﬁc
+loss functions (e.g., cross-entropy used by the family of
+FGSM attacks). It targets on the numerical property of low
+level features that is task-independent, and presumably si m-
+ilar across CV models. Our evaluation in §
+4 demonstrate
+good transferability of adversarial examples generated by
+DR across real-world CV tasks.
+Algorithm 1 Dispersion reduction attack
+Input: A classiﬁer f, original sample x, feature map at
+layer k; perturbation budget ǫ
+Input: Attack iterations T , learning rate ℓ.
+Output: An adversarial example x′ with ∥x′ −x ∥∞ ⩽ ǫ
+1: procedure DE S P E RS IO N RE D U CT IO N
+2: x′
+0 ←x
+3: for t = 0 to T −1 do
+4: Forward x′
+t and obtain feature map at layer k:
+Fk = f(x′
+t)|k (3)
+5: Compute standard deviation of Fk: g(Fk)
+6: Compute its gradient w.r.t the input: ▽xg(Fk)
+7: Update x′
+t by applying Adam optimization:
+x′
+t = x′
+t −Adam(▽xg(Fk), ℓ) (4)
+8: Project x′
+t to the vicinity of x:
+x′
+t = clip(x′
+t, x −ǫ, x + ǫ) (5)
+9: return x′
+t
+3. Methodology
+Existing attacks perturb input images along gradient di-
+rections ▽xJ that depend on the ground-truth label y and
+the deﬁnition of the task-speciﬁc loss function J, which
+limits their cross-task transferability. W e propose disper-
+sion reduction (DR) attack that formally deﬁne the problem
+of ﬁnding an AE as an optimization problem:
+min
+x
+g(f(x′, θ))
+s.t. ∥x′ −x ∥∞ ⩽ ǫ
+(6)
+where f(·) is a DNN classiﬁer with output of interme-
+diate feature map and g(·) calculates the dispersion. Our
+proposed DR attack in Algorithm 1 takes a multi-step ap-
+proach that creates an adversarial example by iteratively r e-
+ducing the dispersion of intermediate feature map at layer
+k. Dispersion describes the extent to which a distribution is
+stretched or squeezed, and there can be different measures
+of dispersion such as the variance, standard deviation, and
+gini coefﬁcient [
+18]. In this work, we choose standard de-
+viation as the dispersion metric and denote it as g(·) due to
+its simplicity.
+Given a target feature map, DR applies Adam optimizer
+to iteratively perturb image x′ along the direction of reduc-
+ing standard deviation, and projects it to the vicinity of x by
+clipping at x ±ǫ. Denoting the feature map at layer k as
+Fk = f(x′
+t)|k, DR attack solves the following formula:--- PAGE 4 ---
+x′
+t+1 = x′
+t −▽x′ g(Fk)
+= x′
+t −dg(t)
+dt ·d f(x′
+t)|k
+dx′
+= x′
+t − t −¯t
+√
+N −1 ·
+√ ∑
+i (ti −¯t)2
+·d f(x′
+t)|k
+dx′
+(7)
+From Eq. 7, we state that given the targeted intermedi-
+ate feature map, the optimized adversarial example x′
+t is
+achieved when all feature map elements tj ∈ t have the
+same value. T able
+4 compares the transferability of AEs
+generate on different layers (shallow to deep) of off-the-
+shelf feature extractors across different classiﬁcation a nd
+object detection models. The result on 1000 randomly cho-
+sen samples from ImageNet validation set shows that tar-
+geting on middle layers, i.e. conv3.3 of VGG-16 and
+conv3.8.3 of Resnet-152 provides better transferability.
+4. Experiments
+In this section, we compare DR with state-of-the-art ad-
+versarial techniques to enhance transferability on commer -
+cially deployed Google Cloud V ision (GCV) tasks:
+•Image Label Detection ( Labels)
+1 classiﬁes image
+into broad sets of categories.
+•Object Detection ( Objects) 2 detects multiple ob-
+jects with their labels and bounding boxes in an image.
+•Image T exts Recognition ( Texts) 3 detects and recog-
+nize text within an image, which returns their bounding
+boxes and transcript texts.
+•Explicit Content Detection ( SafeSearch)
+4 detects
+explicit content such as adult or violent content within
+an image, and returns the likelihood.
+Datasets. W e use ImageNet validation set for test-
+ing Labels and Objects, and the NSFW Data
+Scraper [
+7] and COCO-T ext [ 4] dataset for evaluating
+against SafeSearch and Texts respectively. W e ran-
+domly choose 100 images from each dataset for our evalu-
+ation, and Fig.
+3 shows sample images in our testing set.
+Experiment setup. W e choose normally trained VGG-
+16 and Resnet-152 as our target models, from which the
+AEs are generated, as Resnet-152 is commonly used by MI-
+FGSM and DIM for generation [
+25, 10]. As DR attack tar-
+gets on speciﬁc layer, we choose conv3.3 for VGG-16
+and conv3.8.3 for Resnet-152 as per the proﬁling result
+in T able 1.
+1 https://cloud.google.com/vision/docs/detecting-labels
+2 https://cloud.google.com/vision/docs/detecting-text
+3 https://cloud.google.com/vision/docs/detecting-safe-search
+4 https://cloud.google.com/vision/docs/detecting-objects
+Barn Owl : 
+99% 
+Turtle  : 84% 
+bbox : […] 
+Adult: Likely 
+Racy: Likely 
+“STOP ” : […] 
+“HAWMER ” : […] 
+“TIME ” : […] 
+“STO) ” : […] 
+“HAWWER ” : […] 
+“TWC ” : […] 
+Vertebrate : 
+99% 
+Adult: Unlikely 
+Racy: Unlikely 
+Animal  : 77% 
+bbox : […] 
+Labels Objects SafeSearch 
+ Texts 
+Original 
+Adversarial 
+GCV 
+APIs 
+Figure 3. Visualization of images chosen from testing set an d their
+corresponding AEs generated by DR. All the AEs are generated on
+VGG-16 conv3.3 layer, with perturbations clipped by l∞ ≤ 16,
+and they effectively fool the four GCV APIs as indicated by th eir
+outputs.
+Attack parameters. W e follow the default settings
+in [ 10] with the momentum decay factor µ = 1 when im-
+plementing the MI-FGSM attack. For the DIM attack, we
+set probability p = 0 .5 for the stochastic transformation
+function T (x; p) as used in [
+25], and use the same decay
+factor µ = 1 and total iteration number N = 20 as in the
+vanilla MI-FGSM. For our proposed DR attack, we don’t
+rely on FGSM method, and instead we use Adam optimizer
+(β1 = 0 .98, β2 = 0 .99) with learning rate 5e−2 to reduce
+the dispersion of target feature map. The maximum pertur-
+bation of all attacks in the experiment are limited by clip-
+ping at l∞ = 16 , which is still considered less perceptible
+for human observers [
+17].
+Evaluation metrics. W e perform adversarial attacks
+only on single network and test them on the four black-box
+GCV models. The effectiveness of attacks are measured by
+the model performance under attacks. As the labels from
+original datasets are different from labels used by GCV , we
+use the prediction results of GCV APIs on the original data
+as the ground truth, which gives a baseline performance of
+100% accuracy or 100.0 mAP and AP respectively. W e also
+provide state-of-the-art results on each CV tasks as refer-
+ences (T able
+4).
+Figure 3 shows example of each GCV model’s output
+for original and adversarial examples. The performance of
+Labels and SafeSearch are measured by the accuracy
+of classiﬁcations. More speciﬁcally, we use top1 accuracy
+for Labels, and use the accuracy for detecting our given
+porn images as LIKELY or VERY
+LIKELY being adult
+for SafeSearch.
+The performance of Objects is given by the mean av-
+erage precision (mAP) at IoU = 0 .5. For Texts, we fol-
+low the bi-fold evaluation method of ICDAR 2017 Chal---- PAGE 5 ---
+T arget Layer Classiﬁcation - acc. Detection - mAP(IoU=0.5)
+Inception-v3 DenseNet RetinaNet YOLOv3
+VGG-16
+conv1.2 (shallow) 52.5% 29.3% 31.8 42.3
+conv3.3 (mid) 28.7% 34.6% 18.3 33.8
+conv5.1 (deep) 35.5% 44.8% 34.0 41.5
+Resnet-152
+conv1 (shallow) 53.7% 63.1% 28.3 57.3
+conv3.8.3 (mid) 25.8% 34.7% 29.5 41.6
+conv5.3.3 (deep) 28.4% 41.5% 20.5 38.5
+T able 1. The performance of classiﬁcation and object detection mode ls (columns) when attacked by adversarial examples generat ed
+on VGG-16 and Resnet-152 . The proﬁling result suggests that AEs generated by targeti ng middle layers degrade performance of both
+classiﬁcation and detection models by a larger margin.
+Model Attack Labels Objects SafeSearch Texts
+acc. mAP(IoU=0.5) acc. AP(IoU=0.5) C.R.W 2
+baseline (SOT A)1 82.5% 73.2 100% 69.2 76.1%
+VGG-16
+MI-FGSM 41% 42.6 62% 38.2 15.9%
+DIM 39% 36.5 57% 29.9 16.1%
+DR ( Ours) 23% 32.9 35 % 20.9 4.1 %
+Resnet-152
+MI-FGSM 37% 41.0 61% 40.4 17.4%
+DIM 49% 46.7 60% 34.2 15.1%
+DR ( Ours) 25% 33.3 31 % 34.6 9.5 %
+1 The baseline performance of GCV models cannot be measured du e to the mismatch between original
+labels and labels used by Google. W e use the GCV prediction re sults on original images as ground
+truth, thus the baseline performance should be 100% for all a ccuracy and 100.0 for mAP and AP .
+Here we provide state-of-the-art performance [ 5, 6, 4, 7] for reference.
+2 Correctly recognized words (C.R.W) [ 4].
+T able 2. The degraded performance of four Google Cloud Vision models , where we attack a single model
+from the left column. Our proposed DR attack degrades the accuracy of Lables and SafeSearch to 23% and
+35%, the mAP of Objects and Texts to 32.9 and 20.9, the word recognition accuracy of Texts to only 4.1%,
+which outperform existing attacks.
+lenge [ 4]. W e measure text localization accuracy using av-
+erage precision (AP) of bounding boxes at IoU = 0 .5, and
+evaluate the word recognition accuracy with correctly rec-
+ognized words (C.R.W) that are case insensitive.
+Results. As shown in T able
+4, DR outperforms other
+baseline attacks by degrading the target model performance
+by a larger margin. For example, the adversarial examples
+crafted by DR on VGG-16 model brings down the accu-
+racy of Labels to only 23%, and SafeSearch to 35%.
+Adversarial examples created with the same technique also
+degrade mAP of Objects to 32.9% and AP of text local-
+ization to 20.9%, and with barely 4.1% accuracy in recog-
+nizing words. Strong baselines like MI-FGSM and DIM
+on the other hand, only obtains 38% and 43% success rate
+when attacking SafeSearch, and are less effective com-
+pared with DR when attacking all other GCV models. The
+results demonstrates the better cross-task transferabili ty of
+dispersion reduction attack.
+When comparing the effectiveness of attacks on different
+generation models, the results that DR generates adversari al
+examples that transfer better across these four commercial
+APIs still hold. The visualization in Fig.
+3 shows that the
+perturbed images with l∞ ≤16 well maintain their visual
+similarities with original images, but fools real-world co m-
+puter vision systems.
+5. Discussion & Conclusion
+One intuition behind DR attack is that by minimizing the
+dispersion of feature maps, we are making images “feature-
+less”, as few features can be detected, if neuron activation s
+are suppressed by perturbing the input (Fig.
+2). Further,
+with the observation that low level features bear more sim-
+ilarities across CV models, we hypothesis that DR attack
+would produce transferable adversarial examples when tar-
+geted on intermediate convolution layers. Evaluation on
+four different CV tasks shows that this enhanced attack
+greatly degrades model performance, and thus would facil-
+itate evasion attacks against even an ensemble of CV -based
+detection mechanisms. W e hope that our proposed attack
+can serve as benchmark for evaluating robustness of future
+defense.--- PAGE 6 ---
+References
+[1] Amazon Rekognition. Link. 1
+[2] Google Cloud Machine Learning Engine. Link. 2
+[3] Google Cloud Vision. Link. 1
+[4] ICDAR2017 Robust reading challenge on COCO-T ext.
+Link. 4, 5
+[5] ImageNet Challenge 2017. Link. 5
+[6] Keras Applications. Link. 5
+[7] NSFW Data Scraper. Link. 4, 5
+[8] Wieland Brendel, Jonas Rauber, and Matthias Bethge.
+Decision-based adversarial attacks: Reliable attacks aga inst
+black-box machine learning models. arXiv preprint
+arXiv:1712.04248, 2017. 3
+[9] Nicholas Carlini and David W agner. T owards evaluating t he
+robustness of neural networks. In 2017 IEEE Symposium on
+Security and Privacy (SP) , pages 39–57. IEEE, 2017. 1
+[10] Yinpeng Dong, Fangzhou Liao, Tianyu Pang, Hang Su, Jun
+Zhu, Xiaolin Hu, and Jianguo Li. Boosting adversarial at-
+tacks with momentum. In Proceedings of the IEEE Con-
+ference on Computer V ision and P attern Recognition , pages
+9185–9193, 2018.
+1, 2, 3, 4
+[11] Ian J Goodfellow , Jonathon Shlens, and Christian Szege dy .
+Explaining and harnessing adversarial examples. arXiv
+preprint arXiv:1412.6572 , 2014. 2, 3
+[12] Andrew Ilyas, Logan Engstrom, Anish Athalye, and Jessy
+Lin. Black-box adversarial attacks with limited queries an d
+information. arXiv preprint arXiv:1804.08598 , 2018. 3
+[13] Alexey Kurakin, Ian Goodfellow , and Samy Bengio. Ad-
+versarial machine learning at scale. arXiv preprint
+arXiv:1611.01236, 2016. 3
+[14] Alexey Kurakin, Ian Goodfellow , Samy Bengio, Yinpeng
+Dong, Fangzhou Liao, Ming Liang, Tianyu Pang, Jun Zhu,
+Xiaolin Hu, Cihang Xie, et al. Adversarial attacks and de-
+fences competition. In The NIPS’17 Competition: Building
+Intelligent Systems , pages 195–231. Springer, 2018.
+3
+[15] Honglak Lee, Roger Grosse, Rajesh Ranganath, and An-
+drew Y Ng. Convolutional deep belief networks for scal-
+able unsupervised learning of hierarchical representatio ns. In
+Proceedings of the 26th annual international conference on
+machine learning , pages 609–616. ACM, 2009.
+2
+[16] Y anpei Liu, Xinyun Chen, Chang Liu, and Dawn Song.
+Delving into transferable adversarial examples and black-
+box attacks. arXiv preprint arXiv:1611.02770 , 2016.
+1, 2,
+3
+[17] Y an Luo, Xavier Boix, Gemma Roig, T omaso Poggio, and
+Qi Zhao. Foveation-based mechanisms alleviate adversaria l
+examples. arXiv preprint arXiv:1511.06292 , 2015. 4
+[18] Chris A Mack. NIST ,SEMATECH e-Handbook of Statistical
+Methods. 2007. 3
+[19] Nina Narodytska and Shiva Prasad Kasiviswanathan. Sim ple
+black-box adversarial perturbations for deep networks. arXiv
+preprint arXiv:1612.06299 , 2016. 3
+[20] Nicolas Papernot, Patrick McDaniel, and Ian Goodfello w .
+Transferability in machine learning: from phenomena to
+black-box attacks using adversarial samples. arXiv preprint
+arXiv:1605.07277, 2016.
+3
+[21] Nicolas Papernot, Patrick McDaniel, Ian Goodfellow ,
+Somesh Jha, Z Berkay Celik, and Ananthram Swami. Practi-
+cal black-box attacks against machine learning. In Proceed-
+ings of the 2017 ACM on Asia conference on computer and
+communications security , pages 506–519. ACM, 2017.
+2, 3
+[22] Mahmood Sharif, Sruti Bhagavatula, Lujo Bauer, and
+Michael K Reiter. Accessorize to a crime: Real and stealthy
+attacks on state-of-the-art face recognition. In Proceedings of
+the 2016 ACM SIGSAC Conference on Computer and Com-
+munications Security , pages 1528–1540. ACM, 2016.
+2
+[23] Jiawei Su, Danilo V asconcellos V argas, and Kouichi Sak urai.
+One pixel attack for fooling deep neural networks. IEEE
+Transactions on Evolutionary Computation , 2019. 3
+[24] Christian Szegedy , W ojciech Zaremba, Ilya Sutskever, Joan
+Bruna, Dumitru Erhan, Ian Goodfellow , and Rob Fergus.
+Intriguing properties of neural networks. arXiv preprint
+arXiv:1312.6199, 2013.
+1, 2
+[25] Cihang Xie, Zhishuai Zhang, Jianyu W ang, Y uyin Zhou,
+Zhou Ren, and Alan Y uille. Improving transferability of
+adversarial examples with input diversity . arXiv preprint
+arXiv:1803.06978, 2018.
+1, 2, 3, 4
+[26] W en Zhou, Xin Hou, Y ongjun Chen, Mengyun T ang, Xi-
+angqi Huang, Xiang Gan, and Y ong Y ang. Transferable ad-
+versarial perturbations. In Proceedings of the European Con-
+ference on Computer V ision (ECCV) , pages 452–467, 2018.
+2

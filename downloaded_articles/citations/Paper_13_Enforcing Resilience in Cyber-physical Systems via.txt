@@ -1,0 +1,9 @@
+Title: Enforcing Resilience in Cyber-physical Systems via Equilibrium Verification at Runtime
+Authors: Matteo Camilli, Raffaela Mirandola, Patrizia Scandurra
+Year: 2023
+DOI: https://doi.org/10.1145/3584364
+Open Access URL: https://dl.acm.org/doi/pdf/10.1145/3584364
+DARTSim Usage Classification: Mentioned / Cited
+
+Abstract / Content Summary:
+Cyber-physical systems often operate in dynamic environments where unexpected events should be managed while guaranteeing acceptable behavior. Providing comprehensive evidence of their dependability under change represents a major open challenge. In this article, we exploit the notion of equilibrium, that is, the ability of the system to maintain an acceptable behavior within its multidimensional viability zone and propose RUNE 2 (RUNtime Equilibrium verification and Enforcement), an approach able to verify at runtime the equilibrium condition and to enforce the system to stay in its viability zone. RUNE 2 includes (i) a system specification that takes into account the uncertainties related to partial knowledge and possible changes; (ii) the computation of the equilibrium condition to define the boundaries of the viability zone; (iii) a runtime equilibrium verification method that leverages Bayesian inference to reason about the ability of the system to remain viable; and (iv) a resilience enforcement mechanism that exploits the posterior knowledge to steer the execution of the system inside the viability zone. We demonstrate both benefits and costs of the proposed approach by conducting an empirical evaluation using two case studies and 24 systems synthetically generated from pseudo-random models with increasing structural complexity.

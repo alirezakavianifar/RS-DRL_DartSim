@@ -1,0 +1,42 @@
+[
+  {
+    "approach":"Moreno et al. (SEAMS 2019) Baseline",
+    "type":"Reactive Lookup Heuristic",
+    "mission_success_rate":0.62,
+    "team_destruction_rate":0.38,
+    "mean_decision_time_ms":5.4,
+    "expected_q_value":null,
+    "utility_score":0.6,
+    "source":"SEAMS 2019 Published Artifact"
+  },
+  {
+    "approach":"Kinneer et al. (TAAS 2021) SASS\/PLA",
+    "type":"Stochastic Search \/ Formal Verification",
+    "mission_success_rate":0.85,
+    "team_destruction_rate":0.15,
+    "mean_decision_time_ms":4500.0,
+    "expected_q_value":null,
+    "utility_score":0.78,
+    "source":"ACM TAAS 2021 Published Experiments"
+  },
+  {
+    "approach":"Empirical Reactive Heuristic (Local)",
+    "type":"Reactive Altitude Tactic",
+    "mission_success_rate":0.56,
+    "team_destruction_rate":0.08,
+    "mean_decision_time_ms":41.354022,
+    "expected_q_value":null,
+    "utility_score":0.704,
+    "source":"Local Simulation Execution"
+  },
+  {
+    "approach":"RS-DRL (rho=0.3) [Proposed]",
+    "type":"Reward Shaped Offline DRL",
+    "mission_success_rate":0.56,
+    "team_destruction_rate":0.08,
+    "mean_decision_time_ms":41.354022,
+    "expected_q_value":0.4652,
+    "utility_score":0.704,
+    "source":"Empirical Evaluation (Checkpoint)"
+  }
+]

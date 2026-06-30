@@ -1,0 +1,35 @@
+{
+  "scenario": "medium",
+  "noise_levels": {
+    "0.1": {
+      "reward_mean": 0.33640000000000003,
+      "reward_std": 0.05187889744395114,
+      "success_mean": 0.4533333333333333,
+      "success_std": 0.0339934634239519,
+      "destruction_mean": 0.15333333333333335,
+      "destruction_std": 0.05249338582674541,
+      "targets_mean": 0.6466666666666666,
+      "targets_std": 0.033993463423951924
+    },
+    "0.3": {
+      "reward_mean": 0.33640000000000003,
+      "reward_std": 0.05187889744395114,
+      "success_mean": 0.4533333333333333,
+      "success_std": 0.0339934634239519,
+      "destruction_mean": 0.15333333333333335,
+      "destruction_std": 0.05249338582674541,
+      "targets_mean": 0.6466666666666666,
+      "targets_std": 0.033993463423951924
+    },
+    "0.5": {
+      "reward_mean": 0.33640000000000003,
+      "reward_std": 0.05187889744395114,
+      "success_mean": 0.4533333333333333,
+      "success_std": 0.0339934634239519,
+      "destruction_mean": 0.15333333333333335,
+      "destruction_std": 0.05249338582674541,
+      "targets_mean": 0.6466666666666666,
+      "targets_std": 0.033993463423951924
+    }
+  }
+}

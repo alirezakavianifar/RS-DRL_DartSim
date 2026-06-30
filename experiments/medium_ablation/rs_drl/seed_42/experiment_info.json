@@ -1,0 +1,9 @@
+{
+  "method": "rs_drl",
+  "seed": 42,
+  "timesteps": 20000,
+  "rho": 0.5,
+  "status": "success",
+  "elapsed_time": 35.96646857261658,
+  "output_dir": "experiments\\medium_ablation\\rs_drl\\seed_42"
+}

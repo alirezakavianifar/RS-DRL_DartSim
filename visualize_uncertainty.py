@@ -123,8 +123,8 @@ def plot_uncertainty_overview(state_action_to_next_states, state_action_transiti
         print("Matplotlib not available, skipping uncertainty overview plot")
         return
     
-    fig = plt.figure(figsize=(16, 10))
-    gs = GridSpec(3, 3, figure=fig, hspace=0.3, wspace=0.3)
+    fig = plt.figure(figsize=(18, 13))
+    gs = GridSpec(3, 3, figure=fig, hspace=0.62, wspace=0.38)
     
     # 1. Distribution of stochasticity
     ax1 = fig.add_subplot(gs[0, 0])
@@ -179,11 +179,28 @@ def plot_uncertainty_overview(state_action_to_next_states, state_action_transiti
     component_counts = {k: len(v) for k, v in component_affected.items()}
     
     if component_counts:
-        labels = list(component_counts.keys())
-        sizes = list(component_counts.values())
+        # Sort by size (largest first) so the legend reads cleanly
+        sorted_items = sorted(component_counts.items(), key=lambda x: x[1], reverse=True)
+        labels = [k for k, _ in sorted_items]
+        sizes = [v for _, v in sorted_items]
+        total = sum(sizes)
         colors = plt.cm.Set3(np.linspace(0, 1, len(labels)))
-        
-        ax3.pie(sizes, labels=labels, autopct='%1.1f%%', colors=colors, startangle=90)
+
+        # Only print a percentage on the wedge for slices large enough to be legible;
+        # tiny slices would otherwise overlap into an unreadable blob.
+        def _autopct(pct):
+            return f'{pct:.1f}%' if pct >= 4 else ''
+
+        wedges, _texts, _autotexts = ax3.pie(
+            sizes, labels=None, autopct=_autopct, colors=colors,
+            startangle=90, pctdistance=0.75,
+            wedgeprops=dict(edgecolor='white', linewidth=0.8),
+        )
+        # Move labels to a legend on the side to avoid label collisions.
+        legend_labels = [f'{lab} ({sz/total*100:.1f}%)' for lab, sz in zip(labels, sizes)]
+        ax3.legend(wedges, legend_labels, title='State Component',
+                   loc='center left', bbox_to_anchor=(0.98, 0.5),
+                   fontsize=8, title_fontsize=9, frameon=False)
         ax3.set_title('Uncertainty by State Component', fontsize=11, fontweight='bold')
     
     # 4. Sensor uncertainty heatmap (example)
@@ -202,7 +219,7 @@ def plot_uncertainty_overview(state_action_to_next_states, state_action_transiti
         
         for i, (key, next_states) in enumerate(stochastic_pairs[:top_n]):
             state, action = key
-            labels.append(f"State[{state[0]},{state[1]}]\n{action}")
+            labels.append(f"({state[0]},{state[1]}) {action}")
             
             # Get sensor readings from next states
             next_states_list = list(next_states)
@@ -227,7 +244,8 @@ def plot_uncertainty_overview(state_action_to_next_states, state_action_transiti
             sensor_array = np.array(sensor_data)
             im = ax4.imshow(sensor_array, aspect='auto', cmap='YlOrRd', interpolation='nearest')
             ax4.set_yticks(range(len(labels)))
-            ax4.set_yticklabels(labels, fontsize=8)
+            ax4.set_yticklabels(labels, fontsize=7)
+            ax4.tick_params(axis='y', pad=2)
             ax4.set_xlabel('Sensor Reading (5 outcomes × 5 threat sensors)', fontsize=10)
             ax4.set_title(f'Threat Sensor Variability\n(Top {top_n} Most Stochastic Transitions)', 
                          fontsize=11, fontweight='bold')

@@ -1,0 +1,9 @@
+Title: Information Reuse and Stochastic Search
+Authors: Cody Kinneer, David Garlan, Claire Le Goues
+Year: 2020
+DOI: https://doi.org/10.1145/3440119
+Open Access URL: https://dl.acm.org/doi/pdf/10.1145/3440119
+DARTSim Usage Classification: Mentioned / Cited
+
+Abstract / Content Summary:
+Many software systems operate in environments of change and uncertainty. Techniques for self-adaptation allow these systems to automatically respond to environmental changes, yet they do not handle changes to the adaptive system itself, such as the addition or removal of adaptation tactics. Instead, changes in a self-adaptive system often require a human planner to redo an expensive planning process to allow the system to continue satisfying its quality requirements under different conditions; automated techniques must replan from scratch. We propose to address this problem by reusing prior planning knowledge to adapt to unexpected situations. We present a planner based on genetic programming that reuses existing plans and evaluate this planner on two case-study systems: a cloud-based web server and a team of autonomous aircraft. While reusing material in genetic algorithms has been recently applied successfully in the area of automated program repair, we find that naively reusing existing plans for self- * planning can actually result in a utility loss. Furthermore, we propose a series of techniques to lower the costs of reuse, allowing genetic techniques to leverage existing information to improve utility when replanning for unexpected changes, and we find that coarsely shaped search-spaces present profitable opportunities for reuse.

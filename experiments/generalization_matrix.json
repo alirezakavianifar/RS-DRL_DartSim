@@ -1,0 +1,80 @@
+{
+  "baseline": {
+    "baseline": {
+      "reward_mean": 0.4244666666666667,
+      "reward_std": 0.02558350162811099,
+      "success_mean": 0.5800000000000001,
+      "success_std": 0.028284271247461874,
+      "targets_mean": 0.8133333333333334,
+      "targets_std": 0.03771236166328251
+    },
+    "medium": {
+      "reward_mean": 0.3298666666666667,
+      "reward_std": 0.034508509417565704,
+      "success_mean": 0.49333333333333335,
+      "success_std": 0.018856180831641284,
+      "targets_mean": 0.7799999999999999,
+      "targets_std": 0.0565685424949238
+    },
+    "hard": {
+      "reward_mean": 0.1206666666666667,
+      "reward_std": 0.04126260076900415,
+      "success_mean": 0.3333333333333333,
+      "success_std": 0.024944382578492946,
+      "targets_mean": 0.62,
+      "targets_std": 0.016329931618554536
+    }
+  },
+  "medium": {
+    "baseline": {
+      "reward_mean": 0.4244666666666667,
+      "reward_std": 0.02558350162811099,
+      "success_mean": 0.5800000000000001,
+      "success_std": 0.028284271247461874,
+      "targets_mean": 0.8133333333333334,
+      "targets_std": 0.03771236166328251
+    },
+    "medium": {
+      "reward_mean": 0.3298666666666667,
+      "reward_std": 0.034508509417565704,
+      "success_mean": 0.49333333333333335,
+      "success_std": 0.018856180831641284,
+      "targets_mean": 0.7799999999999999,
+      "targets_std": 0.0565685424949238
+    },
+    "hard": {
+      "reward_mean": 0.1206666666666667,
+      "reward_std": 0.04126260076900415,
+      "success_mean": 0.3333333333333333,
+      "success_std": 0.024944382578492946,
+      "targets_mean": 0.62,
+      "targets_std": 0.016329931618554536
+    }
+  },
+  "hard": {
+    "baseline": {
+      "reward_mean": 0.4244666666666667,
+      "reward_std": 0.02558350162811099,
+      "success_mean": 0.5800000000000001,
+      "success_std": 0.028284271247461874,
+      "targets_mean": 0.8133333333333334,
+      "targets_std": 0.03771236166328251
+    },
+    "medium": {
+      "reward_mean": 0.3298666666666667,
+      "reward_std": 0.034508509417565704,
+      "success_mean": 0.49333333333333335,
+      "success_std": 0.018856180831641284,
+      "targets_mean": 0.7799999999999999,
+      "targets_std": 0.0565685424949238
+    },
+    "hard": {
+      "reward_mean": 0.1206666666666667,
+      "reward_std": 0.04126260076900415,
+      "success_mean": 0.3333333333333333,
+      "success_std": 0.024944382578492946,
+      "targets_mean": 0.62,
+      "targets_std": 0.016329931618554536
+    }
+  }
+}

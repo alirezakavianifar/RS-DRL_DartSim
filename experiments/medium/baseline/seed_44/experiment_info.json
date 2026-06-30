@@ -1,0 +1,9 @@
+{
+  "method": "baseline",
+  "seed": 44,
+  "timesteps": 20000,
+  "rho": null,
+  "status": "success",
+  "elapsed_time": 44.080297231674194,
+  "output_dir": "experiments\\medium\\baseline\\seed_44"
+}

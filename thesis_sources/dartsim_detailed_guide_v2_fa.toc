@@ -1,0 +1,33 @@
+\contentsline {section}{\numberline {1}مقدمه و معرفی بستر شبیه‌سازی DARTSim}{4}{section.1}%
+\contentsline {section}{\numberline {2}فضای معنایی و الزامات سیستم}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}فضای معنایی (\lr {Semantic Space})}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}الزامات و اهداف مأموریت}{6}{subsection.2.2}%
+\contentsline {section}{\numberline {3}معماری و فرمول‌بندی مسئله به عنوان فرآیند تصمیم‌گیری مارکوف (\lr {MDP})}{7}{section.3}%
+\contentsline {subsection}{\numberline {3.1}فضای حالت ($S$)}{7}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}فضای اقدام ($A$)}{7}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}تابع پاداش چندهدفه ($R$)}{7}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}تنظیم ابرپارامترها و اعتبارسنجی مدل}{8}{subsection.3.4}%
+\contentsline {subsubsection}{\numberline {3.4.1}بستر سخت‌افزاری و نرم‌افزاری پیاده‌سازی و محدودیت‌های تکرارپذیری}{9}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\numberline {3.4.2}دامنه و تحلیل حساسیت ابرپارامترها}{10}{subsubsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.5}عدم قطعیت محیطی و نویز حسگرها}{11}{subsection.3.5}%
+\contentsline {subsubsection}{\numberline {3.5.1}تحلیل و تفسیر نمودارهای داشبورد عدم قطعیت}{11}{subsubsection.3.5.1}%
+\contentsline {subsubsection}{\numberline {3.5.2}فرآیند و مکانیزم جمع‌آوری داده‌ها}{14}{subsubsection.3.5.2}%
+\contentsline {subsubsection}{\numberline {3.5.3}تحلیل سوگیری‌ها (\lr {Bias}) در فرآیند جمع‌آوری داده}{14}{subsubsection.3.5.3}%
+\contentsline {section}{\numberline {4}یکپارچه‌سازی حلقه بازخورد MAPE-K و روش RS-DRL}{15}{section.4}%
+\contentsline {subsection}{\numberline {4.1}حلقه خودمختار MAPE-K برای آموزش مجدد برحسب تقاضا}{15}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}روش یادگیری تقویتی عمیق با شکل‌دهی تصادفی پاداش (\lr {RS-DRL})}{15}{subsection.4.2}%
+\contentsline {section}{\numberline {5}سناریوهای ارزیابی‌شده در DARTSim}{16}{section.5}%
+\contentsline {section}{\numberline {6}نتایج و تحلیل‌های تجربی}{17}{section.6}%
+\contentsline {subsection}{\numberline {6.1}عملکرد یادگیری و همگرایی}{17}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}تحلیل نمودار همگرایی مأموریت پهپادی}{18}{subsubsection.6.1.1}%
+\contentsline {subsubsection}{\numberline {6.1.2}تحلیل رفتار تفکیکی بذرهای تصادفی}{19}{subsubsection.6.1.2}%
+\contentsline {subsubsection}{\numberline {6.1.3}تحلیل آماری و معناداری اندازه اثر کوهن}{20}{subsubsection.6.1.3}%
+\contentsline {subsubsection}{\numberline {6.1.4}روند همگرایی در سناریوهای متوسط و سخت}{21}{subsubsection.6.1.4}%
+\contentsline {subsection}{\numberline {6.2}تعمیم‌پذیری بدون نمونه (صفر-شات) (\lr {Zero-Shot Generalization})}{22}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}تاب‌آوری در برابر نویز و خرابی حسگرها}{22}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}ارزیابی مقایسه‌ای و تحلیل منطق برتری روش \lr {RS-DRL} (\lr {Comparative Benchmarking \& Deep Analysis})}{23}{subsection.6.4}%
+\contentsline {subsubsection}{\numberline {6.4.1}۱. مقایسه با الگوریتم‌های هیوریستیک واکنشی \lr {(Moreno et al., 2019)}}{24}{subsubsection.6.4.1}%
+\contentsline {subsubsection}{\numberline {6.4.2}۲. مقایسه با روش‌های صحت‌سنجی صوری و جستجوی تصادفی آنلاین \lr {(SASS / PLA - Kinneer et al., 2021)}}{25}{subsubsection.6.4.2}%
+\contentsline {subsubsection}{\numberline {6.4.3}۳. مقایسه با الگوریتم پایه \lr {DQN} (بدون شکل‌دهی پاداش)}{25}{subsubsection.6.4.3}%
+\contentsline {subsection}{\numberline {6.5}محدودیت‌های روش پیشنهادی و شبیه‌ساز DARTSim}{25}{subsection.6.5}%
+\contentsline {section}{\numberline {7}بازآفرینی‌پذیری و دسترسی به منابع}{26}{section.7}%

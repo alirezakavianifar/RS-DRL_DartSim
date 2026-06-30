@@ -1,5 +1,5 @@
 """
-Paper Experiment: RS-DRL vs Baseline DQN — Multi-Seed Convergence Study
+Paper Experiment: RS-DRL vs Baseline DQN - Multi-Seed Convergence Study
 ========================================================================
 Runs both methods across multiple seeds, captures per-epoch training
 loss and Q-value statistics, then generates publication-quality figures
@@ -34,15 +34,16 @@ from scripts.offline_rl_training import (
     convert_episode_generator_to_buffer_format,
 )
 
-# ── Colour palette ────────────────────────────────────────────────────
-BG     = '#0D0D1A'
-PANEL  = '#13132B'
-PURPLE = '#7C6EFA'
-PINK   = '#FF5E8A'
-TEAL   = '#00D4AA'
-GRID   = '#1E1E3A'
-WHITE  = '#E8E8FF'
-GREY   = '#9090B0'
+# ── Academic Light Mode Colour palette ────────────────────────────────
+BG     = '#FFFFFF'  # Figure background
+PANEL  = '#FFFFFF'  # Axes background
+PURPLE = '#1F77B4'  # RS-DRL (Standard Matplotlib Blue)
+PINK   = '#D62728'  # Baseline DQN (Standard Matplotlib Red)
+TEAL   = '#2CA02C'  # Reshaping rate (Standard Matplotlib Green)
+GRID   = '#E5E5E5'  # Grid lines (Light grey)
+WHITE  = '#1A1A1A'  # Text/Labels (Dark grey for high contrast)
+GREY   = '#4A4A4A'  # Subtitles/secondary text (Medium-dark grey)
+
 
 
 def build_replay_buffer(model, offline_data_dir, offline_scenario,
@@ -88,7 +89,7 @@ def build_replay_buffer(model, offline_data_dir, offline_scenario,
 
 
 def train_one_seed(method, rho, seed, total_timesteps,
-                   offline_data_dir, batch_size=32,
+                   offline_data_dir, scenario='baseline', batch_size=32,
                    learning_rate=1e-4, buffer_size=50_000):
     """Train one model; return per-epoch loss, max-Q, and reshaping rate."""
     np.random.seed(seed)
@@ -96,12 +97,12 @@ def train_one_seed(method, rho, seed, total_timesteps,
 
     obs_dim = 17
     env = OfflineDARTSimEnv(
-        obs_dim=obs_dim, data_dir=offline_data_dir,
+        obs_dim=obs_dim, data_dir=offline_data_dir, scenario=scenario,
         max_transitions=min(buffer_size, total_timesteps * 10), seed=seed
     )
     env = Monitor(env)
 
-    # Build model — use buffer_size directly (no inflating to 1M)
+    # Build model - use buffer_size directly (no inflating to 1M)
     model_cls = RSDRLDQN if method == 'rs_drl' else DQN
     model_kwargs = dict(
         policy="MlpPolicy",
@@ -128,11 +129,11 @@ def train_one_seed(method, rho, seed, total_timesteps,
 
     # Populate buffer
     n_transitions = build_replay_buffer(
-        model, offline_data_dir, None, total_timesteps, buffer_size, seed
+        model, offline_data_dir, scenario, total_timesteps, buffer_size, seed
     )
     print(f"    Buffer populated with {n_transitions} transitions")
 
-    # Training loop — record per-epoch metrics
+    # Training loop - record per-epoch metrics
     gradient_steps_per_epoch = max(1, n_transitions // batch_size)
     n_epochs = max(1, total_timesteps // gradient_steps_per_epoch)
 
@@ -269,11 +270,11 @@ def plot_paper_figure(results, output_dir, timesteps, seeds, rho):
 
     def style(ax, title, xlabel='Epoch', ylabel=''):
         ax.set_facecolor(PANEL)
-        for sp in ax.spines.values(): sp.set_edgecolor(GRID)
-        ax.tick_params(colors=GREY, labelsize=8.5)
+        for sp in ax.spines.values(): sp.set_edgecolor('#CCCCCC')
+        ax.tick_params(colors=WHITE, labelsize=8.5)
         ax.set_title(title, color=WHITE, fontsize=10.5, fontweight='bold', pad=8)
-        ax.set_xlabel(xlabel, color=GREY, fontsize=9)
-        ax.set_ylabel(ylabel, color=GREY, fontsize=9)
+        ax.set_xlabel(xlabel, color=WHITE, fontsize=9)
+        ax.set_ylabel(ylabel, color=WHITE, fontsize=9)
         ax.yaxis.grid(True, color=GRID, lw=0.7, zorder=0)
         ax.set_axisbelow(True)
 
@@ -284,34 +285,34 @@ def plot_paper_figure(results, output_dir, timesteps, seeds, rho):
     # ── (0,0) TD Loss convergence ────────────────────────────────────
     ax = fig.add_subplot(gs[0, 0])
     style(ax, 'TD Loss (MSE) Convergence', ylabel='Loss')
-    rs_mu, rs_s = band(ax, x, rs_loss, PURPLE, f'RS-DRL ρ={rho}')
+    rs_mu, rs_s = band(ax, x, rs_loss, PURPLE, f'RS-DRL rho={rho}')
     bl_mu, bl_s = band(ax, x, bl_loss, PINK,   'Baseline DQN')
-    ax.legend(fontsize=8.5, facecolor='#1A1A3A', edgecolor=GRID, labelcolor=WHITE)
+    ax.legend(fontsize=8.5, facecolor='#FFFFFF', edgecolor='#CCCCCC', labelcolor=WHITE)
 
     # ── (0,1) Q-value mean evolution ────────────────────────────────
     ax2 = fig.add_subplot(gs[0, 1])
     style(ax2, 'Max Q-Value Mean (↑ better)', ylabel='Mean max-Q')
-    band(ax2, x, rs_qmean, PURPLE, f'RS-DRL ρ={rho}')
+    band(ax2, x, rs_qmean, PURPLE, f'RS-DRL rho={rho}')
     band(ax2, x, bl_qmean, PINK,   'Baseline DQN')
-    ax2.legend(fontsize=8.5, facecolor='#1A1A3A', edgecolor=GRID, labelcolor=WHITE)
+    ax2.legend(fontsize=8.5, facecolor='#FFFFFF', edgecolor='#CCCCCC', labelcolor=WHITE)
 
     # ── (0,2) Q-value std evolution ─────────────────────────────────
     ax3 = fig.add_subplot(gs[0, 2])
     style(ax3, 'Q-Value Std Dev (policy spread)', ylabel='Std max-Q')
-    band(ax3, x, rs_qstd, PURPLE, f'RS-DRL ρ={rho}')
+    band(ax3, x, rs_qstd, PURPLE, f'RS-DRL rho={rho}')
     band(ax3, x, bl_qstd, PINK,   'Baseline DQN')
-    ax3.legend(fontsize=8.5, facecolor='#1A1A3A', edgecolor=GRID, labelcolor=WHITE)
+    ax3.legend(fontsize=8.5, facecolor='#FFFFFF', edgecolor='#CCCCCC', labelcolor=WHITE)
 
     # ── (1,0) Reshaping rate over training ──────────────────────────
     ax4 = fig.add_subplot(gs[1, 0])
     style(ax4, 'Reward Reshaping Rate (RS-DRL)', ylabel='Reshaping rate')
     mu_rate = smooth(rs_rate.mean(axis=0))
-    ax4.plot(x, mu_rate, color=TEAL, lw=2, label=f'RS-DRL ρ={rho}', zorder=3)
+    ax4.plot(x, mu_rate, color=TEAL, lw=2, label=f'RS-DRL rho={rho}', zorder=3)
     ax4.fill_between(x, mu_rate - rs_rate.std(axis=0),
                         mu_rate + rs_rate.std(axis=0),
                      color=TEAL, alpha=0.18, zorder=2)
-    ax4.axhline(rho, color=GREY, lw=1, ls='--', alpha=0.6, label=f'Target ρ={rho}')
-    ax4.legend(fontsize=8.5, facecolor='#1A1A3A', edgecolor=GRID, labelcolor=WHITE)
+    ax4.axhline(rho, color=GREY, lw=1, ls='--', alpha=0.6, label=f'Target rho={rho}')
+    ax4.legend(fontsize=8.5, facecolor='#FFFFFF', edgecolor='#CCCCCC', labelcolor=WHITE)
 
     # ── (1,1) Loss ratio RS-DRL / Baseline ──────────────────────────
     ax5 = fig.add_subplot(gs[1, 1])
@@ -326,7 +327,7 @@ def plot_paper_figure(results, output_dir, timesteps, seeds, rho):
     ax5.fill_between(x, ratio_s, 1.0,
                      where=(ratio_s >= 1.0), alpha=0.2, color=PINK,
                      label='Baseline advantage')
-    ax5.legend(fontsize=8, facecolor='#1A1A3A', edgecolor=GRID, labelcolor=WHITE)
+    ax5.legend(fontsize=8, facecolor='#FFFFFF', edgecolor='#CCCCCC', labelcolor=WHITE)
 
     # ── (1,2) Summary table ──────────────────────────────────────────
     ax6 = fig.add_subplot(gs[1, 2])
@@ -348,8 +349,8 @@ def plot_paper_figure(results, output_dir, timesteps, seeds, rho):
         ('Final Mean max-Q',
          f'{final_rs_q.mean():.3f}±{final_rs_q.std():.3f}',
          f'{final_bl_q.mean():.3f}±{final_bl_q.std():.3f}'),
-        ('Loss improvement', f'{pct_loss_imp:+.1f}%', '—'),
-        ('Q-value gain',    f'{pct_q_imp:+.1f}%',    '—'),
+        ('Loss improvement', f'{pct_loss_imp:+.1f}%', '-'),
+        ('Q-value gain',    f'{pct_q_imp:+.1f}%',    '-'),
         ('Reshape rate',    f'{rho:.0%} target',      'N/A'),
         ('Seeds',           str(len(seeds)),           str(len(seeds))),
         ('Timesteps',       str(timesteps),            str(timesteps)),
@@ -369,16 +370,16 @@ def plot_paper_figure(results, output_dir, timesteps, seeds, rho):
     # ── Super title ──────────────────────────────────────────────────
     seed_str = ', '.join(map(str, seeds))
     fig.text(0.5, 0.945,
-             'RS-DRL vs Baseline DQN — Convergence & Policy Quality Analysis',
+             'RS-DRL vs Baseline DQN - Convergence & Policy Quality Analysis',
              ha='center', color=WHITE, fontsize=15, fontweight='bold')
     fig.text(0.5, 0.915,
              f'DARTSim Offline RL  |  {timesteps:,} timesteps  |  '
-             f'seeds={seed_str}  |  ρ={rho}  |  shaded = ±1 std across seeds',
+             f'seeds={seed_str}  |  rho={rho}  |  shaded = ±1 std across seeds',
              ha='center', color=GREY, fontsize=9.5)
 
     out_path = Path(output_dir) / 'paper_convergence_figure.png'
     plt.savefig(out_path, dpi=180, bbox_inches='tight', facecolor=BG)
-    print(f'\n✅ Publication figure saved → {out_path}')
+    print(f'\n[OK] Publication figure saved -> {out_path}')
     plt.close()
 
     # ── Also save raw numbers as JSON ────────────────────────────────
@@ -402,7 +403,7 @@ def plot_paper_figure(results, output_dir, timesteps, seeds, rho):
     json_path = Path(output_dir) / 'paper_results_summary.json'
     with open(json_path, 'w') as f:
         json.dump(summary, f, indent=2)
-    print(f'✅ Numerical summary saved → {json_path}')
+    print(f'[OK] Numerical summary saved -> {json_path}')
 
     # ── Save per-epoch data as CSV for supplementary material ────────
     csv_path = Path(output_dir) / 'per_epoch_data.csv'
@@ -416,7 +417,7 @@ def plot_paper_figure(results, output_dir, timesteps, seeds, rho):
                     f'{rs_qmean[:, i].mean():.6f},{rs_qmean[:, i].std():.6f},'
                     f'{bl_qmean[:, i].mean():.6f},{bl_qmean[:, i].std():.6f},'
                     f'{rs_rate[:, i].mean():.6f}\n')
-    print(f'✅ Per-epoch CSV saved → {csv_path}')
+    print(f'[OK] Per-epoch CSV saved -> {csv_path}')
 
     # ── LaTeX table for direct article insertion ─────────────────────
     latex_path = Path(output_dir) / 'results_table.tex'
@@ -436,7 +437,7 @@ def plot_paper_figure(results, output_dir, timesteps, seeds, rho):
         f.write(f'Q-value gain & ${pct_q_imp:+.1f}\\%$ & --- \\\\\n')
         f.write(f'Reshape rate & ${rho:.0%}$ target & N/A \\\\\n')
         f.write('\\bottomrule\n\\end{tabular}\n\\end{table}\n')
-    print(f'✅ LaTeX table saved → {latex_path}')
+    print(f'[OK] LaTeX table saved -> {latex_path}')
 
     return summary
 
@@ -448,7 +449,7 @@ def save_intermediate(results, output_dir, method, seed):
     data = {k: (v.tolist() if hasattr(v, 'tolist') else v) for k, v in results.items()}
     with open(path, 'w') as f:
         json.dump(data, f)
-    print(f"    💾 Saved intermediate: {path.name}")
+    print(f"    [SAVE] Saved intermediate: {path.name}")
 
 
 def load_intermediate(output_dir, method, seed):
@@ -462,7 +463,7 @@ def load_intermediate(output_dir, method, seed):
     for k in ('losses', 'max_q_mean', 'max_q_std', 'reshape_rate'):
         if k in data and isinstance(data[k], list):
             data[k] = np.array(data[k])
-    print(f"    📂 Resumed from saved: {path.name}")
+    print(f"    [LOAD] Resumed from saved: {path.name}")
     return data
 
 
@@ -472,6 +473,7 @@ def main():
     parser.add_argument('--seeds',        type=int,   nargs='+', default=[42, 43, 44])
     parser.add_argument('--rho',          type=float, default=0.3)
     parser.add_argument('--offline-data-dir', type=str, default='./data/offline')
+    parser.add_argument('--scenario',     type=str,   default='baseline', choices=['baseline', 'medium', 'hard'])
     parser.add_argument('--output-dir',   type=str,   default='./results/paper')
     parser.add_argument('--batch-size',   type=int,   default=32)
     parser.add_argument('--learning-rate',type=float, default=1e-4)
@@ -482,7 +484,7 @@ def main():
 
     print('=' * 65)
     print('  RS-DRL Publication Experiment')
-    print(f'  Timesteps: {args.timesteps:,}  |  Seeds: {args.seeds}  |  ρ={args.rho}')
+    print(f'  Timesteps: {args.timesteps:,}  |  Seeds: {args.seeds}  |  rho={args.rho}')
     print(f'  Buffer size: {args.buffer_size:,}  |  Batch: {args.batch_size}  |  LR: {args.learning_rate}')
     print('=' * 65)
 
@@ -498,12 +500,13 @@ def main():
                     results[method].append(saved)
                     continue
 
-            print(f'\n▶ Training {method.upper()} | seed={seed}')
+            print(f'\n> Training {method.upper()} | seed={seed}')
             try:
                 r = train_one_seed(
                     method=method, rho=args.rho, seed=seed,
                     total_timesteps=args.timesteps,
                     offline_data_dir=args.offline_data_dir,
+                    scenario=args.scenario,
                     batch_size=args.batch_size,
                     learning_rate=args.learning_rate,
                     buffer_size=args.buffer_size,
@@ -530,7 +533,7 @@ def main():
 
     total_elapsed = time.time() - total_start
     print(f'\n{"=" * 65}')
-    print(f'  All training runs complete ({total_elapsed:.0f}s) — generating paper figure...')
+    print(f'  All training runs complete ({total_elapsed:.0f}s) - generating paper figure...')
     print('=' * 65)
 
     summary = plot_paper_figure(
@@ -538,7 +541,7 @@ def main():
         args.timesteps, args.seeds[:n], args.rho
     )
 
-    print('\n📊 KEY RESULTS:')
+    print('\n[STATS] KEY RESULTS:')
     print(f"   RS-DRL  final loss : {summary['rs_drl']['final_loss_mean']:.4f} ± {summary['rs_drl']['final_loss_std']:.4f}")
     print(f"   Baseline final loss: {summary['baseline']['final_loss_mean']:.4f} ± {summary['baseline']['final_loss_std']:.4f}")
     print(f"   Loss improvement   : {summary['rs_drl']['pct_loss_improvement_vs_baseline']:+.1f}%")

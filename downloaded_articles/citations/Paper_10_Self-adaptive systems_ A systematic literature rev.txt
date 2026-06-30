@@ -1,0 +1,9 @@
+Title: Self-adaptive systems: A systematic literature review across categories and domains
+Authors: Terence H Wong, Markus Wagner, Christoph Treude
+Year: 2022
+DOI: https://doi.org/10.1016/j.infsof.2022.106934
+Open Access URL: https://www.sciencedirect.com/science/article/pii/S0950584922000854
+DARTSim Usage Classification: Mentioned / Cited
+
+Abstract / Content Summary:
+

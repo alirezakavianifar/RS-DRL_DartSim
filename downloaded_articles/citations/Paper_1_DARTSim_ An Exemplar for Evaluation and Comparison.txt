@@ -1,0 +1,9 @@
+Title: DARTSim: An Exemplar for Evaluation and Comparison of Self-Adaptation Approaches for Smart Cyber-Physical Systems
+Authors: Gabriel A. Moreno, Cody Kinneer, Ashutosh Pandey
+Year: 2019
+DOI: https://doi.org/10.1109/seams.2019.00031
+Open Access URL: 
+DARTSim Usage Classification: Used as Case Study / Benchmark
+
+Abstract / Content Summary:
+Motivated by the need for cyber-physical systems (CPS) to perform in dynamic and uncertain environments, smart CPS (sCPS) utilize self-adaptive capabilities to autonomously manage uncertainties at the intersection of the cyber and physical worlds. In this context, self-adaptation approaches face particular challenges, including (i) environment monitoring that is subject to sensing errors; (ii) adaptation actions that take time, sometimes due to physical movement; (iii) dire consequences for not adapting in a timely manner; and (iv) incomparable objectives that cannot be conflated into a single utility metric (e.g., avoiding an accident vs. providing good service). To enable researchers to evaluate and compare self-adaptation approaches aiming to address these unique challenges of sCPS, we introduce the DARTSim exemplar. DARTSim implements a high-level simulation of a team of unmanned air vehicles (UAVs) performing a reconnaissance mission in a hostile and unknown environment. Designed to be easily used by researchers, DARTSim provides a TCP-based interface for easy integration with external adaptation managers, documentation, and a fast simulation capability.

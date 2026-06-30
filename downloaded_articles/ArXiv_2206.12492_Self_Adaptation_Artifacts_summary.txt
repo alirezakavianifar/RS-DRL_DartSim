@@ -1,0 +1,5 @@
+Title: Guidelines for Artifacts to Support Industry-Relevant Research on Self-Adaptation
+URL: https://arxiv.org/pdf/2206.12492.pdf
+
+Abstract/Description:
+Surveys and guidelines for self-adaptation exemplars including DARTSim.

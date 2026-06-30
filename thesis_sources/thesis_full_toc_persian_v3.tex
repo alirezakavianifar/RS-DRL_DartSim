@@ -1,0 +1,222 @@
+\documentclass[oneside,openany,phd]{TMU-Thesis}
+
+
+% ==================== structure/preamble.tex ====================
+% مشخصات پایان‌نامه را در فایلهای faTitle و enTitle وارد نمایید.
+% در اینجا برای یکپارچگی، همینجا وارد می‌کنیم
+
+% مشخصات فارسی
+\university{تربیت مدرس}
+\faculty{مهندسی برق و کامپیوتر}
+\department{گروه هوش مصنوعی و رباتیکز}
+\subject{مهندسی کامپیوتر}
+\field{مهندسی نرم‌افزار}
+\credits{---} % در رساله دکتری معمولا به صورت واحدی ذکر نمی‌شود یا فیلد خالی است
+\title{یادگیری تقویتی عمیق با شکل‌دهی تصادفی پاداش برای مدیریت عدم قطعیت در سیستم‌های خودوفقی}
+\firstsupervisor{دکتر ...}
+% \secondsupervisor{استاد راهنمای دوم}
+\firstadvisor{دکتر ...}
+% \secondadvisor{استاد مشاور دوم}
+\name{علیرضا}
+\surname{کاویانی‌فر}
+\studentID{...}
+\thesisdate{بهمن ۱۴۰۴}
+
+% مشخصات انگلیسی
+\latinuniversity{Tarbiat Modares University}
+\latinfaculty{Faculty of Electrical and Computer Engineering}
+\latinsubject{Computer Engineering}
+\latinfield{Software Engineering}
+\latintitle{Randomized Reward-Shaped Deep Reinforcement Learning for Managing Uncertainty in Self-Adaptive Systems}
+\firstlatinsupervisor{Dr. ...}
+\firstlatinadvisor{Dr. ...}
+\latinname{Alireza}
+\latinsurname{Kavianifar}
+\latinthesisdate{February 2026}
+\latinkeywords{Self-Adaptive Systems, Deep Reinforcement Learning, Randomized Reward Shaping, Uncertainty Management, Formal Verification, UPPAAL-SMC}
+
+% فراخوانی بسته‌ها و دستورات استاندارد
+\input{commands}
+\standalonefalse  % suppress per-chapter bibliographies when building full thesis
+
+% تنظیمات اختصاصی برای فهرست مطالب (TOC)
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+
+\raggedbottom
+
+% تنظیمات نقطه‌چین برای فهرست مطالب
+\usepackage{tocloft}
+\providecommand{\cftchapdotfill}{\cftdotfill{\cftdotsep}}
+\providecommand{\cftsecdotfill}{\cftdotfill{\cftdotsep}}
+\providecommand{\cftsubsecdotfill}{\cftdotfill{\cftdotsep}}
+
+
+% تنظیمات سربرگ برای رفع مشکل نمایش حروف فارسی (جعبه‌های خالی)
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\thepage}
+\fancyhead[R]{\small\leftmark}
+\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+% حذف حالت ایتالیک/کج که باعث به هم ریختگی فونت فارسی در سربرگ می‌شود
+\let\oldheadrule\headrule
+\renewcommand{\headrule}{\oldheadrule}
+\fancyhead[R]{\small\nouppercase{\leftmark}}
+
+
+
+\usepackage{docmute}
+\begin{document}
+\pagestyle{empty}
+
+% ==================== structure/frontmatter.tex ====================
+\AutoPersianDigits
+\setstretch{1.5}
+
+\pagenumbering{harfi}
+\besmPage
+\firstPage
+\davaranPage
+% در این قسمت اسامی‌داوران در فایل اصلی باید دستی وارد شوند، اینجا از ساختار پیش‌فرض استفاده می‌کنیم
+
+\esalatPage
+\mojavezPage
+
+\chapter*{تقدیم}
+\addcontentsline{toc}{chapter}{تقدیم}
+\begin{center}
+  \textit{(متن تقدیم به خانواده، اساتید و ...)}
+\end{center}
+\newpage
+
+\begin{acknowledgementpage}
+(متن تشکر و قدردانی از اساتید راهنما، مشاور و دوستان)
+\signature 
+\end{acknowledgementpage}
+
+\keywords{سیستم‌های خودوفقی، یادگیری تقویتی عمیق، شکل‌دهی تصادفی پاداش، مدیریت عدم قطعیت، بازبینی صوری، \lr{UPPAAL-SMC}، فضاهای وفقی بزرگ، اینترنت اشیاء، شبکه‌های حسگر بی‌سیم}
+\faabstract{
+سیستم‌های نرم‌افزاری معاصر به طور فزاینده‌ای در محیط‌های پویا و همراه با عدم قطعیت عمل می‌کنند. این عدم قطعیت‌ها که ناشی از عواملی مانند تداخل شبکه، نوسانات بار ترافیکی یا تغییرات محیطی هستند، می‌توانند به طور جدی اهداف کیفی سیستم را به خطر اندازند. سیستم‌های خودوفقی (\lr{Self-Adaptive Systems}) با بهره‌گیری از حلقه‌های بازخوردی، راهکاری بنیادین برای مقابله با این چالش ارائه می‌دهند. با این حال، چالش اصلی زمانی بروز می‌کند که این سیستم‌ها با فضای وفقی وسیع (شامل صدها یا هزاران گزینه پیکربندی) مواجه می‌شوند. روش‌های موجود، از جمله روش‌های مبتنی بر یادگیری ماشین، جستجو، و حتی یادگیری تقویتی کلاسیک، در چنین فضاهایی با مشکلاتی نظیر نیاز به داده‌های برچسب‌دار، عدم مقیاس‌پذیری، و مهم‌تر از همه، گرفتار شدن در بهینه‌های محلی و عدم توانایی تعمیم به شرایط محیطی جدید مواجه هستند. هدف اصلی این رساله، توسعه و اعتبارسنجی روشی نوین مبتنی بر یادگیری تقویتی عمیق با مکانیسم شکل‌دهی تصادفی پاداش (\lr{Randomized Reward-Shaped Deep Reinforcement Learning -- RS-DRL}) برای مدیریت کارآمد عدم قطعیت در این سیستم‌ها است. روش پیشنهادی، هسته یادگیری خود را بر پایه شبکه‌های کیو-عمیق (\lr{DQN}) استوار ساخته و آن را درون چارچوب استاندارد مدیریت خودمختار \lr{MAPE-K} یکپارچه می‌سازد. در این معماری، سیگنال محیطی با نتایج حاصل از بازبینی صوری توسط ابزار \lr{UPPAAL-SMC} ترکیب شده تا عامل یادگیرنده تحت هدایت محدودیت‌های صوری آموزش ببیند. نوآوری اصلی رساله، مکانیسم «شکل‌دهی تصادفی پاداش» است که طی آن، زیرمجموعه‌ای تصادفی از تجربیات ناموفق گذشته با تخصیص پاداش خوش‌بینانه بازطراحی می‌شوند. اگرچه پیکربندی مدل صوری نیازمند دانش دامنه است، اما مکانیسم شکل‌دهی تصادفی پیشنهادی به خودی خود مستقل از دامنه بوده و نیاز به دانش صریح از اهداف (\lr{Domain Knowledge}) برای اکتشاف ندارد. ارزیابی تجربی بر روی مطالعه موردی \lr{DeltaIoT} (در شبکه‌های حسگر بی‌سیم) با فضاهای وفقی تا ۴۰۹۶ گزینه، نشان‌دهنده برتری قاطع روش \lr{RS-DRL} نسبت به روش‌های پایه از جمله \lr{DQN}، \lr{HER}، \lr{Soft HER} و \lr{DLASER+} است. به عنوان مثال، در هدف آستانه‌ای \lr{TT}، روش پیشنهادی موفق به کاهش نرخ اتلاف بسته تا \lr{23.22\%} و کاهش تأخیر تا \lr{39.07\%} در مقایسه با روش \lr{DLASER+} به عنوان قوی‌ترین رقیب پژوهش گردید. تحلیل‌های آماری معنادار صحت و استواری نتایج را در شرایط پویای محیطی تأیید می‌کنند. یافته‌های این رساله نشان می‌دهد که رویکرد \lr{RS-DRL} یک استراتژی بهینه‌سازی مقاوم و خودوفق برای نسل بعدی سیستم‌های نرم‌افزاری پیچیده است.
+}
+\abstractPage
+
+\tableofcontents
+\newpage
+
+\listoftables
+\newpage
+
+\listoffigures
+\newpage
+
+\chapter*{فهرست نشانه‌ها و اختصارات}
+\addcontentsline{toc}{chapter}{فهرست نشانه‌ها و اختصارات}
+
+\section*{نشانه‌های ریاضی}
+\noindent
+\begin{tabular}{|p{2.5cm}|p{11.5cm}|}
+\hline
+\textbf{نماد} & \textbf{توضیح و تعریف} \\ \hline
+$\mathcal{S}$ & فضای حالت سیستم (مجموعه تمام وضعیت‌های ممکن سیستم و محیط) \\ \hline
+$\mathcal{A}$ & فضای عمل یا گزینه‌های وفقی در دسترس \\ \hline
+$s$ & حالت یا وضعیت جاری سیستم ($s \in \mathcal{S}$) \\ \hline
+$a$ & عمل وفقی یا پیکربندی انتخاب‌شده ($a \in \mathcal{A}$) \\ \hline
+$\pi(a|s)$ & سیاست تطبیق عامل (نگاشت حالت‌ها به اعمال) \\ \hline
+$\pi^*$ & سیاست تطبیق بهینه \\ \hline
+$R(s, a)$ & تابع پاداش (بازخورد عددی محیط به عامل) \\ \hline
+$\gamma$ & نرخ تنزیل پاداش‌های آتی ($\gamma \in [0, 1)$) \\ \hline
+$V^\pi(s)$ & تابع ارزش حالت تحت سیاست $\pi$ \\ \hline
+$Q(s, a)$ & تابع ارزش عمل (مقدار کیو) \\ \hline
+$\theta$ & پارامترها و وزن‌های شبکه عصبی عمیق تقریب‌گر \\ \hline
+$\epsilon$ & احتمال کاوش تصادفی در الگوریتم حریصانه-اپسیلون \\ \hline
+$\mathcal{D}$ & بافر بازپخش تجربه عامل \\ \hline
+$\rho$ & مقدار پاداش خوش‌بینانه تزریق‌شده در مکانیسم شکل‌دهی پاداش تصادفی \\ \hline
+\end{tabular}
+
+\newpage
+
+\section*{اختصارات انگلیسی}
+\noindent
+\begin{tabular}{|p{2.5cm}|p{6.0cm}|p{5.1cm}|}
+\hline
+\textbf{اختصار} & \textbf{عبارت کامل انگلیسی} & \textbf{معادل فارسی} \\ \hline
+\lr{RS-DRL} & \lr{Randomized Reward-Shaped Deep Reinforcement Learning} & یادگیری تقویتی عمیق با شکل‌دهی تصادفی پاداش \\ \hline
+\lr{DRL} & \lr{Deep Reinforcement Learning} & یادگیری تقویتی عمیق \\ \hline
+\lr{SAS} & \lr{Self-Adaptive Systems} & سیستم‌های خودوفقی \\ \hline
+\lr{MAPE-K} & \lr{Monitor, Analyze, Plan, Execute over Shared Knowledge} & حلقه مدیریت خودمختار \\ \hline
+\lr{UPPAAL-SMC} & \lr{UPPAAL Statistical Model Checker} & ابزار بازبینی صوری آماری آپال \\ \hline
+\lr{SMC} & \lr{Statistical Model Checking} & بازبینی صوری آماری \\ \hline
+\lr{DQN} & \lr{Deep Q-Network} & شبکه کیو عمیق \\ \hline
+\lr{HER} & \lr{Hindsight Experience Replay} & بازپخش تجربه با نگاه به گذشته (هدف‌محور) \\ \hline
+\lr{Soft HER} & \lr{Soft Hindsight Experience Replay} & بازپخش تجربه با نگاه به گذشته نرم \\ \hline
+\lr{DLASER} & \lr{Dynamic Learning-based Adaptive System for Efficient Resource allocation} & سیستم وفقی مبتنی بر یادگیری پویا برای تخصیص منابع \\ \hline
+\lr{ML4EAS} & \lr{Machine Learning for Self-Adaptive Systems} & یادگیری ماشین برای سیستم‌های خودوفق خودمراقبتی \\ \hline
+\lr{DARTSim} & \lr{UAV Tactical Mission Simulator} & شبیه‌ساز مأموریت تاکتیکی پهپادها \\ \hline
+\end{tabular}
+
+\newpage
+
+\noindent
+\begin{tabular}{|p{2.5cm}|p{6.0cm}|p{5.1cm}|}
+\hline
+\textbf{اختصار} & \textbf{عبارت کامل انگلیسی} & \textbf{معادل فارسی} \\ \hline
+\lr{MDP} & \lr{Markov Decision Process} & فرآیند تصمیم‌گیری مارکوف \\ \hline
+\lr{POMDP} & \lr{Partially Observable Markov Decision Process} & فرآیند تصمیم‌گیری مارکوف بخشاً مشاهده‌پذیر \\ \hline
+\lr{PBRS} & \lr{Potential-Based Reward Shaping} & شکل‌دهی پاداش مبتنی بر پتانسیل \\ \hline
+\lr{QVR} & \lr{Q-Value Reshaping} & شکل‌دهی مقدار کیو \\ \hline
+\lr{QoS} & \lr{Quality of Service} & کیفیت خدمات \\ \hline
+\lr{KPI} & \lr{Key Performance Indicator} & شاخص کلیدی عملکرد \\ \hline
+\lr{IoT} & \lr{Internet of Things} & اینترنت اشیاء \\ \hline
+\lr{WSN} & \lr{Wireless Sensor Network} & شبکه حسگر بی‌سیم \\ \hline
+\lr{SNR} & \lr{Signal-to-Noise Ratio} & نسبت سیگنال به نویز \\ \hline
+\lr{TT} & \lr{Threshold Goal} & هدف آستانه‌ای مطلق \\ \hline
+\lr{TTS} & \lr{Threshold-based Transition System} & سیستم انتقال مبتنی بر آستانه \\ \hline
+\end{tabular}
+
+\newpage
+
+
+% ==================== chapters/chapter1.tex ====================
+\pagenumbering{arabic}
+\pagestyle{fancy}
+
+\input{chapters/chapter1}
+
+% ==================== chapters/chapter2.tex ====================
+\input{chapters/chapter2}
+
+% ==================== chapters/chapter3.tex ====================
+\input{chapters/chapter3}
+
+% ==================== chapters/chapter4.tex ====================
+\input{chapters/chapter4}
+
+% ==================== chapters/chapter5.tex ====================
+\input{chapters/chapter5}
+
+% ==================== chapters/chapter6.tex ====================
+\input{chapters/chapter6}
+
+% ==================== structure/backmatter.tex ====================
+% کتابنامه و پیوست‌ها
+\pagestyle{empty}
+{
+\onehalfspacing
+\bibliographystyle{ieeetr-fa}
+\bibliography{References,MyReferences}
+}
+
+\pagestyle{fancy}
+
+\input{chapters/appendices}
+
+\enabstract{
+Contemporary software systems increasingly operate in dynamic environments characterized by significant uncertainties, such as network interference and traffic fluctuations, which can jeopardize Quality of Service (QoS) objectives. Self-adaptive systems (SAS) provide a fundamental approach to address these challenges using feedback loops. However, managing large and discrete adaptation spaces (comprising hundreds or thousands of configurations) remains a significant challenge. Existing approaches, including machine learning and classical reinforcement learning, often suffer from poor scalability, reliance on labeled data, or being trapped in local optima under environmental shifts. This thesis proposes and evaluates a novel method called Randomized Reward-Shaped Deep Reinforcement Learning (RS-DRL) for efficient uncertainty management in SAS. The proposed method integrates a Deep Q-Network (DQN) core within the standard MAPE-K control loop. The primary innovation is the ``Randomized Reward Shaping'' mechanism, which strategically redesigns a random subset of failed past experiences in the replay buffer with optimistic (pseudo-success) rewards. Crucially, the reward signal is gated by formal verification results from UPPAAL-SMC, ensuring that learning is guided by formal safety and quality constraints. While the formal model requires domain-specific configuration, the randomized shaping heuristic itself is domain-agnostic and does not require explicit goal coordinates or intensive domain expertise for exploration. Experimental evaluation was conducted on the DeltaIoT exemplar within wireless sensor network scenarios featuring adaptation spaces of up to 4096 configurations. The results demonstrate that RS-DRL significantly outperforms state-of-the-art baselines, including DQN, HER, Soft HER, and DLASER+. Specifically, under the Threshold-based (TT) goal, RS-DRL achieved a 23.22\% reduction in packet loss and a 39.07\% reduction in latency compared to the DLASER+ baseline. Statistical analysis confirms the robustness and scalability of the proposed approach, establishing RS-DRL as a resilient optimization strategy for next-generation complex self-adaptive systems.
+}
+\latinfirstPage
+
+
+
+\end{document}

@@ -1,0 +1,5 @@
+Title: DARTSim Exemplar Paper (ArXiv Version)
+URL: https://arxiv.org/pdf/1905.03333.pdf
+
+Abstract/Description:
+Self-adaptation approaches for smart cyber-physical systems.

@@ -47,7 +47,7 @@ def run_single_experiment(
     # Build command
     cmd = [
         sys.executable,
-        "train_rs_drl.py",
+        str(Path(__file__).parent / "train_rs_drl.py"),
         "--method", method,
         "--seed", str(seed),
         "--timesteps", str(timesteps),
@@ -241,6 +241,8 @@ def main():
                        help="Evaluation frequency")
     parser.add_argument("--eval-episodes", type=int, default=2,
                        help="Number of episodes for evaluation")
+    parser.add_argument("--offline-scenario", type=str, default=None,
+                       help="Filter offline data by scenario (baseline, medium, hard)")
     
     args = parser.parse_args()
     
@@ -261,6 +263,8 @@ def main():
         kwargs["batch_size"] = args.batch_size
     kwargs["eval_freq"] = args.eval_freq
     kwargs["eval_episodes"] = args.eval_episodes
+    if args.offline_scenario is not None:
+        kwargs["offline_scenario"] = args.offline_scenario
     
     print(f"Running experiments:")
     print(f"  Methods: {args.methods}")

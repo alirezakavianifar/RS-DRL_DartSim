@@ -18,18 +18,18 @@ import matplotlib.gridspec as gridspec
 from scipy.ndimage import uniform_filter1d
 from scipy import stats
 
-# ── Colour palette ────────────────────────────────────────────────────
-BG     = '#0D0D1A'
-PANEL  = '#13132B'
-PURPLE = '#7C6EFA'
-PINK   = '#FF5E8A'
-TEAL   = '#00D4AA'
-GOLD   = '#FFB84D'
-GRID   = '#1E1E3A'
-WHITE  = '#E8E8FF'
-GREY   = '#9090B0'
+# ── Academic Light Mode Colour palette ────────────────────────────────
+BG     = '#FFFFFF'  # Figure background
+PANEL  = '#FFFFFF'  # Axes background
+PURPLE = '#1F77B4'  # RS-DRL (Standard Matplotlib Blue)
+PINK   = '#D62728'  # Baseline DQN (Standard Matplotlib Red)
+TEAL   = '#2CA02C'  # Reshaping rate (Standard Matplotlib Green)
+GOLD   = '#FF7F0E'  # Q-Value gain (Standard Matplotlib Orange)
+GRID   = '#E5E5E5'  # Grid lines (Light grey)
+WHITE  = '#1A1A1A'  # Text/Labels (Dark grey for high contrast)
+GREY   = '#4A4A4A'  # Subtitles/secondary text (Medium-dark grey)
 
-SEED_COLORS = ['#7C6EFA', '#00D4AA', '#FFB84D']  # Per-seed colours
+SEED_COLORS = ['#1F77B4', '#2CA02C', '#FF7F0E']  # Per-seed colors
 
 
 def smooth(arr, w=3):
@@ -39,11 +39,11 @@ def smooth(arr, w=3):
 def style(ax, title, xlabel='Epoch', ylabel=''):
     ax.set_facecolor(PANEL)
     for sp in ax.spines.values():
-        sp.set_edgecolor(GRID)
-    ax.tick_params(colors=GREY, labelsize=9)
+        sp.set_edgecolor('#CCCCCC')  # Clean light border
+    ax.tick_params(colors=WHITE, labelsize=9)
     ax.set_title(title, color=WHITE, fontsize=11, fontweight='bold', pad=10)
-    ax.set_xlabel(xlabel, color=GREY, fontsize=9.5)
-    ax.set_ylabel(ylabel, color=GREY, fontsize=9.5)
+    ax.set_xlabel(xlabel, color=WHITE, fontsize=9.5)
+    ax.set_ylabel(ylabel, color=WHITE, fontsize=9.5)
     ax.yaxis.grid(True, color=GRID, lw=0.7, zorder=0)
     ax.set_axisbelow(True)
 
@@ -102,7 +102,7 @@ def figure_1_main_convergence(results, seeds, rho, output_dir):
     style(ax1, '(a) Max Q-Value Convergence', ylabel='Mean max-Q')
     band(ax1, x, rs_qmean, PURPLE, f'RS-DRL (rho={rho})')
     band(ax1, x, bl_qmean, PINK, 'Baseline DQN')
-    ax1.legend(fontsize=9, facecolor='#1A1A3A', edgecolor=GRID, labelcolor=WHITE)
+    ax1.legend(fontsize=9, facecolor='#FFFFFF', edgecolor='#CCCCCC', labelcolor=WHITE)
 
     # ── (b) TD Loss convergence ──────────────────────────────────────
     ax2 = fig.add_subplot(gs[0, 1])
@@ -110,7 +110,7 @@ def figure_1_main_convergence(results, seeds, rho, output_dir):
     band(ax2, x, rs_loss, PURPLE, f'RS-DRL (rho={rho})')
     band(ax2, x, bl_loss, PINK, 'Baseline DQN')
     ax2.set_yscale('log')
-    ax2.legend(fontsize=9, facecolor='#1A1A3A', edgecolor=GRID, labelcolor=WHITE)
+    ax2.legend(fontsize=9, facecolor='#FFFFFF', edgecolor='#CCCCCC', labelcolor=WHITE)
 
     # ── (c) Reshaping rate ───────────────────────────────────────────
     ax3 = fig.add_subplot(gs[1, 0])
@@ -122,7 +122,7 @@ def figure_1_main_convergence(results, seeds, rho, output_dir):
                      color=TEAL, alpha=0.18, zorder=2)
     ax3.axhline(rho, color=GREY, lw=1.2, ls='--', alpha=0.6, label=f'Target rho={rho}')
     ax3.set_ylim(0, min(1.0, rho * 2))
-    ax3.legend(fontsize=9, facecolor='#1A1A3A', edgecolor=GRID, labelcolor=WHITE)
+    ax3.legend(fontsize=9, facecolor='#FFFFFF', edgecolor='#CCCCCC', labelcolor=WHITE)
 
     # ── (d) Q-value relative gain over epochs ────────────────────────
     ax4 = fig.add_subplot(gs[1, 1])
@@ -135,7 +135,7 @@ def figure_1_main_convergence(results, seeds, rho, output_dir):
     ax4.fill_between(x, 0, q_gain_s, where=(q_gain_s <= 0),
                      alpha=0.2, color=PINK, label='Baseline advantage')
     ax4.axhline(0, color=WHITE, lw=1, ls='--', alpha=0.4)
-    ax4.legend(fontsize=9, facecolor='#1A1A3A', edgecolor=GRID, labelcolor=WHITE)
+    ax4.legend(fontsize=9, facecolor='#FFFFFF', edgecolor='#CCCCCC', labelcolor=WHITE)
 
     # ── Suptitle ─────────────────────────────────────────────────────
     seed_str = ', '.join(map(str, seeds))
@@ -163,23 +163,23 @@ def figure_2_per_seed(results, seeds, rho, output_dir):
 
     fig, axes = plt.subplots(1, 3, figsize=(16, 5), facecolor=BG)
 
-    # Panel (a) — per-seed Q-values RS-DRL
+    # Panel (a) - per-seed Q-values RS-DRL
     ax = axes[0]
     style(ax, '(a) RS-DRL: Per-Seed Q-Values', ylabel='Mean max-Q')
     for i, (r, seed) in enumerate(zip(rs, seeds)):
         ax.plot(x, smooth(r['max_q_mean']), color=SEED_COLORS[i % len(SEED_COLORS)],
                 lw=1.8, label=f'Seed {seed}', alpha=0.9)
-    ax.legend(fontsize=8.5, facecolor='#1A1A3A', edgecolor=GRID, labelcolor=WHITE)
+    ax.legend(fontsize=8.5, facecolor='#FFFFFF', edgecolor='#CCCCCC', labelcolor=WHITE)
 
-    # Panel (b) — per-seed Q-values Baseline
+    # Panel (b) - per-seed Q-values Baseline
     ax = axes[1]
     style(ax, '(b) Baseline: Per-Seed Q-Values', ylabel='Mean max-Q')
     for i, (r, seed) in enumerate(zip(bl, seeds)):
         ax.plot(x, smooth(r['max_q_mean']), color=SEED_COLORS[i % len(SEED_COLORS)],
                 lw=1.8, label=f'Seed {seed}', alpha=0.9)
-    ax.legend(fontsize=8.5, facecolor='#1A1A3A', edgecolor=GRID, labelcolor=WHITE)
+    ax.legend(fontsize=8.5, facecolor='#FFFFFF', edgecolor='#CCCCCC', labelcolor=WHITE)
 
-    # Panel (c) — per-seed loss comparison
+    # Panel (c) - per-seed loss comparison
     ax = axes[2]
     style(ax, '(c) TD Loss Comparison (log)', ylabel='Loss (log)')
     for i, (r, seed) in enumerate(zip(rs, seeds)):
@@ -189,7 +189,7 @@ def figure_2_per_seed(results, seeds, rho, output_dir):
         ax.plot(x, smooth(r['losses']), color=SEED_COLORS[i % len(SEED_COLORS)],
                 lw=1.4, ls='--', label=f'Baseline s={seed}', alpha=0.7)
     ax.set_yscale('log')
-    ax.legend(fontsize=7, facecolor='#1A1A3A', edgecolor=GRID, labelcolor=WHITE, ncol=2)
+    ax.legend(fontsize=7, facecolor='#FFFFFF', edgecolor='#CCCCCC', labelcolor=WHITE, ncol=2)
 
     fig.text(0.5, 0.98, 'Per-Seed Training Trajectories',
              ha='center', color=WHITE, fontsize=13, fontweight='bold')
@@ -203,7 +203,7 @@ def figure_2_per_seed(results, seeds, rho, output_dir):
 
 def figure_3_statistical_analysis(results, seeds, rho, output_dir):
     """
-    Figure 3: Statistical analysis — bar chart with error bars + t-test results.
+    Figure 3: Statistical analysis - bar chart with error bars + t-test results.
     """
     rs = results['rs_drl']
     bl = results['baseline']
@@ -231,7 +231,7 @@ def figure_3_statistical_analysis(results, seeds, rho, output_dir):
     bars = ax1.bar(['RS-DRL', 'Baseline'], [rs_final_q.mean(), bl_final_q.mean()],
                    yerr=[rs_final_q.std(), bl_final_q.std()],
                    color=[PURPLE, PINK], edgecolor=WHITE, linewidth=0.5,
-                   capsize=8, error_kw={'color': WHITE, 'lw': 1.5})
+                   capsize=8, error_kw={'ecolor': WHITE, 'lw': 1.5})
     for bar, val in zip(bars, [rs_final_q.mean(), bl_final_q.mean()]):
         ax1.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.3,
                  f'{val:.2f}', ha='center', color=WHITE, fontsize=10, fontweight='bold')
@@ -254,7 +254,7 @@ def figure_3_statistical_analysis(results, seeds, rho, output_dir):
                  label='Mean +/- std')
     ax2.set_xticks([0, 1])
     ax2.set_xticklabels(['RS-DRL', 'Baseline'])
-    ax2.legend(fontsize=8.5, facecolor='#1A1A3A', edgecolor=GRID, labelcolor=WHITE)
+    ax2.legend(fontsize=8.5, facecolor='#FFFFFF', edgecolor='#CCCCCC', labelcolor=WHITE)
 
     # ── (c) Statistical summary table ────────────────────────────────
     ax3 = fig.add_subplot(gs[0, 2])
@@ -284,7 +284,7 @@ def figure_3_statistical_analysis(results, seeds, rho, output_dir):
                  fontsize=9, fontweight=fw, va='top')
         if i == 0:
             ax3.plot([0.02, 0.98], [y - 0.02, y - 0.02],
-                     transform=ax3.transAxes, color=GRID, lw=1)
+                     transform=ax3.transAxes, color='#CCCCCC', lw=1)
 
     fig.text(0.5, 0.94, 'Statistical Comparison: RS-DRL vs Baseline DQN',
              ha='center', color=WHITE, fontsize=13, fontweight='bold')
@@ -310,7 +310,7 @@ def generate_latex_table(stat_results, seeds, rho, output_dir):
     s = stat_results
     sig_q = '***' if s['p_q'] < 0.001 else '**' if s['p_q'] < 0.01 else '*' if s['p_q'] < 0.05 else ''
 
-    latex = r"""% Auto-generated — RS-DRL vs Baseline DQN results with statistical tests
+    latex = r"""% Auto-generated - RS-DRL vs Baseline DQN results with statistical tests
 \begin{table}[ht]
 \centering
 \caption{RS-DRL vs Baseline DQN comparison on DARTSim offline RL

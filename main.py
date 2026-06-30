@@ -239,6 +239,32 @@ def phase_mapek(args):
         print("  " + " ".join(cmd))
 
 
+def phase_benchmark_competing(args):
+    """Phase 6: Benchmark against competing literature approaches."""
+    print_header("PHASE 6: Benchmark Against Competing Literature Approaches")
+    
+    cmd = [
+        sys.executable,
+        "scripts/evaluate_competing_baselines.py"
+    ]
+    
+    if args.episodes:
+        cmd.extend(["--episodes", str(args.episodes)])
+    if args.scenario:
+        cmd.extend(["--scenario", args.scenario])
+    if args.output_dir:
+        cmd.extend(["--output-dir", args.output_dir])
+        
+    print(f"Running: {' '.join(cmd)}\n")
+    
+    if args.auto:
+        subprocess.run(cmd)
+    else:
+        print("Command to run:")
+        print("  " + " ".join(cmd))
+
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="DARTSim RS-DRL Project - Main Entry Point",
@@ -330,6 +356,14 @@ Examples:
     parser_mapek.add_argument("--offline-data-dir", type=str, default="./data/offline", help="Directory with offline data")
     parser_mapek.add_argument("--offline-scenario", type=str, help="Filter data by scenario")
     parser_mapek.set_defaults(func=phase_mapek)
+
+    # Benchmark competing phase
+    parser_competing = subparsers.add_parser("benchmark-competing", help="Phase 6: Benchmark competing literature approaches")
+    parser_competing.add_argument("--episodes", type=int, default=50, help="Number of evaluation episodes")
+    parser_competing.add_argument("--scenario", type=str, choices=["baseline", "medium", "hard"], default="baseline", help="Scenario type")
+    parser_competing.add_argument("--output-dir", type=str, default="./results/competing_benchmarks", help="Output directory")
+    parser_competing.set_defaults(func=phase_benchmark_competing)
+
     
     args = parser.parse_args()
     

@@ -1,0 +1,56 @@
+[
+  {
+    "method": "rs_drl",
+    "seed": 42,
+    "timesteps": 20000,
+    "rho": 0.3,
+    "status": "success",
+    "elapsed_time": 48.63685393333435,
+    "output_dir": "experiments\\medium\\rs_drl\\seed_42"
+  },
+  {
+    "method": "rs_drl",
+    "seed": 43,
+    "timesteps": 20000,
+    "rho": 0.3,
+    "status": "success",
+    "elapsed_time": 43.84371614456177,
+    "output_dir": "experiments\\medium\\rs_drl\\seed_43"
+  },
+  {
+    "method": "rs_drl",
+    "seed": 44,
+    "timesteps": 20000,
+    "rho": 0.3,
+    "status": "success",
+    "elapsed_time": 45.681580781936646,
+    "output_dir": "experiments\\medium\\rs_drl\\seed_44"
+  },
+  {
+    "method": "baseline",
+    "seed": 42,
+    "timesteps": 20000,
+    "rho": null,
+    "status": "success",
+    "elapsed_time": 43.034894943237305,
+    "output_dir": "experiments\\medium\\baseline\\seed_42"
+  },
+  {
+    "method": "baseline",
+    "seed": 43,
+    "timesteps": 20000,
+    "rho": null,
+    "status": "success",
+    "elapsed_time": 44.627453565597534,
+    "output_dir": "experiments\\medium\\baseline\\seed_43"
+  },
+  {
+    "method": "baseline",
+    "seed": 44,
+    "timesteps": 20000,
+    "rho": null,
+    "status": "success",
+    "elapsed_time": 44.080297231674194,
+    "output_dir": "experiments\\medium\\baseline\\seed_44"
+  }
+]

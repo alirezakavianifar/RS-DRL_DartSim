@@ -1,0 +1,9 @@
+Title: Explaining quality attribute tradeoffs in automated planning for self-adaptive systems
+Authors: Rebekka Wohlrab, Javier Cámara, David Garlan
+Year: 2022
+DOI: https://doi.org/10.1016/j.jss.2022.111538
+Open Access URL: https://doi.org/10.1016/j.jss.2022.111538
+DARTSim Usage Classification: Used as Case Study / Benchmark
+
+Abstract / Content Summary:
+Self-adaptive systems commonly operate in heterogeneous contexts and need to consider multiple quality attributes. Human stakeholders often express their quality preferences by defining utility functions, which are used by self-adaptive systems to automatically generate adaptation plans. However, the adaptation space of realistic systems is large and it is obscure how utility functions impact the generated adaptation behavior, as well as structural, behavioral, and quality constraints. Moreover, human stakeholders are often not aware of the underlying tradeoffs between quality attributes. To address this issue, we present an approach that uses machine learning techniques (dimensionality reduction, clustering, and decision tree learning) to explain the reasoning behind automated planning. Our approach focuses on the tradeoffs between quality attributes and how the choice of weights in utility functions results in different plans being generated. We help humans understand quality attribute tradeoffs, identify key decisions in adaptation behavior, and explore how differences in utility functions result in different adaptation alternatives. We present two systems to demonstrate the approach’s applicability and consider its potential application to 24 exemplar self-adaptive systems. Moreover, we describe our assessment of the tradeoff between the information reduction and the amount of explained variance retained by the results obtained with our approach.

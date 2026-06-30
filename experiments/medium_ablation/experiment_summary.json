@@ -1,0 +1,110 @@
+[
+  {
+    "method": "rs_drl",
+    "seed": 42,
+    "timesteps": 20000,
+    "rho": 0.0,
+    "status": "success",
+    "elapsed_time": 36.99341893196106,
+    "output_dir": "experiments\\medium_ablation\\rs_drl\\seed_42"
+  },
+  {
+    "method": "rs_drl",
+    "seed": 42,
+    "timesteps": 20000,
+    "rho": 0.1,
+    "status": "success",
+    "elapsed_time": 37.47593569755554,
+    "output_dir": "experiments\\medium_ablation\\rs_drl\\seed_42"
+  },
+  {
+    "method": "rs_drl",
+    "seed": 42,
+    "timesteps": 20000,
+    "rho": 0.3,
+    "status": "success",
+    "elapsed_time": 37.64217495918274,
+    "output_dir": "experiments\\medium_ablation\\rs_drl\\seed_42"
+  },
+  {
+    "method": "rs_drl",
+    "seed": 42,
+    "timesteps": 20000,
+    "rho": 0.5,
+    "status": "success",
+    "elapsed_time": 35.96646857261658,
+    "output_dir": "experiments\\medium_ablation\\rs_drl\\seed_42"
+  },
+  {
+    "method": "rs_drl",
+    "seed": 43,
+    "timesteps": 20000,
+    "rho": 0.0,
+    "status": "success",
+    "elapsed_time": 35.26365637779236,
+    "output_dir": "experiments\\medium_ablation\\rs_drl\\seed_43"
+  },
+  {
+    "method": "rs_drl",
+    "seed": 43,
+    "timesteps": 20000,
+    "rho": 0.1,
+    "status": "success",
+    "elapsed_time": 35.63413333892822,
+    "output_dir": "experiments\\medium_ablation\\rs_drl\\seed_43"
+  },
+  {
+    "method": "rs_drl",
+    "seed": 43,
+    "timesteps": 20000,
+    "rho": 0.3,
+    "status": "success",
+    "elapsed_time": 35.141993284225464,
+    "output_dir": "experiments\\medium_ablation\\rs_drl\\seed_43"
+  },
+  {
+    "method": "rs_drl",
+    "seed": 43,
+    "timesteps": 20000,
+    "rho": 0.5,
+    "status": "success",
+    "elapsed_time": 35.426918029785156,
+    "output_dir": "experiments\\medium_ablation\\rs_drl\\seed_43"
+  },
+  {
+    "method": "rs_drl",
+    "seed": 44,
+    "timesteps": 20000,
+    "rho": 0.0,
+    "status": "success",
+    "elapsed_time": 34.47027659416199,
+    "output_dir": "experiments\\medium_ablation\\rs_drl\\seed_44"
+  },
+  {
+    "method": "rs_drl",
+    "seed": 44,
+    "timesteps": 20000,
+    "rho": 0.1,
+    "status": "success",
+    "elapsed_time": 35.2009596824646,
+    "output_dir": "experiments\\medium_ablation\\rs_drl\\seed_44"
+  },
+  {
+    "method": "rs_drl",
+    "seed": 44,
+    "timesteps": 20000,
+    "rho": 0.3,
+    "status": "success",
+    "elapsed_time": 35.23375129699707,
+    "output_dir": "experiments\\medium_ablation\\rs_drl\\seed_44"
+  },
+  {
+    "method": "rs_drl",
+    "seed": 44,
+    "timesteps": 20000,
+    "rho": 0.5,
+    "status": "success",
+    "elapsed_time": 34.96910548210144,
+    "output_dir": "experiments\\medium_ablation\\rs_drl\\seed_44"
+  }
+]

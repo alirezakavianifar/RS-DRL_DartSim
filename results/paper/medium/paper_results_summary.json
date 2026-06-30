@@ -1,0 +1,23 @@
+{
+  "timesteps": 50000,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "rho": 0.3,
+  "rs_drl": {
+    "final_loss_mean": 0.30159120124296096,
+    "final_loss_std": 0.048800175099975404,
+    "final_q_mean": 5.0937332312266035,
+    "final_q_std": 1.1716726705723646,
+    "pct_loss_improvement_vs_baseline": -3042.0003560351824,
+    "pct_q_gain_vs_baseline": 243.34992254484158
+  },
+  "baseline": {
+    "final_loss_mean": 0.009598700415920128,
+    "final_loss_std": 0.004656198458218319,
+    "final_q_mean": 1.4835399389266968,
+    "final_q_std": 0.6493725791136578
+  }
+}
