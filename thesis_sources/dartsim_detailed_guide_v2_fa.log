@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.5) (preloaded format=xelatex 2026.6.25)  29 JUN 2026 17:35
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.5) (preloaded format=xelatex 2026.6.25)  29 JUN 2026 22:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1250,58 +1250,65 @@ an(0)/b/n/14.4 Comparative Bench-[][]
  []
 
 LaTeX Font Info:    Font shape `TU/XBNiloofar(0)/m/n' will be
-(Font)              scaled to size 12.04506pt on input line 445.
+(Font)              scaled to size 12.04506pt on input line 447.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 9.85492pt on input line 446.
+(Font)              scaled to size 9.85492pt on input line 448.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/m/n' will be
-(Font)              scaled to size 12.04506pt on input line 446.
+(Font)              scaled to size 12.04506pt on input line 448.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/bx/n' in size <10.95> not avai
 lable
 (Font)              Font shape `TU/XBNiloofar(2)/b/n' tried instead on input li
-ne 446.
+ne 448.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/b/n' will be
-(Font)              scaled to size 12.04506pt on input line 446.
+(Font)              scaled to size 12.04506pt on input line 448.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/m/it' will be
-(Font)              scaled to size 12.04506pt on input line 446.
+(Font)              scaled to size 12.04506pt on input line 448.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(1)/m/n' will be
-(Font)              scaled to size 12.04506pt on input line 446.
+(Font)              scaled to size 12.04506pt on input line 448.
 [23]
 File: figures/comparative_literature_benchmarks.png Graphic file (type bmp)
 <figures/comparative_literature_benchmarks.png>
- [24] [25]
-Overfull \hbox (4.74583pt too wide) in paragraph at lines 485--486
+
+Underfull \hbox (badness 1365) in paragraph at lines 457--457
+[][][]\TU/XBNiloofar(0)/m/n/12 شکل \TU/XBNiloofar(1)/m/n/12 ۱۱\TU/XBNiloofar(0)
+/m/n/12 : []مقایسه چندجانبه عملکرد روش پیشنهادی RS-DRL با روش‌های هیوریستیک[][]
+
+ []
+
+[24] [25] [26]
+Overfull \hbox (4.74583pt too wide) in paragraph at lines 501--502
 []\TU/XBNiloofar(0)/m/n/12 کدهای شبیه‌سازی، اسکریپت‌های مربوط به حلقه MAPE-K و 
 پیاده‌سازی عامل RS-DRL، بافرهای[]
  []
 
 
-Overfull \hbox (6.2232pt too wide) in paragraph at lines 498--499
+Overfull \hbox (6.2232pt too wide) in paragraph at lines 514--515
 [][]\TU/XBNiloofar(0)/b/n/12 راه‌اندازی محیط پایتون: \TU/XBNiloofar(0)/m/n/12 ا
 بتدا یک محیط مجازی با استفاده از ابزار []\TU/TimesNewRoman(0)/m/n/12 conda[] \T
 U/XBNiloofar(0)/m/n/12 ایجاد کرده و نیازمندی‌ها[]
  []
 
-[26]
+[27]
 LaTeX Font Info:    Font shape `TU/XBNiloofar(0)/m/it' will be
-(Font)              scaled to size 13.20007pt on input line 545.
+(Font)              scaled to size 13.20007pt on input line 561.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/it' will be
-(Font)              scaled to size 10.79993pt on input line 545.
- [27] (dartsim_detailed_guide_v2_fa.aux)
+(Font)              scaled to size 10.79993pt on input line 561.
+ [28] (dartsim_detailed_guide_v2_fa.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-04-28>
  ***********
 Package rerunfilecheck Info: File `dartsim_detailed_guide_v2_fa.out' has not ch
 anged.
-(rerunfilecheck)             Checksum: C0852E877B2A6A2D8FF0D52B0C5B1570;12176.
+(rerunfilecheck)             Checksum: 3C6828BCBCFF704E0E3B4F422FD12D69;13323.
  ) 
 Here is how much of TeX's memory you used:
- 16239 strings out of 402799
- 337820 string characters out of 5449216
- 791832 words of memory out of 5000000
- 44808 multiletter control sequences out of 15000+600000
+ 16241 strings out of 402799
+ 337857 string characters out of 5449216
+ 793153 words of memory out of 5000000
+ 44810 multiletter control sequences out of 15000+600000
  638693 words of font info for 153 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  88i,17n,94p,1256b,502s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on dartsim_detailed_guide_v2_fa.pdf (27 pages).
+Output written on dartsim_detailed_guide_v2_fa.pdf (28 pages).

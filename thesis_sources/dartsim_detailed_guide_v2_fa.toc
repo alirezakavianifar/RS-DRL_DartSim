@@ -28,6 +28,8 @@
 \contentsline {subsection}{\numberline {6.4}ارزیابی مقایسه‌ای و تحلیل منطق برتری روش \lr {RS-DRL} (\lr {Comparative Benchmarking \& Deep Analysis})}{23}{subsection.6.4}%
 \contentsline {subsubsection}{\numberline {6.4.1}۱. مقایسه با الگوریتم‌های هیوریستیک واکنشی \lr {(Moreno et al., 2019)}}{24}{subsubsection.6.4.1}%
 \contentsline {subsubsection}{\numberline {6.4.2}۲. مقایسه با روش‌های صحت‌سنجی صوری و جستجوی تصادفی آنلاین \lr {(SASS / PLA - Kinneer et al., 2021)}}{25}{subsubsection.6.4.2}%
-\contentsline {subsubsection}{\numberline {6.4.3}۳. مقایسه با الگوریتم پایه \lr {DQN} (بدون شکل‌دهی پاداش)}{25}{subsubsection.6.4.3}%
-\contentsline {subsection}{\numberline {6.5}محدودیت‌های روش پیشنهادی و شبیه‌ساز DARTSim}{25}{subsection.6.5}%
-\contentsline {section}{\numberline {7}بازآفرینی‌پذیری و دسترسی به منابع}{26}{section.7}%
+\contentsline {subsubsection}{\numberline {6.4.3}۳. مقایسه با روش مدیریت عدم قطعیت مدل \lr {TUNE-II} (\lr {Camilli et al., 2025})}{25}{subsubsection.6.4.3}%
+\contentsline {subsubsection}{\numberline {6.4.4}۴. مقایسه با روش بهینه‌سازی جعبه‌سفید قابل‌تفسیر \lr {XDA-II} (\lr {Negri et al., 2026})}{26}{subsubsection.6.4.4}%
+\contentsline {subsubsection}{\numberline {6.4.5}۵. مقایسه با الگوریتم پایه \lr {DQN} (بدون شکل‌دهی پاداش)}{26}{subsubsection.6.4.5}%
+\contentsline {subsection}{\numberline {6.5}محدودیت‌های روش پیشنهادی و شبیه‌ساز DARTSim}{26}{subsection.6.5}%
+\contentsline {section}{\numberline {7}بازآفرینی‌پذیری و دسترسی به منابع}{27}{section.7}%
