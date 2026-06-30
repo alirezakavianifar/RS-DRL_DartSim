@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.5) (preloaded format=xelatex 2026.6.25)  29 JUN 2026 22:20
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.5) (preloaded format=xelatex 2026.6.25)  30 JUN 2026 00:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1066,61 +1066,53 @@ File: figures/dartsim_system_diagram.png Graphic file (type bmp)
 <figures/dartsim_system_diagram.png>
 [4]
 LaTeX Font Info:    Font shape `TU/XBNiloofar(0)/m/n' will be
-(Font)              scaled to size 15.84007pt on input line 67.
+(Font)              scaled to size 15.84007pt on input line 71.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(0)/b/n' will be
-(Font)              scaled to size 15.84007pt on input line 67.
+(Font)              scaled to size 15.84007pt on input line 71.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(1)/b/n' will be
-(Font)              scaled to size 15.84007pt on input line 67.
+(Font)              scaled to size 15.84007pt on input line 71.
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/n' will be
-(Font)              scaled to size 12.9599pt on input line 67.
+(Font)              scaled to size 12.9599pt on input line 71.
  [5]
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/b/n' will be
-(Font)              scaled to size 15.55188pt on input line 125.
+(Font)              scaled to size 15.55188pt on input line 129.
 
-Overfull \hbox (0.70723pt too wide) in paragraph at lines 125--125
+Overfull \hbox (0.70723pt too wide) in paragraph at lines 129--129
 [][]\TU/XBNiloofar(0)/b/n/17.28 معماری و فرمول‌بندی مسئله به عنوان فرآیند تصمیم
 ‌گیری مارکوف[]
  []
 
 [6]
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/m/n' will be
-(Font)              scaled to size 15.84007pt on input line 128.
+(Font)              scaled to size 15.84007pt on input line 132.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/m/n' will be
-(Font)              scaled to size 11.00006pt on input line 128.
+(Font)              scaled to size 11.00006pt on input line 132.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/m/n' will be
-(Font)              scaled to size 7.70004pt on input line 128.
+(Font)              scaled to size 7.70004pt on input line 132.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/bx/n' in size <14.4> not avail
 able
 (Font)              Font shape `TU/XBNiloofar(2)/b/n' tried instead on input li
-ne 128.
+ne 132.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/b/n' will be
-(Font)              scaled to size 15.84007pt on input line 128.
+(Font)              scaled to size 15.84007pt on input line 132.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/bx/n' in size <10> not availab
 le
 (Font)              Font shape `TU/XBNiloofar(2)/b/n' tried instead on input li
-ne 128.
+ne 132.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/b/n' will be
-(Font)              scaled to size 11.00006pt on input line 128.
+(Font)              scaled to size 11.00006pt on input line 132.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/bx/n' in size <7> not availabl
 e
 (Font)              Font shape `TU/XBNiloofar(2)/b/n' tried instead on input li
-ne 128.
+ne 132.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/b/n' will be
-(Font)              scaled to size 7.70004pt on input line 128.
+(Font)              scaled to size 7.70004pt on input line 132.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/m/it' will be
-(Font)              scaled to size 15.84007pt on input line 128.
+(Font)              scaled to size 15.84007pt on input line 132.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/m/it' will be
-(Font)              scaled to size 11.00006pt on input line 128.
+(Font)              scaled to size 11.00006pt on input line 132.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/m/it' will be
-(Font)              scaled to size 7.70004pt on input line 128.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 128.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 128.
+(Font)              scaled to size 7.70004pt on input line 132.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -1132,25 +1124,34 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 136.
+(hyperref)                removing `math shift' on input line 149.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 136.
+(hyperref)                removing `math shift' on input line 149.
+
+[7]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 162.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 162.
 
 LaTeX Font Info:    Font shape `TU/XBNiloofar(0)/m/n' will be
-(Font)              scaled to size 8.80005pt on input line 137.
+(Font)              scaled to size 8.80005pt on input line 163.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(0)/m/n' will be
-(Font)              scaled to size 6.60004pt on input line 137.
-[7] [8] [9]
-Overfull \hbox (30.9937pt too wide) in paragraph at lines 188--189
+(Font)              scaled to size 6.60004pt on input line 163.
+[8] [9]
+Overfull \hbox (30.9937pt too wide) in paragraph at lines 219--220
 []\TU/XBNiloofar(0)/m/n/12 تعیین شده‌اند. در وهله نخست، برای نرخ یادگیری []\TU/
 TimesNewRoman(0)/m/n/12 (Learning Rate)[]\TU/XBNiloofar(0)/m/n/12 ، مقادیر [][]
 
  []
 
 [10]
-Overfull \hbox (24.82538pt too wide) in paragraph at lines 215--216
+Overfull \hbox (24.82538pt too wide) in paragraph at lines 246--247
 [][]\TU/XBNiloofar(0)/b/n/12 توزیع تصادفی‌بودن (خروجی‌های مختلف به ازای زوج حال
 ت-اقدام): \TU/XBNiloofar(0)/m/n/12 این نمودار تعداد خروجی‌های[]
  []
@@ -1158,157 +1159,209 @@ Overfull \hbox (24.82538pt too wide) in paragraph at lines 215--216
 [11]
 File: figures/dartsim_uncertainty_overview.png Graphic file (type bmp)
 <figures/dartsim_uncertainty_overview.png>
- [12]
+ [12] [13]
 File: figures/dartsim_sensor_uncertainty.png Graphic file (type bmp)
 <figures/dartsim_sensor_uncertainty.png>
- [13
+ [14
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 266--266
+Underfull \hbox (badness 10000) in paragraph at lines 297--297
 [][]\TU/XBNiloofar(0)/m/n/12 پوشش اقدام []\TU/TimesNewRoman(0)/m/n/12 (Action[]
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 266--266
+Underfull \hbox (badness 10000) in paragraph at lines 297--297
 [][]\TU/XBNiloofar(0)/m/n/12 سیاست رفتار []\TU/TimesNewRoman(0)/m/n/12 (Behavio
 r[][]
  []
 
 
-Underfull \hbox (badness 1728) in paragraph at lines 266--266
+Underfull \hbox (badness 1728) in paragraph at lines 297--297
 []\TU/XBNiloofar(0)/m/n/12 توسط سیاست رفتاری است؛ سیاست محتاطانه[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 266--266
+Underfull \hbox (badness 10000) in paragraph at lines 297--297
 [][]\TU/XBNiloofar(0)/m/n/12 بقا و پایان زودرس[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 266--266
+Underfull \hbox (badness 10000) in paragraph at lines 297--297
 [][]\TU/XBNiloofar(0)/m/n/12 گسسته‌سازی حالت []\TU/TimesNewRoman(0)/m/n/12 (Sta
 te[][]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 266--266
+Underfull \hbox (badness 10000) in paragraph at lines 297--297
 [][]\TU/XBNiloofar(0)/m/n/12 افزایش تصنعی تصادفی‌بودن[]
  []
 
-[14
+[15
 
 ]
-Overfull \hbox (10.84198pt too wide) in paragraph at lines 280--281
+Overfull \hbox (10.84198pt too wide) in paragraph at lines 311--312
 [][]\TU/XBNiloofar(0)/b/n/12 اجرا []\TU/TimesNewRoman(0)/b/n/12 (Execute)[]\TU/
 XBNiloofar(0)/b/n/12 : \TU/XBNiloofar(0)/m/n/12 فرآیند آموزش مجدد را مستقیماً ر
 وی بافر تجربیات آفلاین یا آنلاین از پیش‌ثبت‌شده[]
  []
 
-[15]
+[16]
 File: figures/dartsim_scenarios.png Graphic file (type bmp)
 <figures/dartsim_scenarios.png>
- [16]
-Overfull \hbox (18.2468pt too wide) in paragraph at lines 314--315
+ [17]
+Overfull \hbox (18.2468pt too wide) in paragraph at lines 345--346
 []\TU/XBNiloofar(0)/m/n/12 ارزیابی‌های تجربی بر روی شبیه‌ساز آفلاین []\TU/Times
 NewRoman(0)/m/n/12 DARTSim[] \TU/XBNiloofar(0)/m/n/12 با بافر داده‌ای شامل $[][
 ][][][][]$ تراکنش پاک‌سازی‌شده،[]
  []
 
-[17]
+LaTeX Font Info:    Font shape `TU/XBNiloofar(0)/m/it' will be
+(Font)              scaled to size 13.20007pt on input line 354.
+LaTeX Font Info:    Font shape `TU/XBNiloofar(1)/m/it' will be
+(Font)              scaled to size 13.20007pt on input line 354.
+[18] [19]
 File: figures/figure1_main_convergence.png Graphic file (type bmp)
 <figures/figure1_main_convergence.png>
- [18
+ [20
 
 ]
 File: figures/figure2_per_seed_breakdown.png Graphic file (type bmp)
 <figures/figure2_per_seed_breakdown.png>
- [19
+ [21
 
 ]
 File: figures/figure3_statistical_analysis.png Graphic file (type bmp)
 <figures/figure3_statistical_analysis.png>
- [20
+ [22
 
 ]
 File: figures/medium_convergence.png Graphic file (type bmp)
 <figures/medium_convergence.png>
 File: figures/hard_convergence.png Graphic file (type bmp)
 <figures/hard_convergence.png>
- [21
-
-] [22
+ [23
 
 ]
 File: figures/figure4_robustness_analysis.png Graphic file (type bmp)
 <figures/figure4_robustness_analysis.png>
+ [24
 
-Overfull \hbox (6.05977pt too wide) in paragraph at lines 426--426
+]
+Overfull \hbox (6.05977pt too wide) in paragraph at lines 457--457
 [][]\TU/XBNiloofar(0)/b/n/14.4 ارزیابی مقایسه‌ای و تحلیل منطق برتری روش []\TU/T
 imesNewRoman(0)/b/n/14.4 RS-DRL[] \TU/XBNiloofar(0)/b/n/14.4 ([]\TU/TimesNewRom
 an(0)/b/n/14.4 Comparative Bench-[][]
  []
 
-LaTeX Font Info:    Font shape `TU/XBNiloofar(0)/m/n' will be
-(Font)              scaled to size 12.04506pt on input line 447.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 460.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 460.
+
+[25]
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
-(Font)              scaled to size 9.85492pt on input line 448.
+(Font)              scaled to size 7.19995pt on input line 474.
+LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
+(Font)              scaled to size 5.39996pt on input line 474.
+LaTeX Font Info:    Font shape `TU/XBNiloofar(0)/m/n' will be
+(Font)              scaled to size 12.04506pt on input line 517.
+LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/n' will be
+(Font)              scaled to size 9.85492pt on input line 518.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/m/n' will be
-(Font)              scaled to size 12.04506pt on input line 448.
+(Font)              scaled to size 12.04506pt on input line 518.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/bx/n' in size <10.95> not avai
 lable
 (Font)              Font shape `TU/XBNiloofar(2)/b/n' tried instead on input li
-ne 448.
+ne 518.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/b/n' will be
-(Font)              scaled to size 12.04506pt on input line 448.
+(Font)              scaled to size 12.04506pt on input line 518.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(2)/m/it' will be
-(Font)              scaled to size 12.04506pt on input line 448.
+(Font)              scaled to size 12.04506pt on input line 518.
 LaTeX Font Info:    Font shape `TU/XBNiloofar(1)/m/n' will be
-(Font)              scaled to size 12.04506pt on input line 448.
-[23]
+(Font)              scaled to size 12.04506pt on input line 518.
+ [26]
 File: figures/comparative_literature_benchmarks.png Graphic file (type bmp)
 <figures/comparative_literature_benchmarks.png>
 
-Underfull \hbox (badness 1365) in paragraph at lines 457--457
+Underfull \hbox (badness 1365) in paragraph at lines 527--527
 [][][]\TU/XBNiloofar(0)/m/n/12 شکل \TU/XBNiloofar(1)/m/n/12 ۱۱\TU/XBNiloofar(0)
 /m/n/12 : []مقایسه چندجانبه عملکرد روش پیشنهادی RS-DRL با روش‌های هیوریستیک[][]
 
  []
 
-[24] [25] [26]
-Overfull \hbox (4.74583pt too wide) in paragraph at lines 501--502
+[27] [28]
+Overfull \hbox (3.01717pt too wide) in paragraph at lines 558--559
+[]\TU/XBNiloofar(0)/m/n/12 حل مسائل بهینه‌سازی احتمالاتی سنگین روی فضای حالت کا
+مل سیستم است. زمان تصمیم‌گیری[]
+ []
+
+[29]
+Overfull \hbox (7.35783pt too wide) in paragraph at lines 567--568
+[][]\TU/XBNiloofar(0)/m/n/12 امتیاز مطلوبیت کلی RS-DRL ($[][][][][]$) در مقایسه
+ با SASS/PLA ($[][][][][]$) برتری $\OT1/cmr/m/n/12 +[][][][][]$[]
+ []
+
+[30]
+Overfull \hbox (1.41795pt too wide) in paragraph at lines 585--586
+[]\TU/XBNiloofar(0)/m/n/12 عمیق RS-DRL با معماری []\TU/TimesNewRoman(0)/m/n/12 
+MLP[] \TU/XBNiloofar(0)/m/n/12 دو لایه‌ی $[][]$-نورونی، این روابط غیرخطی را با 
+دقت بیشتری[]
+ []
+
+
+Overfull \hbox (1.5595pt too wide) in paragraph at lines 591--592
+[]\TU/XBNiloofar(0)/m/n/12 است — تفاوتی برابر $[][][]$ درصد. در مقابل، زمان تصم
+یم‌گیری RS-DRL ($[][][][][]$ میلی‌ثانیه)[]
+ []
+
+[31]
+Overfull \hbox (2.2645pt too wide) in paragraph at lines 608--609
+[]\TU/XBNiloofar(0)/m/n/12 «بازیکن» در نظر گرفته می‌شود و سهم هر ویژگی در پیش‌ب
+ینی نهایی با بررسی تمام زیرمجموعه‌های[]
+ []
+
+[32]
+Overfull \hbox (2.07008pt too wide) in paragraph at lines 627--628
+[]\TU/XBNiloofar(0)/m/n/12 مثبت) به ندرت در بافر آفلاین ظاهر می‌شود و DQN پایه 
+بدون هیچ‌گونه تقویتی، این سیگنال‌های[]
+ []
+
+[33]
+Overfull \hbox (4.74583pt too wide) in paragraph at lines 649--650
 []\TU/XBNiloofar(0)/m/n/12 کدهای شبیه‌سازی، اسکریپت‌های مربوط به حلقه MAPE-K و 
 پیاده‌سازی عامل RS-DRL، بافرهای[]
  []
 
-
-Overfull \hbox (6.2232pt too wide) in paragraph at lines 514--515
+[34]
+Overfull \hbox (4.0769pt too wide) in paragraph at lines 663--664
 [][]\TU/XBNiloofar(0)/b/n/12 راه‌اندازی محیط پایتون: \TU/XBNiloofar(0)/m/n/12 ا
 بتدا یک محیط مجازی با استفاده از ابزار []\TU/TimesNewRoman(0)/m/n/12 conda[] \T
-U/XBNiloofar(0)/m/n/12 ایجاد کرده و نیازمندی‌ها[]
+U/XBNiloofar(0)/m/n/12 ایجاد شود و نیازمندی‌ها[]
  []
 
-[27]
-LaTeX Font Info:    Font shape `TU/XBNiloofar(0)/m/it' will be
-(Font)              scaled to size 13.20007pt on input line 561.
+[35]
 LaTeX Font Info:    Font shape `TU/TimesNewRoman(0)/m/it' will be
-(Font)              scaled to size 10.79993pt on input line 561.
- [28] (dartsim_detailed_guide_v2_fa.aux)
+(Font)              scaled to size 10.79993pt on input line 750.
+ [36] [37] (dartsim_detailed_guide_v2_fa.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-04-28>
  ***********
 Package rerunfilecheck Info: File `dartsim_detailed_guide_v2_fa.out' has not ch
 anged.
-(rerunfilecheck)             Checksum: 3C6828BCBCFF704E0E3B4F422FD12D69;13323.
+(rerunfilecheck)             Checksum: 22DE8F3F65B3A81052C5C7C1468174BD;13780.
  ) 
 Here is how much of TeX's memory you used:
- 16241 strings out of 402799
- 337857 string characters out of 5449216
- 793153 words of memory out of 5000000
- 44810 multiletter control sequences out of 15000+600000
- 638693 words of font info for 153 fonts, out of 8000000 for 9000
+ 16267 strings out of 402799
+ 338652 string characters out of 5449216
+ 796781 words of memory out of 5000000
+ 44826 multiletter control sequences out of 15000+600000
+ 639703 words of font info for 164 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 88i,17n,94p,1256b,502s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 88i,16n,94p,1256b,606s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on dartsim_detailed_guide_v2_fa.pdf (28 pages).
+Output written on dartsim_detailed_guide_v2_fa.pdf (37 pages).
