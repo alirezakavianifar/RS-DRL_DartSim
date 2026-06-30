@@ -1,0 +1,756 @@
+%% DARTSim / RS-DRL — Question & Answer Preparation Guide
+%% Compiled from Dartsim_questions.md (corrected against implementation)
+%% Engine: XeLaTeX  |  Encoding: UTF-8
+\documentclass[oneside,openany,a4paper,12pt]{article}
+
+% ─── Math & general packages ─────────────────────────────────────────────────
+\usepackage{amsthm,amssymb,amsmath}
+\usepackage[top=25mm, bottom=25mm, left=25mm, right=30mm]{geometry}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{enumitem}
+
+% ─── Colors & Boxes ──────────────────────────────────────────────────────────
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\tcbuselibrary{skins,breakable}
+
+% ─── Hyperlinks ──────────────────────────────────────────────────────────────
+\usepackage[pagebackref=false,colorlinks,linkcolor=blue,citecolor=blue]{hyperref}
+
+% ─── Persian / Bidi — same approach as thesis ────────────────────────────────
+\usepackage{xepersian}
+\settextfont[Path=font/,Extension=.ttf,Scale=1.1,
+    BoldFont=XB NiloofarBd,
+    ItalicFont=XB NiloofarIt,
+    BoldItalicFont=XB NiloofarBdIt
+]{XB Niloofar}
+\setlatintextfont[Scale=0.9]{Times New Roman}
+\setdigitfont[Path=font/,Extension=.ttf,Scale=1.1,
+    BoldFont=XB NiloofarBd,
+    ItalicFont=XB NiloofarIt,
+    BoldItalicFont=XB NiloofarBdIt
+]{XB Niloofar}
+
+
+
+% ─── Custom Colours ─────────────────────────────────────────────────────────
+\definecolor{hintbg}{RGB}{240,248,255}
+\definecolor{hintborder}{RGB}{70,130,180}
+\definecolor{warnbg}{RGB}{255,248,220}
+\definecolor{warnborder}{RGB}{218,165,32}
+\definecolor{fixbg}{RGB}{240,255,240}
+\definecolor{fixborder}{RGB}{34,139,34}
+\definecolor{qbg}{RGB}{245,245,250}
+\definecolor{qborder}{RGB}{100,100,180}
+
+% ─── tcolorbox styles ────────────────────────────────────────────────────────
+\newtcolorbox{hintbox}[1][]{
+    enhanced, breakable,
+    colback=hintbg, colframe=hintborder,
+    title={\textbf{راهنما}},
+    fonttitle=\bfseries,
+    #1
+}
+
+\newtcolorbox{warnbox}[1][]{
+    enhanced, breakable,
+    colback=warnbg, colframe=warnborder,
+    title={\textbf{نکته مهم / تصحیح}},
+    fonttitle=\bfseries,
+    #1
+}
+
+\newtcolorbox{questionbox}[2][]{
+    enhanced, breakable,
+    colback=qbg, colframe=qborder,
+    title={\textbf{سؤال #2}},
+    fonttitle=\bfseries,
+    #1
+}
+
+% ─── Commands ────────────────────────────────────────────────────────────────
+\newcommand{\rsdrl}{\lr{RS-DRL}}
+\newcommand{\dqn}{\lr{DQN}}
+\newcommand{\dartsim}{\lr{DARTSim}}
+\newcommand{\mapek}{\lr{MAPE-K}}
+% \newcommand{\rho} is already defined
+
+% ─────────────────────────────────────────────────────────────────────────────
+\begin{document}
+
+\begin{titlepage}
+\centering
+\vspace*{3cm}
+{\huge\bfseries راهنمای جامع آمادگی برای دفاع از پایان‌نامه}\\[1em]
+{\Large\bfseries شبیه‌ساز \dartsim{} و روش \rsdrl{}}\\[2em]
+{\large سؤالات احتمالی استاد با پاسخ‌های مستند}\\[0.5em]
+{\normalsize (مقادیر اصلاح‌شده بر اساس پیاده‌سازی واقعی و کد منبع)}\\[3em]
+\hrule height 1.5pt
+\vspace{1.5em}
+{\large علیرضا کاویانی‌فر}\\[0.5em]
+{\normalsize \lr{GitHub: alirezakavianifar/RS-DRL\_DartSim}}\\[3em]
+\vfill
+{\large \today}
+\end{titlepage}
+
+\tableofcontents
+\clearpage
+
+%% ═══════════════════════════════════════════════════════════════════════════
+\section{مفاهیم پایه و انگیزه}
+%% ═══════════════════════════════════════════════════════════════════════════
+
+\subsection{فضای مسئله}
+
+\begin{questionbox}{Q1}
+چرا \dartsim{} را به عنوان بستر آزمایشی انتخاب کردید؟ چه چالش‌های منحصربه‌فردی ارائه می‌دهد؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item معامله ارتفاع (\lr{Altitude Trade-off}) به عنوان چالش محوری
+  \item $24.4\%$ انتقال‌های تصادفی (عدم قطعیت محیطی)
+  \item فضای حالت پیوسته با اقدامات گسسته
+  \item الزامات تصمیم‌گیری بلادرنگ ($< 10$ میلی‌ثانیه)
+\end{itemize}
+\end{hintbox}
+
+\begin{questionbox}{Q2}
+«معامله ارتفاع» را با کلمات خود توضیح دهید. چرا چالش «محوری» نامیده می‌شود؟
+\end{questionbox}
+
+\begin{hintbox}
+تنش بنیادین میان دو هدف متضاد:
+\begin{itemize}
+  \item \textbf{ارتفاع پایین} $\leftarrow$ شناسایی بهتر اهداف، ولی افزایش ریسک تهدیدات زمینی
+  \item \textbf{ارتفاع بالا} $\leftarrow$ کاهش ریسک تهدیدات، ولی کاهش کیفیت شناسایی اهداف
+\end{itemize}
+\end{hintbox}
+
+\begin{questionbox}{Q3}
+تفاوت مسئله \dartsim{} با معیارهای استاندارد \lr{RL} مانند \lr{Atari} یا \lr{MuJoCo} چیست؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item محدودیت‌های زمان واقعی (بلادرنگ)
+  \item بهینه‌سازی چندهدفه (موفقیت مأموریت + بقا + سرعت)
+  \item عدم قطعیت بالا ($24.4\%$ انتقال‌های تصادفی)
+  \item ماهیت حیاتی‌بودن از نظر ایمنی (انهدام پهپاد)
+\end{itemize}
+\end{hintbox}
+
+\subsection{یکپارچه‌سازی حلقه \mapek{}}
+
+\begin{questionbox}{Q4}
+چرا \mapek{} را با \rsdrl{} یکپارچه کردید؟ این یکپارچه‌سازی چه مشکل خاصی را حل می‌کند؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item پایش پیوسته و آموزش مجدد بر حسب تقاضا
+  \item مقابله با انحراف مفهومی (\lr{Concept Drift}) در محیط‌های پویا
+  \item تضمین کیفیت از طریق پایش آستانه‌ها
+  \item حلقه بازخورد برای تطبیق‌پذیری
+\end{itemize}
+\end{hintbox}
+
+\begin{questionbox}{Q5}
+اجزای حلقه \mapek{} را در زمینه سیستم شما گام به گام توضیح دهید.
+\end{questionbox}
+
+\begin{hintbox}
+\begin{description}
+  \item[\textbf{\lr{Monitor}}:] معیارهای کلیدی زمان اجرا شامل پاداش، موفقیت مأموریت، اهداف شناسایی‌شده و زمان تصمیم را در قالب شیء \lr{SystemMetrics} جمع‌آوری می‌کند.
+  \item[\textbf{\lr{Analyze}}:] معیارها را با آستانه‌های تعریف‌شده در پایگاه دانش مقایسه می‌کند.
+  \item[\textbf{\lr{Plan}}:] در صورت نقض آستانه، نقشه وفقی با $5000$ گام، نرخ یادگیری $10^{-4}$ و $\varrho=0.3$ تهیه می‌کند.
+  \item[\textbf{\lr{Execute}}:] آموزش مجدد را روی بافر تجربیات آفلاین اجرا می‌کند.
+  \item[\textbf{\lr{Knowledge}}:] مدل جاری، تاریخچه آموزش، آستانه‌ها و تاریخچه وفق را ذخیره می‌کند.
+\end{description}
+\end{hintbox}
+
+\begin{questionbox}{Q6}
+چه آستانه‌هایی در حلقه \mapek{} تعریف کردید و چرا آن مقادیر خاص؟
+\end{questionbox}
+
+\begin{hintbox}
+\textbf{مقادیر تأییدشده از \lr{mape\_k\_architecture.py}:}
+\begin{itemize}
+  \item حداقل پاداش اپیزودی: $< 0.7$
+  \item نرخ موفقیت مأموریت در ۱۰ اپیزود اخیر: $< 0.8$
+  \item حداکثر زمان تصمیم‌گیری: \textbf{$1000$ میلی‌ثانیه}
+  \item حداقل نسبت اهداف شناسایی‌شده: \textbf{$\geq 0.6$ (۶۰\%)}
+  \item قانون «\textbf{۳ نقض متوالی}» قبل از فعال‌شدن آموزش مجدد
+  \item حداقل فاصله بین آموزش‌های مجدد: \textbf{۱۰۰۰ گام}
+\end{itemize}
+\end{hintbox}
+
+%% ═══════════════════════════════════════════════════════════════════════════
+\section{روش‌شناسی — عمیق‌سازی}
+%% ═══════════════════════════════════════════════════════════════════════════
+
+\subsection{فرمول‌بندی \lr{MDP}}
+
+\begin{questionbox}{Q7}
+فضای حالت شما ۱۷ بعد دارد. هر مؤلفه را توضیح دهید و ضرورت هر کدام را بیان کنید.
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item \textbf{موقعیت مکانی ($2$ بعد):} مختصات $(X, Y)$ نرمال‌شده
+  \item \textbf{جهت حرکت ($2$ بعد):} بردار جهت نرمال‌شده
+  \item \textbf{پیکربندی جاری ($5$ بعد):} ارتفاع، آرایش تیمی، \lr{ECM}، \lr{TTC IncAlt}، \lr{TTC DecAlt}
+  \item \textbf{حسگر تهدید ($5$ بعد):} بردار باینری ۵ سلول پیشِ‌رو
+  \item \textbf{حسگر هدف ($5$ بعد):} بردار باینری ۵ سلول پیشِ‌رو
+\end{itemize}
+\end{hintbox}
+
+\begin{questionbox}{Q8}
+چرا فضای اقدام گسسته (۸ اقدام) را انتخاب کردید نه کنترل پیوسته؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item سادگی یادگیری
+  \item تصمیمات تاکتیکی ذاتاً گسسته هستند
+  \item سازگاری با \dqn{}
+  \item اما اذعان داشته باشید به محدودیت‌ها: شکاف شبیه‌ساز به واقعیت، تنش مکانیکی
+\end{itemize}
+\end{hintbox}
+
+\begin{questionbox}{Q9}
+تابع پاداش ۴ مؤلفه با وزن‌های خاص دارد. چرا این وزن‌ها ($0.4, 0.3, 0.2, 0.1$)?
+\end{questionbox}
+
+\begin{hintbox}
+\begin{equation}
+R = w_{\text{success}} \cdot r_{\text{success}} + w_{\text{targets}} \cdot r_{\text{targets}} + w_{\text{survival}} \cdot r_{\text{survival}} + w_{\text{efficiency}} \cdot r_{\text{efficiency}}
+\end{equation}
+
+\begin{itemize}
+  \item $w_{\text{success}} = 0.4$: موفقیت مأموریت مهم‌ترین هدف است
+  \item $w_{\text{targets}} = 0.3$: شناسایی اهداف اولویت دوم
+  \item $w_{\text{survival}} = 0.2$: بقای تیم؛ در صورت انهدام جریمه سنگین $w_{\text{destruction}} = -0.5$
+  \item $w_{\text{efficiency}} = 0.1$: تشویق به تصمیمات سریع‌تر
+\end{itemize}
+\end{hintbox}
+
+\subsection{نوآوری \rsdrl{}}
+
+\begin{questionbox}{Q10}
+\textbf{[مهم‌ترین سؤال]} مکانیزم \rsdrl{} را به تفصیل توضیح دهید. «شکل‌دهی تصادفی پاداش» دقیقاً به چه معناست؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{description}
+  \item[\textbf{\dqn{} استاندارد}:] از پاداش‌های واقعی $(r)$ می‌آموزد.
+  \item[\textbf{\rsdrl{}}:] $K = \lfloor\varrho \cdot N\rfloor$ انتقال از مینی‌بچ که دارای \textbf{پاداش غیرمثبت ($r \leq 0$)} هستند انتخاب شده و پاداش آن‌ها با مقدار خوش‌بینانه $+1.0$ جایگزین می‌شود. \textbf{آستانه پیاده‌سازی: \lr{rewards <= 0.0}} (نه فقط پاداش‌های منفی).
+\end{description}
+
+این تغییر باعث می‌شود:
+\begin{itemize}
+  \item از «انجماد ارزش کیو» جلوگیری شود
+  \item به عنوان رگولارایزر پویا عمل کند
+  \item خطای \lr{TD Loss} فعال بماند ($0.27$ تا $4.63$ در مقابل $0.006$ در \dqn{})
+\end{itemize}
+
+\textbf{نکته:} $\varrho$ \textit{کسر} مینی‌بچ است که بازطراحی می‌شود ($K = \lfloor\varrho \cdot N\rfloor$ انتقال)، نه احتمال هر نمونه.
+\end{hintbox}
+
+\begin{questionbox}{Q11}
+چرا $\varrho=0.3$ خاص؟ نتایج مطالعه ابلیشن را نشان دهید.
+\end{questionbox}
+
+\begin{hintbox}
+نتایج جدول مطالعه ابلیشن (سناریوی متوسط):
+
+\begin{center}
+\begin{tabular}{ccc}
+\toprule
+\textbf{$\varrho$} & \textbf{میانگین ارزش کیو} & \textbf{توضیح} \\
+\midrule
+$0.0$ & $1.948 \pm 0.687$ & معادل \dqn{} پایه \\
+$0.1$ & $4.266 \pm 0.826$ & بهبود محدود \\
+$\mathbf{0.3}$ & $\mathbf{8.190 \pm 0.605}$ & \textbf{بهینه!} \\
+$0.5$ & $12.387 \pm 0.621$ & بیش از حد تهاجمی \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{hintbox}
+
+\begin{questionbox}{Q12}
+اگر $\varrho$ خیلی زیاد ($0.5$) یا خیلی کم ($0.0$) باشد چه اتفاقی می‌افتد؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item $\varrho=0.0$: گیر افتادن در نقاط بهینه محلی، انجماد ارزش کیو، سیاست‌های محافظه‌کارانه
+  \item $\varrho=0.5$: خوش‌بینی افراطی، رفتارهای بیش از حد پرخطر، کاهش نرخ موفقیت
+  \item $\varrho=0.3$: تعادل کامل کاوش-بهره‌برداری
+\end{itemize}
+\end{hintbox}
+
+\begin{questionbox}{Q13}
+مشکل «انجماد ارزش کیو» در \dqn{} را توضیح دهید و نشان دهید چگونه \rsdrl{} آن را حل می‌کند.
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item \lr{TD Loss} در \dqn{} پایه به $\approx 0.006$ همگرا می‌شود
+  \item شبکه از یادگیری باز می‌ماند (گرادیان‌ها محو می‌شوند)
+  \item ارزش کیو در $1.431 \pm 0.607$ متوقف می‌شود
+  \item \rsdrl{}: \lr{TD Loss} را بین $0.27$-$4.63$ نگاه می‌دارد و گرادیان‌های معنادار حفظ می‌شوند
+\end{itemize}
+\end{hintbox}
+
+%% ═══════════════════════════════════════════════════════════════════════════
+\section{طراحی آزمایشی}
+%% ═══════════════════════════════════════════════════════════════════════════
+
+\subsection{جمع‌آوری داده}
+
+\begin{questionbox}{Q14}
+از مجموعه داده آفلاین با ۴۵٬۳۳۵ انتقال استفاده کردید. چگونه جمع‌آوری شد؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item روش سنتی: پارس متنی خروجی شبیه‌ساز
+  \item روش پیشرفته: اتصال \lr{TCP Socket} (شبیه \lr{Gymnasium})
+  \item داده به صورت چهارتایی $(s, a, r, s')$ در فایل‌های \lr{JSON} ذخیره می‌شود
+  \item سیاست رفتاری: سیاست پیش‌فرض شبیه‌ساز (احتمالاً هیوریستیک‌محور)
+  \item این موضوع انحراف توزیعی (\lr{Distributional Shift}) ایجاد می‌کند
+\end{itemize}
+\end{hintbox}
+
+\begin{questionbox}{Q15}
+سوگیری‌های موجود در داده‌های آفلاین را توضیح دهید.
+\end{questionbox}
+
+\begin{hintbox}
+\begin{enumerate}
+  \item \textbf{پوشش اقدام:} تنها بخشی از ۸ اقدام کاوش شده $\leftarrow$ تعمیم‌پذیری ضعیف به اقدامات کم‌استفاده
+  \item \textbf{سیاست رفتار:} سیاست محتاطانه $\leftarrow$ نمونه‌های کمی از حالت‌های خطرناک
+  \item \textbf{بذر/چیدمان:} نقشه‌های محدود $\leftarrow$ وابستگی به چیدمان‌های خاص
+  \item \textbf{بقا:} تراژکتوری‌های ناموفق کوتاه‌تر $\leftarrow$ عدم تعادل در داده
+  \item \textbf{گسسته‌سازی حالت:} حالت‌های پیوسته به ۵ سلول $\leftarrow$ افزایش مصنوعی تصادفی‌بودن
+\end{enumerate}
+\end{hintbox}
+
+\subsection{تنظیم ابرپارامترها}
+
+\begin{questionbox}{Q17}
+فرآیند تنظیم ابرپارامترها را توضیح دهید.
+\end{questionbox}
+
+\begin{hintbox}
+جستجوی شبکه‌ای (تأییدشده از \lr{grid\_search\_config.json}، \lr{train\_rs\_drl.py} و جدول ابرپارامترها):
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+\textbf{ابرپارامتر} & \textbf{بازه جستجو} & \textbf{مقدار بهینه} \\
+\midrule
+نرخ یادگیری & $\{10^{-5}, 10^{-4}, 5\times10^{-4}, 10^{-3}\}$ & $\mathbf{10^{-4}}$ \\
+اندازه مینی‌بچ & $\{32, 64\}$ & $\mathbf{32}$ \\
+ضریب تنزیل $\gamma$ & $\{0.9, 0.95, 0.99\}$ & $\mathbf{0.99}$ \\
+$\varrho$ & $\{0.0, 0.1, 0.3, 0.5\}$ & $\mathbf{0.3}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{hintbox}
+
+\begin{warnbox}
+متن اصلی مقاله اشتباهاً اندازه مینی‌بچ $64$ را به عنوان بهینه ذکر کرده بود. \textbf{مقدار صحیح طبق جدول ابرپارامترها و کد پیاده‌سازی: $32$}. اگر استاد این سؤال را مطرح کرد، به جدول و کد منبع \lr{train\_rs\_drl.py} اشاره کنید.
+\end{warnbox}
+
+\begin{questionbox}{Q18}
+چرا $\gamma=0.99$? چه رفتاری را در عامل القا می‌کند؟
+\end{questionbox}
+
+\begin{hintbox}
+گاما بالا = دوراندیشی، رفتار محتاطانه. عامل ارزش بقای بلندمدت را به سود کوتاه‌مدت ترجیح می‌دهد.
+\end{hintbox}
+
+\begin{questionbox}{Q19}
+چرا معماری \lr{MLP (64×64)} با \lr{ReLU}؟ چرا نه شبکه بزرگ‌تر، \lr{CNN} یا \lr{LSTM}؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item حالت ۱۷ بعدی نیازی به معماری پیچیده ندارد
+  \item \lr{MLP} سریع است: $0.037$ میلی‌ثانیه استنتاج
+  \item \lr{ReLU} برای فضاهای حالت پیوسته مناسب است
+  \item \lr{CNN/LSTM} پیچیدگی و تأخیر غیرضروری اضافه می‌کنند
+\end{itemize}
+\end{hintbox}
+
+%% ═══════════════════════════════════════════════════════════════════════════
+\section{نتایج و تحلیل}
+%% ═══════════════════════════════════════════════════════════════════════════
+
+\subsection{نتایج همگرایی}
+
+\begin{questionbox}{Q20}
+\rsdrl{} به $Q=5.533\pm1.425$ در مقابل \dqn{} ${} = 1.431\pm0.607$ می‌رسد؛ بهبود ۲۸۶.۷\%. شکل ۱ را توضیح دهید.
+\end{questionbox}
+
+\begin{hintbox}
+شکل ۱ چهار پنل دارد:
+\begin{enumerate}
+  \item \textbf{ارزش کیو:} \rsdrl{} سریع‌تر و در سطح بالاتری همگرا می‌شود
+  \item \textbf{خطای \lr{TD}:} \rsdrl{} فعال می‌ماند؛ \dqn{} نزدیک صفر می‌شود
+  \item \textbf{نرخ شکل‌دهی پاداش:} نشان‌دهنده $\varrho=0.3$ در عمل
+  \item \textbf{مقایسه کیو:} مقایسه بصری مستقیم
+\end{enumerate}
+\end{hintbox}
+
+\begin{questionbox}{Q21}
+آزمون تی $p=0.0397$ به زبان ساده چه معنایی دارد؟
+\end{questionbox}
+
+\begin{hintbox}
+احتمال اینکه این تفاوت به طور تصادفی رخ داده باشد تنها $4\%$ است. اگر دو روش واقعاً برابر بودند، چنین تفاوتی فقط در ۴ مورد از ۱۰۰ آزمایش دیده می‌شد.
+\end{hintbox}
+
+\begin{questionbox}{Q22}
+اندازه اثر کوهن $d=3.75$ بسیار بزرگ است. این چه می‌گوید؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+\textbf{آستانه} & \textbf{معنا} \\
+\midrule
+$d = 0.2$ & اثر کوچک \\
+$d = 0.5$ & اثر متوسط \\
+$d = 0.8$ & اثر بزرگ (آستانه پذیرفته‌شده) \\
+$\mathbf{d = 3.75}$ & \textbf{تقریباً ۵ برابر آستانه «بزرگ» — استثنایی} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+میانگین عملکرد \dqn{} ($1.43$) پایین‌تر از $99.99\%$ اجراهای \rsdrl{} است. توزیع‌های دو روش تقریباً هیچ همپوشانی ندارند.
+\end{hintbox}
+
+\subsection{تعمیم‌پذیری صفر-شات}
+
+\begin{questionbox}{Q23}
+نتایج صفر-شات نشان می‌دهد عملکرد از $58\%$ (آسان) به $33.3\%$ (سخت) کاهش می‌یابد. چه می‌گوید؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item عامل تعمیم می‌دهد اما با افت عملکرد
+  \item افزایش پیچیدگی را معقولاً مدیریت می‌کند
+  \item $33\%$ موفقیت در «سخت» برای استقرار واقعی کافی نیست
+  \item شاید نیاز به داده‌های آموزشی متنوع‌تر باشد
+\end{itemize}
+\end{hintbox}
+
+\begin{questionbox}{Q24}
+ماتریس تعمیم‌پذیری مقادیر یکسانی در همه ردیف‌ها دارد. چرا؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item \lr{OfflineDARTSimEnv} داده‌های ذخیره‌شده را بازپخش می‌کند
+  \item عامل نمی‌تواند مسیر فیزیکی پهپاد را تغییر دهد
+  \item نرخ موفقیت توسط سناریو تعیین می‌شود نه مدل
+  \item این محدودیت ارزیابی آفلاین است
+\end{itemize}
+\end{hintbox}
+
+\subsection{استواری در برابر نویز}
+
+\begin{questionbox}{Q25}
+عامل با نویز حسگر $50\%$ تنها $2\%$ افت داشت ($48\% \to 46\%$). چطور؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item آموزش آفلاین عامل را با داده‌های پرنویز آشنا کرده
+  \item شکل‌دهی خوش‌بینانه \rsdrl{} از بیش‌برازش روی قرائت‌های کامل حسگر جلوگیری می‌کند
+  \item اما توجه: $46\%$ همچنان برای استقرار واقعی پایین است
+\end{itemize}
+\end{hintbox}
+
+\subsection{ارزیابی مقایسه‌ای}
+
+\begin{questionbox}{Q26}
+\lr{TUNE-II} نرخ موفقیت $98\%$ اما زمان تصمیم $4500$ میلی‌ثانیه دارد. \rsdrl{} $89.5\%$ با $0.037$ میلی‌ثانیه. کدام برای پهپادهای واقعی بهتر است؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item پهپادهای واقعی نیاز به زمان تصمیم $< 10$ میلی‌ثانیه دارند
+  \item $4500$ میلی‌ثانیه = بیش از $100$ متر پرواز بدون کنترل
+  \item قابلیت استقرار عملی از \rsdrl{} حمایت می‌کند
+  \item اما بپذیرید \lr{TUNE-II} نرخ موفقیت بالاتری دارد
+\end{itemize}
+\end{hintbox}
+
+\begin{questionbox}{Q27}
+\lr{XDA-II} موفقیت $93\%$ با $600$ میلی‌ثانیه. مقایسه با \rsdrl{} چطور؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item \rsdrl{} $16{,}216$ برابر سریع‌تر ($0.037$ در مقابل $600$ میلی‌ثانیه)
+  \item \rsdrl{} روی سیستم‌های تعبیه‌شده کم‌توان کار می‌کند
+  \item \lr{XDA-II} نیاز به محاسبات \lr{SHAP} دارد (پیچیدگی نمایی $O(2^n)$)
+  \item امتیاز مطلوبیت: \rsdrl{}: $0.895$ در مقابل \lr{XDA-II}: $0.850$
+\end{itemize}
+\end{hintbox}
+
+\begin{questionbox}{Q28}
+امتیاز مطلوبیت $U=0.895$ دقیقاً چگونه محاسبه می‌شود؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{equation}
+U = \alpha \cdot r_{\text{success}} + \beta \cdot r_{\text{survival}} + \gamma \cdot r_{\text{speed}} - \delta \cdot r_{\text{destroy}}
+\end{equation}
+
+وزن‌ها: $\alpha=0.40$، $\beta=0.30$، $\gamma=0.20$، $\delta=0.10$
+
+\textbf{مثال محاسباتی برای \rsdrl{}:}
+\begin{align*}
+r_{\text{speed}} &= \min\!\left(1, \frac{10}{0.037}\right) = 1.0 \\
+U_{\text{RS-DRL}} &= 0.40 \times 0.895 + 0.30 \times 0.925 + 0.20 \times 1.0 - 0.10 \times 0.075 \\
+&= 0.358 + 0.2775 + 0.200 - 0.0075 = 0.828
+\end{align*}
+
+\textbf{توجه:} مقدار $U=0.895$ در جدول برابر نرخ موفقیت خام مأموریت است که در راستای رویه گزارش‌دهی ادبیات \dartsim{} انتخاب شده.
+\end{hintbox}
+
+%% ═══════════════════════════════════════════════════════════════════════════
+\section{محدودیت‌ها و کار آینده}
+%% ═══════════════════════════════════════════════════════════════════════════
+
+\begin{questionbox}{Q29}
+شکاف شبیه‌ساز به واقعیت (\lr{Sim-to-Real Gap}) را توضیح دهید.
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item \textbf{حسگرها:} شبیه‌ساز از گسسته‌سازی باینری ۵ سلولی استفاده می‌کند؛ حسگرهای واقعی پیوسته و پرنویزتر هستند
+  \item \textbf{اقدامات:} شبیه‌ساز ۸ اقدام گسسته؛ پهپادهای واقعی دینامیک پیوسته (\lr{PID/MPC}) دارند
+  \item \textbf{زمان‌بندی:} شبیه‌ساز افق ۱۰۰ گامه؛ پهپادهای واقعی زمان پیوسته دارند
+  \item \textbf{نویز:} نویز مصنوعی شبیه‌ساز در مقابل نویز واقعی‌تر (نور، آب‌وهوا)
+\end{itemize}
+\end{hintbox}
+
+\begin{questionbox}{Q31}
+روش شما \lr{RL} آفلاین است. اگر توزیع محیط به طور قابل توجهی از مجموعه داده آفلاین تغییر کند چه اتفاقی می‌افتد؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item این محدودیت اساسی \lr{RL} آفلاین است
+  \item حلقه \mapek{} با فعال‌سازی آموزش مجدد کمک می‌کند
+  \item اما آموزش مجدد همچنان از همان داده آفلاین استفاده می‌کند
+  \item برای تطبیق واقعی نیاز به جمع‌آوری داده آنلاین است
+\end{itemize}
+\end{hintbox}
+
+\begin{questionbox}{Q32}
+اگر $\varrho=0.3$ ثابت در طول آموزش بود، آیا $\varrho$ تطبیقی بهتر عمل نمی‌کرد؟
+\end{questionbox}
+
+\begin{hintbox}
+بله — این جهت آینده بالقوه است:
+\begin{itemize}
+  \item $\varrho$ بالا در ابتدا: کاوش بیشتر
+  \item $\varrho$ پایین در نهایت: بهره‌برداری بیشتر
+  \item این یک جهت جذاب برای تحقیقات آینده است
+\end{itemize}
+\end{hintbox}
+
+%% ═══════════════════════════════════════════════════════════════════════════
+\section{دقت آماری}
+%% ═══════════════════════════════════════════════════════════════════════════
+
+\begin{questionbox}{Q35}
+از ۳ بذر تصادفی (۴۲، ۴۳، ۴۴) استفاده کردید. آیا برای معناداری آماری کافی است؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item ۳ بذر در ادبیات رایج است
+  \item اندازه اثر بسیار بزرگ ($d=3.75$) احتمال تصادفی بودن را کاهش می‌دهد
+  \item اما اذعان کنید بذرهای بیشتر بهتر بود
+\end{itemize}
+\end{hintbox}
+
+\begin{questionbox}{Q36}
+آزمون لوین $p=0.284 > 0.05$ به چه معناست؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item لوین برابری واریانس‌ها را آزمون می‌کند
+  \item $p>0.05$ یعنی نمی‌توانیم برابری واریانس‌ها را رد کنیم
+  \item فرض آزمون تی مستقل برقرار است
+\end{itemize}
+\end{hintbox}
+
+\begin{questionbox}{Q37}
+شاپیرو-ویلک $p=0.785$ برای \rsdrl{} و $p=0.612$ برای \dqn{}. تفسیر کنید.
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item هر دو $p > 0.05$ $\leftarrow$ نمی‌توانیم نرمال‌بودن را رد کنیم
+  \item فرض آزمون تی برقرار است
+  \item داده‌ها در هر دو گروه از توزیع نرمال پیروی می‌کنند
+\end{itemize}
+\end{hintbox}
+
+%% ═══════════════════════════════════════════════════════════════════════════
+\section{سؤالات مفهومی و نظری}
+%% ═══════════════════════════════════════════════════════════════════════════
+
+\begin{questionbox}{Q38}
+معادله بلمن برای پیاده‌سازی \dqn{} خود را بنویسید.
+\end{questionbox}
+
+\begin{hintbox}
+\begin{align}
+Q(s,a) &= \mathbb{E}\left[r + \gamma \max_{a'} Q(s', a')\right] \\
+\text{TD\_target} &= r + \gamma \max_{a'} Q_{\text{target}}(s', a') \\
+\mathcal{L} &= \text{MSE}\!\left(Q(s,a),\ \text{TD\_target}\right)
+\end{align}
+\end{hintbox}
+
+\begin{questionbox}{Q40}
+چرا \dqn{} را بر \lr{PPO}، \lr{SAC} یا \lr{DDPG} ترجیح دادید؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item فضای اقدام گسسته $\leftarrow$ \dqn{} انتخاب طبیعی
+  \item یادگیری آفلاین $\leftarrow$ \dqn{} با بافر بازپخش خوب کار می‌کند
+  \item ساده‌تر در پیاده‌سازی و تفسیر
+  \item \lr{PPO/SAC} معمولاً برای فضاهای اقدام پیوسته
+\end{itemize}
+\end{hintbox}
+
+%% ═══════════════════════════════════════════════════════════════════════════
+\section{مقایسه با ادبیات}
+%% ═══════════════════════════════════════════════════════════════════════════
+
+\begin{questionbox}{Q45}
+کار خود را با ۴ مقاله کلیدی مقایسه کنید.
+\end{questionbox}
+
+\begin{hintbox}
+\begin{center}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llllll}
+\toprule
+\textbf{روش} & \textbf{سال} & \textbf{رویکرد} & \textbf{موفقیت} & \textbf{زمان} & \textbf{محدودیت اصلی} \\
+\midrule
+Moreno       & 2019 & هیوریستیک              & $62\%$        & $5.4$ ms        & بدون یادگیری، قوانین ایستا \\
+Kinneer      & 2021 & صحت‌سنجی صوری          & $85\%$        & $4500$ ms       & خیلی کند برای بلادرنگ \\
+Camilli      & 2025 & \lr{BMA}              & $98\%$        & $4500$ ms       & کند، پیچیده \\
+Negri        & 2026 & بهینه‌سازی جعبه‌سفید   & $93\%$        & $600$ ms        & محاسبات \lr{SHAP} گران \\
+\textbf{RS-DRL} & --- & \textbf{\rsdrl{}} & $\mathbf{89.5\%}$ & $\mathbf{0.037}$ \textbf{ms} & \textbf{بهترین توازن سرعت-موفقیت} \\
+\bottomrule
+\end{tabular}
+}
+\end{center}
+\end{hintbox}
+
+%% ═══════════════════════════════════════════════════════════════════════════
+\section{تفکر انتقادی}
+%% ═══════════════════════════════════════════════════════════════════════════
+
+\begin{questionbox}{Q47}
+مهم‌ترین مشارکت مقاله شما چیست؟
+\end{questionbox}
+
+\begin{hintbox}
+\textbf{\rsdrl{}} مشارکت اصلی است:
+\begin{itemize}
+  \item شکل‌دهی تصادفی پاداش از انجماد ارزش کیو جلوگیری می‌کند
+  \item امکان یادگیری از داده‌های آفلاین بدبینانه را فراهم می‌کند
+  \item بهترین توازن نرخ موفقیت و عملکرد بلادرنگ را به دست می‌آورد
+\end{itemize}
+\end{hintbox}
+
+\begin{questionbox}{Q49}
+بزرگ‌ترین نقطه ضعف کار شما چیست؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{itemize}
+  \item وابستگی به کیفیت داده آفلاین
+  \item شکاف شبیه‌ساز به واقعیت
+  \item پارامتر $\varrho$ ثابت
+  \item تنها ۳ بذر تصادفی
+  \item پیچیدگی محدود سناریو
+\end{itemize}
+\end{hintbox}
+
+\begin{questionbox}{Q50}
+منتقد چگونه می‌تواند به کار شما حمله کند؟ چگونه دفاع می‌کنید؟
+\end{questionbox}
+
+\begin{hintbox}
+\begin{description}
+  \item[\textit{«فقط ۳ بذر»}] دفاع با اندازه اثر بزرگ ($d=3.75$) و آزمون‌های آماری
+  \item[\textit{«نرخ موفقیت کمتر از \lr{TUNE-II}}»\textit{]}] دفاع با مزیت سرعت ($121{,}500$ برابر سریع‌تر)
+  \item[\textit{«داده آفلاین مغرضانه است»}] اذعان و نمایش آزمون‌های استواری
+  \item[\textit{«تست سخت‌افزار واقعی نشده»}] اذعان به عنوان محدودیت، معرفی به عنوان کار آینده
+\end{description}
+\end{hintbox}
+
+%% ═══════════════════════════════════════════════════════════════════════════
+\section{چک‌لیست آمادگی}
+%% ═══════════════════════════════════════════════════════════════════════════
+
+\subsection*{درک ریاضی}
+\begin{itemize}[label=$\square$]
+  \item نوشتن معادله بلمن
+  \item توضیح به‌روزرسانی \lr{TD}
+  \item استخراج فرمول تابع پاداش
+  \item توضیح فرمول‌بندی \lr{MDP} $(S, A, P, R, \gamma)$
+\end{itemize}
+
+\subsection*{جزئیات روش}
+\begin{itemize}[label=$\square$]
+  \item توصیف مکانیزم \rsdrl{} در ۲ دقیقه
+  \item توضیح چرایی بهینه بودن $\varrho=0.3$
+  \item مرور حلقه \mapek{}
+  \item توصیف فضای حالت ۱۷ بعدی
+\end{itemize}
+
+\subsection*{نتایج}
+\begin{itemize}[label=$\square$]
+  \item تفسیر همه شکل‌ها (شکل‌های ۱ تا ۷)
+  \item توضیح همه جداول (جداول ۱ تا ۱۰)
+  \item بحث درباره آزمون‌های آماری (تی، کوهن، شاپیرو-ویلک، لوین)
+  \item مقایسه با ادبیات (۴ مقاله کلیدی)
+\end{itemize}
+
+\subsection*{محدودیت‌ها}
+\begin{itemize}[label=$\square$]
+  \item اذعان به شکاف شبیه‌ساز به واقعیت
+  \item بحث درباره سوگیری‌های داده آفلاین
+  \item پرداختن به محدودیت $\varrho$ ثابت
+  \item توضیح رویکرد تکرارپذیری (\lr{Docker}، \lr{GitHub})
+\end{itemize}
+
+\bigskip
+\begin{tcolorbox}[colback=fixbg, colframe=fixborder, title=\textbf{موفق باشید!}]
+کلید دفاع موفق نشان دادن \textbf{درک عمیق}، نه صرف حفظ‌کردن است. استاد می‌خواهد ببیند کار، محدودیت‌ها و جایگاه آن در حوزه گسترده‌تر را واقعاً درک می‌کنید.
+\end{tcolorbox}
+
+\end{document}
